@@ -1,4 +1,15 @@
 {
   "version": 1,
-  "items": []
+  "items": [
+    {
+      "id": "dabuliu-blueberries-demo",
+      "title": "达布榴冷冻蓝莓",
+      "category": "水果",
+      "link": "https://v.douyin.com/_XiWt3tj3_c/",
+      "images": ["/recommendations/blueberry-20260925.jpg"],
+      "updatedAt": "2026-09-25",
+      "nutritionSource": "example",
+      "nutrition": {"carbs": 10, "protein": 10, "fat": 10, "factor": 50}
+    }
+  ]
 }
