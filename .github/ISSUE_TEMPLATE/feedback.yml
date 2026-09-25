@@ -1,0 +1,30 @@
+name: 留言与建议
+description: 给食光留言、反馈问题，或推荐你喜欢的食物。
+title: "[留言] "
+assignees:
+  - a1426424086-spec
+body:
+  - type: markdown
+    attributes:
+      value: |
+        这里的留言会公开，并自动指派给网站维护者。
+        可以反馈使用问题、提出建议，或分享喜欢的食物；请勿填写手机号等私人信息。
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 留言类型
+      options:
+        - 使用建议
+        - 问题反馈
+        - 食物推荐
+        - 其他
+    validations:
+      required: true
+  - type: textarea
+    id: message
+    attributes:
+      label: 想说的话
+      description: 可以附上相关截图或商品链接。反馈问题时，请写明在哪个页面、做了什么操作。
+      placeholder: 写下你的留言……
+    validations:
+      required: true

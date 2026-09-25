@@ -11,3 +11,11 @@
 ## GitHub Pages
 
 将本目录的应用文件放在仓库根目录，在 Settings → Pages 选择 Deploy from a branch → main → /(root)。本版本需要部署在网站根路径；不要将它放在二级项目路径下。
+
+## 留言
+
+食谱夹底部的“留言与建议”进入仓库的 GitHub Issue 表单，提交需要登录 GitHub，内容公开。`.github/ISSUE_TEMPLATE/feedback.yml` 将留言自动指派给仓库维护者；通知通过维护者的 GitHub 通知设置送达。
+
+## 更新兼容
+
+保持现有域名与本机存储键；公共参考食谱更新不会自动改写使用者保存的食谱和日期配餐。发布新版本时保留旧版本带哈希的 JS/CSS 文件，避免影响已经打开的页面。
