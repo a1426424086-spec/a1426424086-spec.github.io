@@ -9,7 +9,7 @@
         {
           "id": "template-3-p-1",
           "foodId": "food-7",
-          "grams": 50,
+          "grams": 25,
           "meal": "第一餐"
         },
         {
@@ -27,7 +27,7 @@
         {
           "id": "template-3-p-4",
           "foodId": "food-2",
-          "grams": 25,
+          "grams": 50,
           "meal": "第二餐"
         },
         {
@@ -310,22 +310,22 @@
         {
           "meal": "第一餐",
           "title": "黑麦片、鸡蛋、香蕉",
-          "note": "鸡蛋约2个，按去壳每个50克估算。麦片按包装说明冲泡，鸡蛋可前晚煮好。"
+          "note": "麦片冲泡，鸡蛋可提前煮好。"
         },
         {
           "meal": "第二餐",
-          "title": "糙米饭、清蒸鳕鱼、双色蔬菜",
-          "note": "鳕鱼清蒸；青菜、胡萝卜一起蒸煮，配糙米饭和坚果。提前做好后及时冷藏，食用前热透。"
+          "title": "糙米饭、清蒸鳕鱼、青菜、胡萝卜",
+          "note": "鳕鱼清蒸，青菜和胡萝卜煮熟。提前做好的饭菜及时冷藏，吃前热透。"
         },
         {
           "meal": "第三餐",
           "title": "米饭、白灼虾、莴苣",
-          "note": "虾仁白灼，莴苣切片焯熟，配米饭和坚果。提前做好后及时冷藏，食用前热透。"
+          "note": "虾仁白灼，莴苣焯熟。"
         },
         {
           "meal": "加餐",
           "title": "鸡蛋、苹果、坚果",
-          "note": "鸡蛋约1个，按去壳每个50克估算。"
+          "note": ""
         }
       ]
     },
@@ -349,13 +349,13 @@
         {
           "id": "template-2-p-3",
           "foodId": "food-23",
-          "grams": 50,
+          "grams": 100,
           "meal": "第一餐"
         },
         {
           "id": "template-2-p-4",
           "foodId": "food-2",
-          "grams": 25,
+          "grams": 50,
           "meal": "第二餐"
         },
         {
@@ -367,7 +367,7 @@
         {
           "id": "template-2-p-6",
           "foodId": "food-15",
-          "grams": 200,
+          "grams": 150,
           "meal": "第二餐"
         },
         {
@@ -379,7 +379,7 @@
         {
           "id": "template-2-p-8",
           "foodId": "food-1",
-          "grams": 75,
+          "grams": 50,
           "meal": "第三餐"
         },
         {
@@ -391,7 +391,7 @@
         {
           "id": "template-2-p-10",
           "foodId": "food-16",
-          "grams": 150,
+          "grams": 200,
           "meal": "第三餐"
         },
         {
@@ -611,22 +611,22 @@
         {
           "meal": "第一餐",
           "title": "全麦蟹黄欧包、鸡蛋、草莓",
-          "note": "鸡蛋约1个，按去壳每个50克估算。面包或红豆饼按包装食用说明处理，鸡蛋可提前煮好。哥本全麦魔芋蟹黄欧包：1个，每个65克。另有100克规格，选用时修改克数。"
+          "note": "欧包用65克装；换100克装时改用量。"
         },
         {
           "meal": "第二餐",
           "title": "糙米饭、琵琶腿、西兰花",
-          "note": "琵琶腿提前蒸熟，糙米饭、西兰花分装，坚果单独带。提前做好后及时冷藏，食用前热透。"
+          "note": "琵琶腿、西兰花蒸熟。鸡腿去骨后称重。提前做好的饭菜及时冷藏，吃前热透。"
         },
         {
           "meal": "第三餐",
           "title": "米饭、白菜蒸里脊",
-          "note": "白菜铺底，放里脊薄片一起蒸熟，配米饭和坚果。提前做好后及时冷藏，食用前热透。"
+          "note": "白菜铺底，放里脊薄片蒸熟。"
         },
         {
           "meal": "加餐",
           "title": "鸡蛋、西梅、坚果",
-          "note": "鸡蛋约1个，按去壳每个50克估算。"
+          "note": ""
         }
       ]
     },
@@ -662,49 +662,49 @@
         {
           "id": "template-1-p-5",
           "foodId": "food-2",
-          "grams": 25,
+          "grams": 50,
           "meal": "第二餐"
         },
         {
           "id": "template-1-p-6",
           "foodId": "food-12",
-          "grams": 200,
+          "grams": 250,
           "meal": "第二餐"
         },
         {
           "id": "template-1-p-7",
           "foodId": "food-14",
-          "grams": 150,
+          "grams": 100,
           "meal": "第二餐"
         },
         {
           "id": "template-1-p-8",
           "foodId": "food-30",
-          "grams": 10,
+          "grams": 5,
           "meal": "第二餐"
         },
         {
           "id": "template-1-p-9",
           "foodId": "food-8",
-          "grams": 100,
+          "grams": 150,
           "meal": "第三餐"
         },
         {
           "id": "template-1-p-10",
           "foodId": "food-11",
-          "grams": 200,
+          "grams": 150,
           "meal": "第三餐"
         },
         {
           "id": "template-1-p-11",
           "foodId": "food-38",
-          "grams": 150,
+          "grams": 100,
           "meal": "第三餐"
         },
         {
           "id": "template-1-p-12",
           "foodId": "food-17",
-          "grams": 150,
+          "grams": 100,
           "meal": "第三餐"
         },
         {
@@ -937,17 +937,17 @@
         {
           "meal": "第一餐",
           "title": "黑麦片、鸡蛋、蓝莓",
-          "note": "鸡蛋约1个，按去壳每个50克估算。麦片按包装说明冲泡，鸡蛋可前晚煮好。"
+          "note": "麦片冲泡，鸡蛋可提前煮好。"
         },
         {
           "meal": "第二餐",
-          "title": "糙米饭、牛肉菠菜便当",
-          "note": "牛肉切片煮熟，菠菜焯熟后分别装盒，配糙米饭与坚果。提前做好后及时冷藏，食用前热透。"
+          "title": "糙米饭、牛肉、菠菜",
+          "note": "牛肉切片煮熟，菠菜焯熟。提前做好的饭菜及时冷藏，吃前热透。"
         },
         {
           "meal": "第三餐",
-          "title": "土豆、菌菇蒸鸡胸",
-          "note": "鸡胸切片铺在蘑菇上蒸熟；土豆、莴苣蒸煮后配餐，坚果单独带。提前做好后及时冷藏，食用前热透。"
+          "title": "土豆、蘑菇蒸鸡胸",
+          "note": "鸡胸铺在蘑菇上蒸熟；土豆、莴苣蒸煮。"
         },
         {
           "meal": "加餐",
@@ -970,19 +970,19 @@
         {
           "id": "template-6-p-2",
           "foodId": "food-32",
-          "grams": 50,
+          "grams": 100,
           "meal": "第一餐"
         },
         {
           "id": "template-6-p-3",
           "foodId": "food-20",
-          "grams": 100,
+          "grams": 50,
           "meal": "第一餐"
         },
         {
           "id": "template-6-p-4",
           "foodId": "food-1",
-          "grams": 50,
+          "grams": 75,
           "meal": "第二餐"
         },
         {
@@ -994,7 +994,7 @@
         {
           "id": "template-6-p-6",
           "foodId": "food-33",
-          "grams": 100,
+          "grams": 50,
           "meal": "第二餐"
         },
         {
@@ -1030,7 +1030,7 @@
         {
           "id": "template-6-p-12",
           "foodId": "food-37",
-          "grams": 200,
+          "grams": 150,
           "meal": "第三餐"
         },
         {
@@ -1054,7 +1054,7 @@
         {
           "id": "template-6-p-16",
           "foodId": "food-30",
-          "grams": 10,
+          "grams": 5,
           "meal": "加餐"
         }
       ],
@@ -1284,22 +1284,22 @@
         {
           "meal": "第一餐",
           "title": "黑麦片、鸡蛋、蓝莓",
-          "note": "鸡蛋约1个，按去壳每个50克估算。麦片按包装说明冲泡，鸡蛋可前晚煮好。"
+          "note": "麦片冲泡，鸡蛋可提前煮好。"
         },
         {
           "meal": "第二餐",
           "title": "米饭、白菜虾仁豆腐",
-          "note": "白菜切段，豆腐切块，与虾仁用下列橄榄油炒熟，配米饭。额外用油或酱料另计。"
+          "note": "白菜切段，豆腐切块，与虾仁炒熟。"
         },
         {
           "meal": "第三餐",
-          "title": "米饭、菌菇胡萝卜炒里脊",
-          "note": "里脊、蘑菇、胡萝卜切片，用下列橄榄油炒熟，配米饭。额外用油或酱料另计。"
+          "title": "米饭、蘑菇胡萝卜炒里脊",
+          "note": "里脊、蘑菇、胡萝卜切片炒熟。"
         },
         {
           "meal": "加餐",
           "title": "鸡蛋、西梅、坚果",
-          "note": "鸡蛋约1个，按去壳每个50克估算。"
+          "note": ""
         }
       ]
     },
@@ -1329,7 +1329,7 @@
         {
           "id": "template-5-p-4",
           "foodId": "food-2",
-          "grams": 25,
+          "grams": 50,
           "meal": "第二餐"
         },
         {
@@ -1365,7 +1365,7 @@
         {
           "id": "template-5-p-10",
           "foodId": "food-15",
-          "grams": 150,
+          "grams": 200,
           "meal": "第三餐"
         },
         {
@@ -1383,7 +1383,7 @@
         {
           "id": "template-5-p-13",
           "foodId": "food-32",
-          "grams": 100,
+          "grams": 50,
           "meal": "加餐"
         },
         {
@@ -1627,22 +1627,22 @@
         {
           "meal": "第一餐",
           "title": "红豆饼、鸡蛋、草莓",
-          "note": "鸡蛋约2个，按去壳每个50克估算。面包或红豆饼按包装食用说明处理，鸡蛋可提前煮好。果真粮品魔芋红豆饼：1个，每个40克。"
+          "note": "红豆饼按包装说明食用。"
         },
         {
           "meal": "第二餐",
           "title": "糙米饭、彩椒炒里脊",
-          "note": "里脊切丝，与红彩椒用下列橄榄油炒熟，配糙米饭。额外用油或酱料另计。"
+          "note": "里脊和彩椒切丝炒熟。"
         },
         {
           "meal": "第三餐",
           "title": "米饭、西兰花胡萝卜炒鸡丁",
-          "note": "西兰花和胡萝卜先焯水，再与鸡胸丁用下列橄榄油炒熟。额外用油或酱料另计。"
+          "note": "西兰花、胡萝卜焯水后炒鸡丁。"
         },
         {
           "meal": "加餐",
           "title": "鸡蛋、苹果、坚果",
-          "note": "鸡蛋约2个，按去壳每个50克估算。"
+          "note": ""
         }
       ]
     },
@@ -1672,13 +1672,13 @@
         {
           "id": "template-4-p-4",
           "foodId": "food-30",
-          "grams": 10,
+          "grams": 5,
           "meal": "第一餐"
         },
         {
           "id": "template-4-p-5",
           "foodId": "food-1",
-          "grams": 25,
+          "grams": 50,
           "meal": "第二餐"
         },
         {
@@ -1696,7 +1696,7 @@
         {
           "id": "template-4-p-8",
           "foodId": "food-11",
-          "grams": 200,
+          "grams": 150,
           "meal": "第二餐"
         },
         {
@@ -1708,19 +1708,19 @@
         {
           "id": "template-4-p-10",
           "foodId": "food-8",
-          "grams": 100,
+          "grams": 150,
           "meal": "第三餐"
         },
         {
           "id": "template-4-p-11",
           "foodId": "food-12",
-          "grams": 150,
+          "grams": 200,
           "meal": "第三餐"
         },
         {
           "id": "template-4-p-12",
           "foodId": "food-38",
-          "grams": 150,
+          "grams": 100,
           "meal": "第三餐"
         },
         {
@@ -1953,17 +1953,17 @@
         {
           "meal": "第一餐",
           "title": "黑麦片、鸡蛋、蓝莓、坚果",
-          "note": "鸡蛋约1个，按去壳每个50克估算。麦片按包装说明冲泡，鸡蛋可前晚煮好。"
+          "note": "麦片冲泡，鸡蛋可提前煮好。"
         },
         {
           "meal": "第二餐",
           "title": "米饭、番茄炒蛋、鸡胸肉",
-          "note": "鸡蛋约2个，按去壳每个50克估算。番茄切块，与下列鸡蛋用橄榄油炒熟；鸡胸切片另蒸熟，配米饭。额外用油或酱料另计。"
+          "note": "番茄炒鸡蛋，鸡胸另蒸熟。"
         },
         {
           "meal": "第三餐",
-          "title": "土豆、菌菇炒牛肉",
-          "note": "土豆蒸熟；蘑菇与牛肉切片，用下列橄榄油炒熟。额外用油或酱料另计。"
+          "title": "土豆、蘑菇炒牛肉",
+          "note": "土豆蒸熟，蘑菇炒牛肉。"
         },
         {
           "meal": "加餐",
@@ -1979,111 +1979,84 @@
       "portions": [
         {
           "id": "template-10-p-1",
-          "foodId": "food-7",
-          "grams": 25,
-          "meal": "第一餐"
-        },
-        {
-          "id": "template-10-p-2",
           "foodId": "rec_boxed-strained-yogurt",
           "grams": 288,
           "meal": "第一餐"
         },
         {
-          "id": "template-10-p-3",
+          "id": "template-10-p-2",
           "foodId": "food-20",
           "grams": 50,
           "meal": "第一餐"
         },
         {
-          "id": "template-10-p-4",
-          "foodId": "food-30",
-          "grams": 5,
-          "meal": "第一餐"
-        },
-        {
-          "id": "template-10-p-5",
+          "id": "template-10-p-3",
           "foodId": "food-1",
-          "grams": 25,
+          "grams": 50,
           "meal": "第二餐"
         },
         {
-          "id": "template-10-p-6",
+          "id": "template-10-p-4",
           "foodId": "rec_hefeng-tangyang-chicken",
           "grams": 180,
           "meal": "第二餐"
         },
         {
-          "id": "template-10-p-7",
+          "id": "template-10-p-5",
           "foodId": "food-13",
           "grams": 150,
           "meal": "第二餐"
         },
         {
-          "id": "template-10-p-8",
+          "id": "template-10-p-6",
           "foodId": "food-31",
           "grams": 5,
           "meal": "第二餐"
         },
         {
-          "id": "template-10-p-9",
-          "foodId": "food-1",
-          "grams": 25,
+          "id": "template-10-p-7",
+          "foodId": "food-8",
+          "grams": 150,
           "meal": "第三餐"
         },
         {
-          "id": "template-10-p-10",
+          "id": "template-10-p-8",
           "foodId": "food-35",
           "grams": 250,
           "meal": "第三餐"
         },
         {
-          "id": "template-10-p-11",
-          "foodId": "food-36",
-          "grams": 200,
+          "id": "template-10-p-9",
+          "foodId": "food-15",
+          "grams": 150,
           "meal": "第三餐"
         },
         {
-          "id": "template-10-p-12",
+          "id": "template-10-p-10",
           "foodId": "food-31",
           "grams": 5,
           "meal": "第三餐"
         },
         {
-          "id": "template-10-p-13",
+          "id": "template-10-p-11",
           "foodId": "rec_guozhen-konjac-redbean",
           "grams": 40,
           "meal": "加餐"
         },
         {
-          "id": "template-10-p-14",
+          "id": "template-10-p-12",
           "foodId": "food-32",
           "grams": 50,
           "meal": "加餐"
         },
         {
-          "id": "template-10-p-15",
+          "id": "template-10-p-13",
           "foodId": "food-21",
           "grams": 150,
           "meal": "加餐"
         }
       ],
       "foods": [
-        {
-          "name": "英之素胚芽黑麦片",
-          "category": "主食",
-          "kcal": 367,
-          "protein": 15,
-          "fat": 3,
-          "factor": 0.8,
-          "weight": "包装干麦片重量",
-          "note": "用户提供的每100克营养值：碳水70克、蛋白质15克、脂肪3克。折算80%。",
-          "url": "https://v.douyin.com/8K7LygejZo8/",
-          "factorBasis": "用户自定义折算：肉蛋奶100%、蔬菜水果50%、其余80%；不是实际吸收率",
-          "factorUrl": "",
-          "id": "food-7",
-          "carbs": 70
-        },
         {
           "id": "rec_boxed-strained-yogurt",
           "name": "盒装干噎酸奶",
@@ -2115,21 +2088,6 @@
           "factorUrl": "",
           "id": "food-20",
           "carbs": 14.49
-        },
-        {
-          "id": "food-30",
-          "name": "山姆原味混合坚果",
-          "category": "其他",
-          "carbs": 20,
-          "protein": 18,
-          "fat": 55,
-          "kcal": 647,
-          "factor": 0.8,
-          "factorBasis": "用户自定义折算：肉蛋奶100%、蔬菜水果50%、其余80%；不是实际吸收率",
-          "factorUrl": "",
-          "weight": "成品重量",
-          "note": "用户提供的每100克营养值：碳水20克、蛋白质18克、脂肪55克。2026-09-25更新。",
-          "url": ""
         },
         {
           "name": "大米（生重）",
@@ -2198,6 +2156,23 @@
           "description": "Oil, olive, salad or cooking"
         },
         {
+          "name": "土豆（生重）",
+          "category": "主食",
+          "kcal": 78.97,
+          "protein": 2.05,
+          "fat": 0.09,
+          "factor": 0.8,
+          "weight": "生重可食部分",
+          "note": "去芽及损伤部分；含皮参考",
+          "fdcId": 170026,
+          "description": "Potatoes, flesh and skin, raw",
+          "url": "https://fdc.nal.usda.gov/food-details/170026/nutrients",
+          "factorBasis": "用户自定义折算：肉蛋奶100%、蔬菜水果50%、其余80%；不是实际吸收率",
+          "factorUrl": "",
+          "id": "food-8",
+          "carbs": 17.49
+        },
+        {
           "id": "food-35",
           "name": "大西洋鳕鱼（生重）",
           "category": "肉类",
@@ -2215,21 +2190,21 @@
           "factorUrl": ""
         },
         {
-          "id": "food-36",
-          "name": "红甜椒（生重）",
+          "name": "西兰花（生重）",
           "category": "蔬菜",
-          "kcal": 30.78,
-          "carbs": 6.03,
-          "protein": 0.99,
-          "fat": 0.3,
+          "kcal": 41.17,
+          "protein": 2.82,
+          "fat": 0.37,
           "factor": 0.5,
           "weight": "生重可食部分",
-          "note": "普通食物成分参考；有包装标签时以实际标签为准",
-          "url": "https://fdc.nal.usda.gov/food-details/170108/nutrients",
-          "fdcId": 170108,
-          "description": "Peppers, sweet, red, raw",
+          "note": "去除不食用的粗硬茎",
+          "fdcId": 170379,
+          "description": "Broccoli, raw",
+          "url": "https://fdc.nal.usda.gov/food-details/170379/nutrients",
           "factorBasis": "用户自定义折算：肉蛋奶100%、蔬菜水果50%、其余80%；不是实际吸收率",
-          "factorUrl": ""
+          "factorUrl": "",
+          "id": "food-15",
+          "carbs": 6.64
         },
         {
           "id": "rec_guozhen-konjac-redbean",
@@ -2289,23 +2264,23 @@
       "mealNotes": [
         {
           "meal": "第一餐",
-          "title": "黑麦片干噎酸奶碗、蓝莓",
-          "note": "麦片按包装说明冲泡，放温后拌酸奶。盒装干噎酸奶：1盒，每盒288克。"
+          "title": "干噎酸奶、蓝莓",
+          "note": "酸奶开盒即食，蓝莓洗净。"
         },
         {
           "meal": "第二餐",
           "title": "米饭、唐扬鸡块、青菜",
-          "note": "唐扬鸡块按包装要求充分加热；青菜用下列橄榄油炒熟，配米饭。额外用油或酱料另计。禾丰唐扬鸡块：1包，每包180克。"
+          "note": "鸡块按包装要求热透，青菜炒熟。"
         },
         {
           "meal": "第三餐",
-          "title": "米饭、彩椒炒鳕鱼",
-          "note": "鳕鱼与红彩椒切块，用下列橄榄油炒熟，配米饭。额外用油或酱料另计。"
+          "title": "土豆、西兰花炒鳕鱼",
+          "note": "土豆蒸熟，西兰花焯水后炒鳕鱼块。"
         },
         {
           "meal": "加餐",
           "title": "红豆饼、鸡蛋、苹果",
-          "note": "鸡蛋约1个，按去壳每个50克估算。果真粮品魔芋红豆饼：1个，每个40克。"
+          "note": ""
         }
       ]
     },
@@ -2323,7 +2298,7 @@
         {
           "id": "template-9-p-2",
           "foodId": "food-32",
-          "grams": 100,
+          "grams": 50,
           "meal": "第一餐"
         },
         {
@@ -2334,32 +2309,32 @@
         },
         {
           "id": "template-9-p-4",
-          "foodId": "food-2",
-          "grams": 25,
+          "foodId": "food-8",
+          "grams": 150,
           "meal": "第二餐"
         },
         {
           "id": "template-9-p-5",
           "foodId": "food-9",
-          "grams": 150,
+          "grams": 100,
           "meal": "第二餐"
         },
         {
           "id": "template-9-p-6",
           "foodId": "food-38",
-          "grams": 100,
+          "grams": 150,
           "meal": "第二餐"
         },
         {
           "id": "template-9-p-7",
           "foodId": "food-13",
-          "grams": 150,
+          "grams": 100,
           "meal": "第二餐"
         },
         {
           "id": "template-9-p-8",
           "foodId": "food-31",
-          "grams": 5,
+          "grams": 10,
           "meal": "第二餐"
         },
         {
@@ -2371,19 +2346,19 @@
         {
           "id": "template-9-p-10",
           "foodId": "food-34",
-          "grams": 150,
+          "grams": 200,
           "meal": "第三餐"
         },
         {
           "id": "template-9-p-11",
           "foodId": "food-15",
-          "grams": 100,
+          "grams": 150,
           "meal": "第三餐"
         },
         {
           "id": "template-9-p-12",
           "foodId": "food-31",
-          "grams": 10,
+          "grams": 5,
           "meal": "第三餐"
         },
         {
@@ -2407,7 +2382,7 @@
         {
           "id": "template-9-p-16",
           "foodId": "food-30",
-          "grams": 10,
+          "grams": 15,
           "meal": "加餐"
         }
       ],
@@ -2464,21 +2439,21 @@
           "carbs": 11.42
         },
         {
-          "name": "糙米（生重）",
+          "name": "土豆（生重）",
           "category": "主食",
-          "kcal": 363.96,
-          "protein": 7.54,
-          "fat": 3.2,
+          "kcal": 78.97,
+          "protein": 2.05,
+          "fat": 0.09,
           "factor": 0.8,
-          "weight": "干米重量",
-          "note": "长粒糙米参考",
-          "fdcId": 169703,
-          "description": "Rice, brown, long-grain, raw (Includes foods for USDA's Food Distribution Program)",
-          "url": "https://fdc.nal.usda.gov/food-details/169703/nutrients",
+          "weight": "生重可食部分",
+          "note": "去芽及损伤部分；含皮参考",
+          "fdcId": 170026,
+          "description": "Potatoes, flesh and skin, raw",
+          "url": "https://fdc.nal.usda.gov/food-details/170026/nutrients",
           "factorBasis": "用户自定义折算：肉蛋奶100%、蔬菜水果50%、其余80%；不是实际吸收率",
           "factorUrl": "",
-          "id": "food-2",
-          "carbs": 76.25
+          "id": "food-8",
+          "carbs": 17.49
         },
         {
           "name": "琵琶腿（去骨去皮生重）",
@@ -2665,22 +2640,22 @@
         {
           "meal": "第一餐",
           "title": "粘豆包、鸡蛋、西梅",
-          "note": "鸡蛋约2个，按去壳每个50克估算。粘豆包按包装说明加热，鸡蛋可提前煮好。野人日记五红粘豆包：1个，每个80克。"
+          "note": "粘豆包按包装说明加热，鸡蛋提前煮好。"
         },
         {
           "meal": "第二餐",
-          "title": "糙米饭、菌菇炒鸡腿肉",
-          "note": "琵琶腿去皮去骨后称重，切片，与蘑菇、青菜用下列橄榄油炒熟，配糙米饭。额外用油或酱料另计。"
+          "title": "土豆、蘑菇炒鸡腿肉",
+          "note": "土豆蒸熟；鸡腿去皮去骨切片，与蘑菇、青菜炒熟。"
         },
         {
           "meal": "第三餐",
           "title": "米饭、西兰花炒虾仁",
-          "note": "西兰花先焯水，再与虾仁用下列橄榄油炒熟，配米饭。额外用油或酱料另计。"
+          "note": "西兰花焯水后炒虾仁。"
         },
         {
           "meal": "加餐",
           "title": "鹰嘴豆、B420酸奶、草莓",
-          "note": "真零脱脂B420酸奶：1桶，每桶420克。"
+          "note": ""
         }
       ]
     },
@@ -2698,7 +2673,7 @@
         {
           "id": "template-8-p-2",
           "foodId": "food-32",
-          "grams": 100,
+          "grams": 50,
           "meal": "第一餐"
         },
         {
@@ -2710,7 +2685,7 @@
         {
           "id": "template-8-p-4",
           "foodId": "food-1",
-          "grams": 25,
+          "grams": 50,
           "meal": "第二餐"
         },
         {
@@ -2727,56 +2702,50 @@
         },
         {
           "id": "template-8-p-7",
-          "foodId": "food-37",
-          "grams": 100,
-          "meal": "第二餐"
-        },
-        {
-          "id": "template-8-p-8",
           "foodId": "food-31",
           "grams": 5,
           "meal": "第二餐"
         },
         {
-          "id": "template-8-p-9",
-          "foodId": "food-1",
-          "grams": 25,
-          "meal": "第三餐"
-        },
-        {
-          "id": "template-8-p-10",
-          "foodId": "food-35",
+          "id": "template-8-p-8",
+          "foodId": "food-8",
           "grams": 150,
           "meal": "第三餐"
         },
         {
-          "id": "template-8-p-11",
+          "id": "template-8-p-9",
+          "foodId": "food-35",
+          "grams": 200,
+          "meal": "第三餐"
+        },
+        {
+          "id": "template-8-p-10",
           "foodId": "food-16",
           "grams": 100,
           "meal": "第三餐"
         },
         {
-          "id": "template-8-p-12",
+          "id": "template-8-p-11",
           "foodId": "food-31",
           "grams": 10,
           "meal": "第三餐"
         },
         {
-          "id": "template-8-p-13",
+          "id": "template-8-p-12",
           "foodId": "rec_zhenling-b420-yogurt",
           "grams": 420,
           "meal": "加餐"
         },
         {
-          "id": "template-8-p-14",
+          "id": "template-8-p-13",
           "foodId": "food-22",
           "grams": 100,
           "meal": "加餐"
         },
         {
-          "id": "template-8-p-15",
+          "id": "template-8-p-14",
           "foodId": "food-30",
-          "grams": 15,
+          "grams": 10,
           "meal": "加餐"
         }
       ],
@@ -2882,23 +2851,6 @@
           "carbs": 6.64
         },
         {
-          "id": "food-37",
-          "name": "胡萝卜（生重）",
-          "category": "蔬菜",
-          "kcal": 44.2,
-          "carbs": 9.58,
-          "protein": 0.93,
-          "fat": 0.24,
-          "factor": 0.5,
-          "weight": "生重可食部分",
-          "note": "普通食物成分参考；有包装标签时以实际标签为准",
-          "url": "https://fdc.nal.usda.gov/food-details/170393/nutrients",
-          "fdcId": 170393,
-          "description": "Carrots, raw",
-          "factorBasis": "用户自定义折算：肉蛋奶100%、蔬菜水果50%、其余80%；不是实际吸收率",
-          "factorUrl": ""
-        },
-        {
           "id": "food-31",
           "name": "橄榄油",
           "category": "其他",
@@ -2914,6 +2866,23 @@
           "url": "https://fdc.nal.usda.gov/food-details/171413/nutrients",
           "fdcId": 171413,
           "description": "Oil, olive, salad or cooking"
+        },
+        {
+          "name": "土豆（生重）",
+          "category": "主食",
+          "kcal": 78.97,
+          "protein": 2.05,
+          "fat": 0.09,
+          "factor": 0.8,
+          "weight": "生重可食部分",
+          "note": "去芽及损伤部分；含皮参考",
+          "fdcId": 170026,
+          "description": "Potatoes, flesh and skin, raw",
+          "url": "https://fdc.nal.usda.gov/food-details/170026/nutrients",
+          "factorBasis": "用户自定义折算：肉蛋奶100%、蔬菜水果50%、其余80%；不是实际吸收率",
+          "factorUrl": "",
+          "id": "food-8",
+          "carbs": 17.49
         },
         {
           "id": "food-35",
@@ -3004,22 +2973,22 @@
         {
           "meal": "第一餐",
           "title": "蟹黄欧包、鸡蛋、草莓",
-          "note": "鸡蛋约2个，按去壳每个50克估算。面包或红豆饼按包装食用说明处理，鸡蛋可提前煮好。哥本全麦魔芋蟹黄欧包：1个，每个65克。另有100克规格，选用时修改克数。"
+          "note": "欧包用65克装；换100克装时改用量。"
         },
         {
           "meal": "第二餐",
-          "title": "米饭、唐扬鸡块、炒双蔬",
-          "note": "唐扬鸡块按包装要求充分加热；西兰花、胡萝卜焯水后用下列橄榄油快炒，配米饭。额外用油或酱料另计。禾丰唐扬鸡块：1包，每包180克。"
+          "title": "米饭、唐扬鸡块、西兰花",
+          "note": "鸡块按包装要求热透，西兰花炒熟。"
         },
         {
           "meal": "第三餐",
-          "title": "米饭、白菜炒鳕鱼",
-          "note": "鳕鱼切块，白菜切段，用下列橄榄油炒熟，配米饭。额外用油或酱料另计。"
+          "title": "土豆、白菜炒鳕鱼",
+          "note": "土豆蒸熟，白菜炒鳕鱼块。"
         },
         {
           "meal": "加餐",
           "title": "B420酸奶、香蕉、坚果",
-          "note": "真零脱脂B420酸奶：1桶，每桶420克。"
+          "note": ""
         }
       ]
     },
@@ -3049,13 +3018,13 @@
         {
           "id": "template-7-p-4",
           "foodId": "food-30",
-          "grams": 10,
+          "grams": 5,
           "meal": "第一餐"
         },
         {
           "id": "template-7-p-5",
           "foodId": "food-1",
-          "grams": 25,
+          "grams": 50,
           "meal": "第二餐"
         },
         {
@@ -3073,13 +3042,13 @@
         {
           "id": "template-7-p-8",
           "foodId": "food-31",
-          "grams": 10,
+          "grams": 5,
           "meal": "第二餐"
         },
         {
           "id": "template-7-p-9",
           "foodId": "food-8",
-          "grams": 50,
+          "grams": 150,
           "meal": "第三餐"
         },
         {
@@ -3091,7 +3060,7 @@
         {
           "id": "template-7-p-11",
           "foodId": "food-38",
-          "grams": 150,
+          "grams": 100,
           "meal": "第三餐"
         },
         {
@@ -3103,7 +3072,7 @@
         {
           "id": "template-7-p-13",
           "foodId": "food-31",
-          "grams": 5,
+          "grams": 10,
           "meal": "第三餐"
         },
         {
@@ -3115,7 +3084,7 @@
         {
           "id": "template-7-p-15",
           "foodId": "food-32",
-          "grams": 100,
+          "grams": 50,
           "meal": "加餐"
         },
         {
@@ -3381,22 +3350,22 @@
         {
           "meal": "第一餐",
           "title": "红豆饼、B420酸奶、蓝莓",
-          "note": "打开酸奶，搭配红豆饼和洗好的水果。果真粮品魔芋红豆饼：1个，每个40克。真零脱脂B420酸奶：1桶，每桶420克。"
+          "note": "红豆饼按包装说明食用。"
         },
         {
           "meal": "第二餐",
           "title": "米饭、彩椒牛肉",
-          "note": "牛肉与红彩椒切丝，用下列橄榄油炒熟，配米饭。额外用油或酱料另计。"
+          "note": "牛肉和彩椒切丝炒熟。"
         },
         {
           "meal": "第三餐",
-          "title": "土豆、菌菇鸡丁配菠菜",
-          "note": "土豆先蒸熟；鸡丁、蘑菇用下列橄榄油炒熟，菠菜焯水后一起拌匀。额外用油或酱料另计。"
+          "title": "土豆、蘑菇鸡丁配菠菜",
+          "note": "土豆蒸熟，鸡丁、蘑菇和菠菜炒熟。"
         },
         {
           "meal": "加餐",
           "title": "鹰嘴豆、鸡蛋、苹果",
-          "note": "鸡蛋约2个，按去壳每个50克估算。"
+          "note": ""
         }
       ]
     }
