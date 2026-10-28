@@ -1,0 +1,81 @@
+<view class="wrap">
+  <view class="seg">
+    <view wx:for="{{meals}}" wx:key="*this" class="seg-item {{item === meal ? 'on' : ''}}" data-m="{{item}}" bindtap="onMeal">{{item}}</view>
+  </view>
+
+  <view class="search">
+    <input placeholder="搜索食物名称" placeholder-class="ph" value="{{keyword}}" bindinput="onSearch" confirm-type="search" />
+  </view>
+
+  <scroll-view scroll-x class="chips" enhanced="{{true}}" show-scrollbar="{{false}}">
+    <view wx:for="{{categories}}" wx:key="*this" class="chip {{item === category ? 'on' : ''}}" data-c="{{item}}" bindtap="onCategory">{{item}}</view>
+  </scroll-view>
+
+  <view class="soft small hint">可连续添加，点食物选择用量。</view>
+
+  <view wx:for="{{list}}" wx:key="id" class="card food row" data-id="{{item.id}}" bindtap="onSelect">
+    <view class="grow">
+      <view class="ellipsis">{{item.name}}</view>
+      <view class="soft small">{{item.category}} · {{item.kcal}} 千卡 / 100 克<text wx:if="{{item.serving}}"> · {{item.serving}}</text></view>
+    </view>
+    <view class="add-dot">+</view>
+  </view>
+
+  <view wx:if="{{!list.length}}" class="empty">
+    <view>没有找到这项食物</view>
+  </view>
+
+  <view class="btn-row">
+    <view class="btn ghost" bindtap="newFood">新增食材</view>
+    <view class="btn" bindtap="done">完成{{added ? '（已加 ' + added + ' 项）' : ''}}</view>
+  </view>
+</view>
+
+<block wx:if="{{sel}}">
+  <view class="mask" bindtap="closeSheet"></view>
+  <view class="sheet">
+    <view class="h2">{{sel.name}}</view>
+    <view class="macros">
+      <text>每100克 {{sel.per100.kcal}} 千卡</text>
+      <text>碳水 {{sel.per100.carbs}}</text>
+      <text>蛋白 {{sel.per100.protein}}</text>
+      <text>脂肪 {{sel.per100.fat}}</text>
+    </view>
+    <view class="soft small" wx:if="{{sel.note}}">称重：{{sel.note}}</view>
+
+    <view class="field sheet-gap">
+      <view class="field-label">餐次</view>
+      <view class="seg">
+        <view wx:for="{{meals}}" wx:key="*this" class="seg-item {{item === meal ? 'on' : ''}}" data-m="{{item}}" bindtap="onMeal">{{item}}</view>
+      </view>
+    </view>
+
+    <view class="row">
+      <view class="field grow">
+        <view class="field-label">时间</view>
+        <picker mode="time" value="{{time}}" bindchange="onTime">
+          <view class="input num">{{time}}</view>
+        </picker>
+      </view>
+      <view class="field grow qty">
+        <view class="field-label">食用份量</view>
+        <view class="input">
+          <input type="digit" value="{{qty}}" bindinput="onQty" focus="{{true}}" />
+          <view wx:for="{{units}}" wx:key="*this" class="unit {{item === unit ? 'on' : ''}}" data-u="{{item}}" bindtap="onUnit">{{item}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="preview" wx:if="{{preview}}">
+      <text>本次 {{preview.grams}} 克 · </text>
+      <text class="gold">{{preview.kcal}} 千卡</text>
+      <text class="soft"> · 碳水 {{preview.carbs}} · 蛋白 {{preview.protein}} · 有效蛋白 {{preview.effective}} · 脂肪 {{preview.fat}}</text>
+    </view>
+    <view class="preview danger" wx:else>重量须大于0，不超过10,000克</view>
+
+    <view class="btn-row">
+      <view class="btn ghost" bindtap="closeSheet">取消</view>
+      <view class="btn {{preview ? '' : 'disabled'}}" bindtap="confirm">加入{{meal}}</view>
+    </view>
+  </view>
+</block>

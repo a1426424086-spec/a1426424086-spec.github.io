@@ -1,0 +1,5 @@
+.intro { margin-bottom: 28rpx; }
+.gap { gap: 20rpx; align-items: flex-start; }
+.chip { margin-right: 14rpx; padding: 16rpx 26rpx; }
+.calc { background: var(--card); border: 1rpx solid var(--border); border-radius: 20rpx; padding: 24rpx; margin-bottom: 28rpx; }
+.big { font-size: 44rpx; }

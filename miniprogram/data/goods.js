@@ -1,0 +1,168 @@
+// 由 食光 好物推荐 content/recommendations.json 生成；图片已按网页版 imagePosition 裁成正方形并压缩
+module.exports = [
+ {
+  "id": "boxed-strained-yogurt",
+  "title": "盒装干噎酸奶",
+  "category": "奶制品",
+  "link": "https://v.douyin.com/DD1LnieCi-4/",
+  "images": [
+   "/images/goods/boxed-strained-yogurt-20260925.jpg"
+  ],
+  "updatedAt": "2026-09-25",
+  "nutritionSource": "label",
+  "nutrition": {
+   "carbs": 16,
+   "protein": 4,
+   "fat": 4,
+   "factor": 100
+  },
+  "servingGrams": 288,
+  "servingUnit": "盒"
+ },
+ {
+  "id": "hefeng-tangyang-chicken",
+  "title": "禾丰唐扬鸡块",
+  "category": "肉类",
+  "link": "https://v.douyin.com/l62o0sNUUus/",
+  "images": [
+   "/images/goods/hefeng-chicken-20260925.jpg"
+  ],
+  "updatedAt": "2026-09-25",
+  "nutritionSource": "label",
+  "nutrition": {
+   "carbs": 8,
+   "protein": 20,
+   "fat": 3,
+   "factor": 100
+  },
+  "servingGrams": 180,
+  "servingUnit": "包"
+ },
+ {
+  "id": "guozhen-konjac-redbean",
+  "title": "果真粮品魔芋红豆饼",
+  "category": "主食",
+  "link": "https://v.douyin.com/XT7xhYCqiqY/",
+  "images": [
+   "/images/goods/guozhen-redbean-20260925.jpg"
+  ],
+  "updatedAt": "2026-09-25",
+  "nutritionSource": "label",
+  "nutrition": {
+   "carbs": 20,
+   "protein": 8,
+   "fat": 2,
+   "factor": 80
+  },
+  "servingGrams": 40,
+  "servingUnit": "个"
+ },
+ {
+  "id": "geben-crab-roe-bread",
+  "title": "哥本全麦魔芋蟹黄欧包",
+  "category": "主食",
+  "link": "https://v.douyin.com/Y33vu7SYFAw/",
+  "images": [
+   "/images/goods/geben-crab-bread-20260925.jpg"
+  ],
+  "updatedAt": "2026-09-25",
+  "nutritionSource": "label",
+  "nutrition": {
+   "carbs": 30,
+   "protein": 10,
+   "fat": 7,
+   "factor": 80
+  },
+  "servingGrams": 65,
+  "servingUnit": "个"
+ },
+ {
+  "id": "qianqingshan-chickpeas",
+  "title": "千倾山原香鹰嘴豆",
+  "category": "豆类及豆制品",
+  "link": "https://v.douyin.com/r4vbCvc2m6w/",
+  "images": [
+   "/images/goods/qianqingshan-chickpeas-20260925.jpg"
+  ],
+  "updatedAt": "2026-09-25",
+  "nutritionSource": "label",
+  "nutrition": {
+   "carbs": 70,
+   "protein": 21,
+   "fat": 7,
+   "factor": 80
+  }
+ },
+ {
+  "id": "yeren-wuhong-sticky-bun",
+  "title": "野人日记五红粘豆包",
+  "category": "主食",
+  "link": "https://v.douyin.com/dbdu0Yd93WQ/",
+  "images": [
+   "/images/goods/yeren-sticky-bun-20260925.jpg"
+  ],
+  "updatedAt": "2026-09-25",
+  "nutritionSource": "label",
+  "nutrition": {
+   "carbs": 45,
+   "protein": 10,
+   "fat": 1,
+   "factor": 80
+  },
+  "servingGrams": 80,
+  "servingUnit": "个"
+ },
+ {
+  "id": "zhenling-b420-yogurt",
+  "title": "真零脱脂B420酸奶",
+  "category": "奶制品",
+  "link": "https://v.douyin.com/5jToN88ovZY/",
+  "images": [
+   "/images/goods/zhenling-b420-yogurt-20260925.jpg"
+  ],
+  "updatedAt": "2026-09-25",
+  "nutritionSource": "label",
+  "nutrition": {
+   "carbs": 5,
+   "protein": 5,
+   "fat": 0,
+   "factor": 100
+  },
+  "servingGrams": 420,
+  "servingUnit": "桶"
+ },
+ {
+  "id": "yingzhisu-germ-flakes",
+  "title": "英之素胚芽黑麦片",
+  "category": "主食",
+  "link": "https://v.douyin.com/8K7LygejZo8/",
+  "images": [
+   "/images/goods/yingzhisu-germ-flakes-20260925.jpg"
+  ],
+  "updatedAt": "2026-09-25",
+  "nutritionSource": "label",
+  "nutrition": {
+   "carbs": 70,
+   "protein": 15,
+   "fat": 3,
+   "factor": 80
+  }
+ },
+ {
+  "id": "dabuliu-blueberries-demo",
+  "title": "达布榴冷冻蓝莓",
+  "category": "水果",
+  "link": "https://v.douyin.com/_XiWt3tj3_c/",
+  "images": [
+   "/images/goods/blueberry-20260925.jpg"
+  ],
+  "updatedAt": "2026-09-25",
+  "nutritionSource": "example",
+  "nutrition": {
+   "carbs": 10,
+   "protein": 10,
+   "fat": 10,
+   "factor": 50
+  }
+ }
+]

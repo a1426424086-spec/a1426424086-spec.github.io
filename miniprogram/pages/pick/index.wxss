@@ -1,0 +1,8 @@
+.hint { margin-bottom: 16rpx; }
+.food { padding: 22rpx 28rpx; margin-bottom: 14rpx; }
+.add-dot { width: 60rpx; height: 60rpx; border-radius: 50%; border: 1rpx solid var(--border); text-align: center; line-height: 56rpx; font-size: 36rpx; margin-left: 16rpx; }
+.sheet-gap { margin-top: 28rpx; }
+.qty { margin-left: 20rpx; flex: 1.4; }
+.unit { padding: 6rpx 16rpx; margin-left: 8rpx; border-radius: 10rpx; color: var(--text-soft); font-size: 26rpx; }
+.unit.on { background: var(--gold); color: var(--ink); }
+.preview { font-size: 26rpx; padding: 16rpx 0 0; }

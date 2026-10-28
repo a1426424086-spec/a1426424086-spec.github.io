@@ -1,0 +1,42 @@
+<view class="wrap" wx:if="{{missing}}">
+  <view class="empty">食谱不存在</view>
+</view>
+
+<view class="wrap" wx:else>
+  <view class="h1">{{name}}</view>
+  <view class="soft small sub">{{src === 'ref' ? '按这份食谱的营养值计算，用量可在配餐里再改。' : '按食材库最新数值计算；已删食材用原数值。'}}</view>
+
+  <view class="nutri">
+    <view class="nutri-label">食谱营养</view>
+    <view><text class="nutri-kcal num">{{totals.kcal}}</text><text class="nutri-kcal-unit">千卡</text></view>
+    <view class="nutri-row">
+      <view class="nutri-cell"><view class="nutri-label">碳水</view><text class="v num">{{totals.carbs}}</text><text class="u">克</text></view>
+      <view class="nutri-cell"><view class="nutri-label">蛋白质</view><text class="v num">{{totals.protein}}</text><text class="u">克</text></view>
+      <view class="nutri-cell"><view class="nutri-label">有效蛋白</view><text class="v num">{{totals.effective}}</text><text class="u">克</text></view>
+      <view class="nutri-cell"><view class="nutri-label">脂肪</view><text class="v num">{{totals.fat}}</text><text class="u">克</text></view>
+    </view>
+  </view>
+
+  <view wx:for="{{meals}}" wx:key="name" wx:for-item="meal" class="card">
+    <view class="row">
+      <text class="h2">{{meal.name}}</text>
+      <text class="soft small">{{meal.kcal}} 千卡</text>
+    </view>
+    <view class="gold small" wx:if="{{meal.title}}">{{meal.title}}</view>
+    <view wx:for="{{meal.items}}" wx:key="key" class="item row">
+      <view class="grow ellipsis">{{item.name}}</view>
+      <text class="soft small">{{item.qty}} · {{item.kcal}} 千卡</text>
+    </view>
+    <view class="soft small note" wx:if="{{meal.note}}">{{meal.note}}</view>
+  </view>
+
+  <view class="soft small sub">谷物称干重，肉菜称生重可食部分，包装食品称成品重。额外油、酱料另计。</view>
+
+  <picker mode="date" value="{{date}}" bindchange="onPickDate">
+    <view class="btn">选择日期并使用</view>
+  </picker>
+  <view class="btn-row">
+    <view wx:if="{{src === 'ref'}}" class="btn ghost" bindtap="copy">存入我的食谱</view>
+    <view wx:else class="btn danger" bindtap="remove">删除食谱</view>
+  </view>
+</view>

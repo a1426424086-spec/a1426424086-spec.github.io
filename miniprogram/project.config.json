@@ -1,0 +1,20 @@
+{
+  "description": "食光 · 私人食谱 微信小程序",
+  "projectname": "shiguang",
+  "appid": "touristappid",
+  "compileType": "miniprogram",
+  "libVersion": "3.4.0",
+  "packOptions": { "ignore": [{ "type": "file", "value": "README.md" }], "include": [] },
+  "setting": {
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "urlCheck": true,
+    "coverView": true,
+    "showShadowRootInWxmlPanel": true,
+    "compileHotReLoad": true
+  },
+  "condition": {},
+  "editorSetting": { "tabIndent": "insertSpaces", "tabSize": 2 }
+}

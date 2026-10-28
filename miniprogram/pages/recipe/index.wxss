@@ -1,0 +1,3 @@
+.sub { margin: 12rpx 0 24rpx; }
+.item { padding: 14rpx 0; border-top: 1rpx solid var(--border); margin-top: 10rpx; }
+.note { margin-top: 10rpx; }

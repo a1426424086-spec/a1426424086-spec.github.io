@@ -1,0 +1,68 @@
+<view class="wrap">
+  <view class="soft small intro">填写每 100 克的营养值，以包装标签或食物成分表为准。</view>
+
+  <view class="field">
+    <view class="field-label">食物名称</view>
+    <view class="input"><input placeholder="如：鸡胸肉、全麦面包" placeholder-class="ph" value="{{name}}" data-k="name" bindinput="onInput" /></view>
+  </view>
+
+  <view class="field">
+    <view class="field-label">分类</view>
+    <picker range="{{categories}}" value="{{categoryIndex}}" bindchange="onCategory">
+      <view class="input">{{categoryIndex >= 0 ? categories[categoryIndex] : '请选择分类'}}</view>
+    </picker>
+  </view>
+
+  <view class="row gap">
+    <view class="field grow">
+      <view class="field-label">碳水（克）</view>
+      <view class="input"><input type="digit" value="{{carbs}}" data-k="carbs" bindinput="onInput" /></view>
+    </view>
+    <view class="field grow">
+      <view class="field-label">蛋白质（克）</view>
+      <view class="input"><input type="digit" value="{{protein}}" data-k="protein" bindinput="onInput" /></view>
+    </view>
+    <view class="field grow">
+      <view class="field-label">脂肪（克）</view>
+      <view class="input"><input type="digit" value="{{fat}}" data-k="fat" bindinput="onInput" /></view>
+    </view>
+  </view>
+
+  <view class="field">
+    <view class="field-label">蛋白折算比例（%）· 默认肉蛋奶100%，蔬果50%，其余80%</view>
+    <view class="row">
+      <view class="chip {{factor === '100' ? 'on' : ''}}" data-v="100" bindtap="setFactor">100</view>
+      <view class="chip {{factor === '80' ? 'on' : ''}}" data-v="80" bindtap="setFactor">80</view>
+      <view class="chip {{factor === '50' ? 'on' : ''}}" data-v="50" bindtap="setFactor">50</view>
+      <view class="input grow"><input type="digit" value="{{factor}}" bindinput="onFactorInput" /></view>
+    </view>
+  </view>
+
+  <view class="calc row">
+    <view class="grow"><view class="soft small">热量 · 自动计算</view><text class="num big">{{kcal}}</text><text class="soft small"> 千卡/100克</text></view>
+    <view class="grow"><view class="soft small">有效蛋白 · 自动折算</view><text class="num big">{{effective}}</text><text class="soft small"> 克/100克</text></view>
+  </view>
+
+  <view class="row gap">
+    <view class="field grow">
+      <view class="field-label">按份记录（可选）</view>
+      <picker range="{{units}}" value="{{unitIndex}}" bindchange="onUnit">
+        <view class="input">{{units[unitIndex]}}</view>
+      </picker>
+    </view>
+    <view class="field grow" wx:if="{{unitIndex > 0}}">
+      <view class="field-label">每{{units[unitIndex]}}可食重量（克）</view>
+      <view class="input"><input type="digit" value="{{servingGrams}}" data-k="servingGrams" bindinput="onInput" /></view>
+    </view>
+  </view>
+
+  <view class="field">
+    <view class="field-label">称重说明（可选）</view>
+    <view class="input"><input placeholder="如：生重可食部分" placeholder-class="ph" value="{{weight}}" data-k="weight" bindinput="onInput" /></view>
+  </view>
+
+  <view class="btn-row">
+    <view wx:if="{{id}}" class="btn danger" bindtap="remove">删除食材</view>
+    <view class="btn" bindtap="save">保存食材</view>
+  </view>
+</view>

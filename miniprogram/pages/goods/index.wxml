@@ -1,0 +1,27 @@
+<view class="wrap">
+  <view class="h1">好物推荐</view>
+  <view class="soft small sub">常吃的食品。点图片复制商品链接，点导入存到食材库。</view>
+
+  <view wx:for="{{list}}" wx:key="id" class="card goods">
+    <image class="pic" src="{{item.image}}" mode="aspectFill" lazy-load="{{true}}" data-id="{{item.id}}" bindtap="openLink" data-src="{{item.image}}" bindlongpress="preview"></image>
+    <view class="body">
+      <view class="h2">{{item.title}}</view>
+      <view class="soft small">{{item.category}}<text wx:if="{{item.serving}}"> · {{item.serving}}</text></view>
+      <view class="tag" wx:if="{{item.example}}">示例营养 · 非商品包装值</view>
+      <view class="per">
+        <text class="num big">{{item.per100.kcal}}</text><text class="soft small"> 千卡 / 100 克</text>
+      </view>
+      <view class="macros">
+        <text>碳水 {{item.per100.carbs}}</text>
+        <text>蛋白质 {{item.per100.protein}}</text>
+        <text>有效蛋白 {{item.per100.effective}}</text>
+        <text>脂肪 {{item.per100.fat}}</text>
+        <text>折算 {{item.factor}}%</text>
+      </view>
+      <view wx:if="{{item.imported}}" class="btn ghost import done">已导入</view>
+      <view wx:else class="btn import" data-id="{{item.id}}" bindtap="importOne">导入食材库</view>
+    </view>
+  </view>
+
+  <view class="soft small foot">营养为每 100 克，热量按 碳水×4 + 蛋白质×4 + 脂肪×9 计算；有效蛋白为自定义折算估算。导入后可在食材库修改，重复导入不会覆盖。长按图片可放大。</view>
+</view>

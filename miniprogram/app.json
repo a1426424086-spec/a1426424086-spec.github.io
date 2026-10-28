@@ -1,0 +1,33 @@
+{
+  "pages": [
+    "pages/day/index",
+    "pages/stats/index",
+    "pages/foods/index",
+    "pages/recipes/index",
+    "pages/pick/index",
+    "pages/food-edit/index",
+    "pages/recipe/index",
+    "pages/goods/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#161918",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "食光",
+    "backgroundColor": "#161918",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#aaafa9",
+    "selectedColor": "#ddcba5",
+    "backgroundColor": "#1b1f1c",
+    "borderStyle": "black",
+    "list": [
+      { "pagePath": "pages/day/index", "text": "配餐" },
+      { "pagePath": "pages/stats/index", "text": "统计" },
+      { "pagePath": "pages/foods/index", "text": "食材库" },
+      { "pagePath": "pages/recipes/index", "text": "食谱夹" }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
