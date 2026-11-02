@@ -19,3 +19,4 @@
 .hist:last-child { border-bottom: 0; }
 .hist-kcal { flex-shrink: 0; margin-left: 24rpx; font-size: 30rpx; }
 .more { margin-top: 32rpx; }
+.hist-week { margin-left: 16rpx; }

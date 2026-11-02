@@ -52,7 +52,7 @@
   <view class="history-list">
     <view wx:for="{{history}}" wx:key="date" class="hist row" hover-class="press" data-date="{{item.date}}" bindtap="openDay">
       <view class="grow">
-        <view><text wx:for="{{item.titleParts}}" wx:for-item="part" wx:for-index="partIndex" wx:key="partIndex" class="{{partIndex % 2 ? 'num' : ''}}">{{part}}</text> <text class="soft small">{{item.week}} · <text class="num">{{item.year}}</text></text></view>
+        <view><text wx:for="{{item.titleParts}}" wx:for-item="part" wx:for-index="partIndex" wx:key="partIndex" class="{{partIndex % 2 ? 'num' : ''}}">{{part}}</text><text class="soft small hist-week">{{item.week}} · <text class="num">{{item.year}}</text></text></view>
         <view class="soft small"><text class="num">{{item.count}}</text> 项食材</view>
       </view>
       <view class="hist-kcal"><text class="num">{{item.kcal}}</text><text class="soft small"> 千卡 ›</text></view>
