@@ -1,60 +1,56 @@
 <view class="wrap">
-  <view class="brand row">
-    <view class="row">
-      <text class="brand-name">食光</text>
-      <text class="brand-sub">私人食谱</text>
+  <view class="top row">
+    <text class="brand num">食 光</text>
+    <view class="date-bar row">
+      <view class="arrow" hover-class="press" bindtap="prevDay">‹</view>
+      <picker mode="date" value="{{date}}" bindchange="onPickDate">
+        <view class="date-text"><text class="num">{{dateText}}</text><text class="soft small"> {{week}}</text></view>
+      </picker>
+      <view class="arrow" hover-class="press" bindtap="nextDay">›</view>
     </view>
-    <text class="soft small">爱上更棒的自己</text>
   </view>
-
-  <view class="h1">{{title}}</view>
-  <view class="soft small">记录自动保存在本机</view>
-
-  <view class="date-bar row">
-    <view class="arrow" bindtap="prevDay">‹</view>
-    <picker mode="date" value="{{date}}" bindchange="onPickDate">
-      <view class="date-text num">{{dateText}} <text class="soft small">{{week}}</text></view>
-    </picker>
-    <view class="arrow" bindtap="nextDay">›</view>
-  </view>
-  <view wx:if="{{!isToday}}" class="back-today gold small" bindtap="backToday">返回今日配餐</view>
+  <view wx:if="{{!isToday}}" class="back-today gold small" hover-class="press" bindtap="backToday">回到今天</view>
 
   <view class="nutri">
-    <view class="nutri-label">{{totalsLabel}}</view>
-    <view><text class="nutri-kcal num">{{totals.kcal}}</text><text class="nutri-kcal-unit">千卡</text></view>
+    <view class="nutri-head">
+      <view class="ring" style="{{ringStyle}}"><view class="ring-hole"></view></view>
+      <view>
+        <view class="nutri-label">{{totalsLabel}}</view>
+        <view><text class="nutri-kcal num">{{totals.kcal}}</text><text class="nutri-kcal-unit">千卡</text></view>
+      </view>
+    </view>
     <view class="nutri-row">
-      <view class="nutri-cell"><view class="nutri-label">碳水</view><text class="v num">{{totals.carbs}}</text><text class="u">克</text></view>
-      <view class="nutri-cell"><view class="nutri-label">蛋白质</view><text class="v num">{{totals.protein}}</text><text class="u">克</text></view>
+      <view class="nutri-cell"><view class="nutri-label"><text class="dot c"></text>碳水</view><text class="v num">{{totals.carbs}}</text><text class="u">克</text></view>
+      <view class="nutri-cell"><view class="nutri-label"><text class="dot p"></text>蛋白质</view><text class="v num">{{totals.protein}}</text><text class="u">克</text></view>
       <view class="nutri-cell"><view class="nutri-label">有效蛋白</view><text class="v num">{{totals.effective}}</text><text class="u">克</text></view>
-      <view class="nutri-cell"><view class="nutri-label">脂肪</view><text class="v num">{{totals.fat}}</text><text class="u">克</text></view>
+      <view class="nutri-cell"><view class="nutri-label"><text class="dot f"></text>脂肪</view><text class="v num">{{totals.fat}}</text><text class="u">克</text></view>
     </view>
   </view>
 
-  <view wx:for="{{meals}}" wx:key="name" wx:for-item="meal" class="card meal">
-    <view class="row">
-      <text class="meal-index num soft">{{meal.index}}</text>
-      <view class="grow">
-        <view class="h2">{{meal.name}}</view>
-        <view class="soft small" wx:if="{{meal.items.length}}">{{meal.items.length}} 项 · {{meal.kcal}} 千卡</view>
-        <view class="soft small" wx:else>还没添加食材</view>
+  <view wx:for="{{meals}}" wx:key="name" wx:for-item="meal" class="meal">
+    <view class="meal-head row">
+      <text class="label">{{meal.name}}</text>
+      <view class="row">
+        <text class="meal-kcal num soft" wx:if="{{meal.items.length}}">{{meal.kcal}} 千卡</text>
+        <view class="plus" hover-class="press" data-meal="{{meal.name}}" bindtap="addTo">+</view>
       </view>
-      <view class="plus" data-meal="{{meal.name}}" bindtap="addTo">+</view>
     </view>
+    <view wx:if="{{!meal.items.length}}" class="item-empty faint small">还没有记录</view>
     <view wx:for="{{meal.items}}" wx:key="id" class="item row">
       <picker mode="time" value="{{item.time}}" data-id="{{item.id}}" bindchange="onTimeChange">
-        <view class="item-time num gold">{{item.time}}</view>
+        <view class="item-time num">{{item.time}}</view>
       </picker>
-      <view class="grow" data-id="{{item.id}}" bindtap="onItemTap">
+      <view class="grow" hover-class="press" data-id="{{item.id}}" bindtap="onItemTap">
         <view class="ellipsis">{{item.name}}</view>
         <view class="soft small">{{item.qty}}</view>
       </view>
-      <view class="item-kcal num" data-id="{{item.id}}" bindtap="onItemTap">{{item.kcal}}<text class="soft small"> 千卡</text></view>
+      <view class="item-kcal num" data-id="{{item.id}}" bindtap="onItemTap">{{item.kcal}}</view>
     </view>
   </view>
 
   <view class="btn-row" wx:if="{{count}}">
-    <view class="btn ghost" bindtap="saveAsRecipe">存入食谱夹</view>
-    <view class="btn danger" bindtap="clearDay">清空当日</view>
+    <view class="btn ghost" hover-class="press" bindtap="saveAsRecipe">存入食谱夹</view>
+    <view class="btn danger" hover-class="press" bindtap="clearDay">清空当日</view>
   </view>
-  <view class="tip soft small">点时间可修改；点食材可改用量、换餐次或删除。</view>
+  <view class="tip faint small">记录只存在本机 · 点时间可修改，点食材可改用量、换餐次或删除</view>
 </view>

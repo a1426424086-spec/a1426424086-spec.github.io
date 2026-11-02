@@ -1,29 +1,26 @@
-.brand { padding-bottom: 28rpx; margin-bottom: 36rpx; border-bottom: 1rpx solid var(--border); }
-.brand-name { font-size: 48rpx; letter-spacing: 6rpx; color: var(--text); }
-.brand-sub { font-size: 24rpx; color: var(--text-soft); margin-left: 20rpx; padding-left: 20rpx; border-left: 1rpx solid var(--border); }
+.top { padding: 8rpx 0 24rpx; }
+.brand { font-size: 32rpx; letter-spacing: 8rpx; color: var(--text-soft); }
+.date-bar { margin-right: -16rpx; }
+.arrow { width: 64rpx; height: 64rpx; line-height: 60rpx; text-align: center; font-size: 40rpx; color: var(--text-soft); }
+.date-text { font-size: 30rpx; padding: 0 8rpx; }
+.back-today { text-align: right; padding: 0 0 12rpx; }
 
-.date-bar { margin: 32rpx 0 8rpx; padding-bottom: 20rpx; border-bottom: 1rpx solid var(--border); }
-.arrow { width: 80rpx; height: 64rpx; line-height: 60rpx; text-align: center; font-size: 48rpx; color: var(--text); }
-.date-text { font-size: 32rpx; }
-.back-today { text-align: center; padding: 12rpx 0; }
-
-.nutri { margin-top: 24rpx; }
-
-.meal { padding: 28rpx 28rpx 12rpx; }
-.meal > .row { padding-bottom: 16rpx; }
-.meal-index { font-size: 34rpx; width: 70rpx; }
+.meal { margin-top: 56rpx; }
+.meal-head { padding-bottom: 12rpx; border-bottom: 1rpx solid var(--line-strong); }
+.meal-kcal { font-size: 24rpx; margin-right: 24rpx; }
 .plus {
-  width: 92rpx;
-  height: 92rpx;
+  width: 56rpx;
+  height: 56rpx;
   border-radius: 50%;
-  border: 1rpx solid #8d958d;
+  border: 1rpx solid var(--line-strong);
   text-align: center;
-  line-height: 86rpx;
-  font-size: 48rpx;
-  color: var(--text);
+  line-height: 52rpx;
+  font-size: 34rpx;
+  color: var(--gold);
 }
-.item { padding: 18rpx 0; border-top: 1rpx solid var(--border); }
-.item-time { width: 110rpx; font-size: 26rpx; }
-.item-kcal { margin-left: 16rpx; }
+.item { min-height: 96rpx; padding: 16rpx 0; border-bottom: 1rpx solid var(--line); box-sizing: border-box; }
+.item-time { width: 110rpx; font-size: 26rpx; color: var(--gold-soft); }
+.item-kcal { margin-left: 24rpx; font-size: 30rpx; }
+.item-empty { padding: 24rpx 0; border-bottom: 1rpx solid var(--line); }
 
-.tip { text-align: center; margin-top: 28rpx; }
+.tip { text-align: center; margin-top: 40rpx; line-height: 1.8; }

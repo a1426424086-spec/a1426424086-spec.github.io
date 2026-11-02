@@ -9,16 +9,16 @@
     "pages/recipe/index"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#161918",
+    "navigationBarBackgroundColor": "#0f0f0e",
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "食光",
-    "backgroundColor": "#161918",
+    "backgroundColor": "#0f0f0e",
     "backgroundTextStyle": "light"
   },
   "tabBar": {
-    "color": "#aaafa9",
-    "selectedColor": "#ddcba5",
-    "backgroundColor": "#1b1f1c",
+    "color": "#5e584c",
+    "selectedColor": "#c9a96e",
+    "backgroundColor": "#0f0f0e",
     "borderStyle": "black",
     "list": [
       { "pagePath": "pages/day/index", "text": "配餐" },

@@ -69,6 +69,15 @@ function display(t) {
   }
 }
 
+// 营养圆环：按热量占比分三段（碳水、蛋白质、脂肪），没有记录时只画底色
+function ringStyle(t) {
+  const c = t.carbs * 4, p = t.protein * 4, f = t.fat * 9
+  const sum = c + p + f
+  if (!(sum > 0)) return 'background: var(--line);'
+  const a = round(c / sum * 360, 1), b = round((c + p) / sum * 360, 1)
+  return 'background: conic-gradient(var(--gold) 0 ' + a + 'deg, var(--gold-soft) ' + a + 'deg ' + b + 'deg, var(--line-strong) ' + b + 'deg 360deg);'
+}
+
 // 1个（50克）/ 120克
 function quantityText(portion) {
   const f = portion.food
@@ -80,5 +89,5 @@ function quantityText(portion) {
 
 module.exports = {
   CATEGORIES, MEALS, MEAL_TIMES, MAX_GRAMS,
-  defaultFactor, kcalPer100, per100, forGrams, empty, add, totals, round, display, quantityText
+  defaultFactor, kcalPer100, per100, forGrams, empty, add, totals, round, display, quantityText, ringStyle
 }

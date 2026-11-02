@@ -1,15 +1,16 @@
-/* 配色沿用 食光 网页版：深色底 + 米金色点缀 */
+/* 暗夜金：深色、去框、细线分组；数字衬线体，金色只用来点题。规范见 总控制/collaboration/shiguang/设计规范.md */
 page {
-  --bg: #161918;
-  --card: #202421;
-  --muted: #272d29;
-  --border: #363e38;
-  --text: #eeefeb;
-  --text-soft: #aaafa9;
-  --gold: #ddcba5;
-  --paper: #dcd8cc;
-  --ink: #232823;
-  --danger: #f3a699;
+  --bg: #0f0f0e;
+  --surface: #181715;
+  --line: #26241f;
+  --line-strong: #3a362e;
+  --text: #ede6d6;
+  --text-soft: #8c8471;
+  --text-faint: #5e584c;
+  --gold: #c9a96e;
+  --gold-soft: #8f7a52;
+  --ink: #14130f;
+  --danger: #d98c7a;
   background: var(--bg);
   color: var(--text);
   font-family: "PingFang SC", -apple-system, "Helvetica Neue", sans-serif;
@@ -17,44 +18,56 @@ page {
   line-height: 1.5;
 }
 
-.wrap { padding: 32rpx 32rpx 48rpx; }
-.num { font-family: "Helvetica Neue", Arial, sans-serif; }
+.wrap { padding: 32rpx 40rpx 64rpx; }
+.num { font-family: "Songti SC", "STSong", "Noto Serif", Georgia, serif; font-weight: 400; }
 .soft { color: var(--text-soft); }
+.faint { color: var(--text-faint); }
 .small { font-size: 24rpx; }
 .gold { color: var(--gold); }
 .danger { color: var(--danger); }
+.press { opacity: 0.6; }
 
-.h1 { font-size: 44rpx; font-weight: 600; }
-.h2 { font-size: 32rpx; font-weight: 600; }
+.h1 { font-size: 40rpx; font-weight: 500; }
+.h2 { font-size: 30rpx; font-weight: 500; }
+.label { font-size: 22rpx; letter-spacing: 4rpx; color: var(--gold); }
 
+/* 区块：无底色无边框，只靠上方一条强调线分组 */
 .card {
-  background: var(--card);
-  border: 1rpx solid var(--border);
-  border-radius: 24rpx;
-  padding: 28rpx;
-  margin-bottom: 20rpx;
+  border-top: 1rpx solid var(--line-strong);
+  padding: 28rpx 0;
 }
 
-/* 米色营养卡 */
-.nutri {
-  background: var(--paper);
-  color: var(--ink);
-  border-radius: 28rpx;
-  padding: 32rpx;
-  margin-bottom: 24rpx;
+/* 营养总览：圆环 + 大号热量 + 一行四项 */
+.nutri { margin-bottom: 16rpx; }
+.nutri-head { display: flex; align-items: center; padding: 16rpx 0 36rpx; }
+.ring {
+  width: 168rpx;
+  height: 168rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-right: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.nutri-label { font-size: 24rpx; color: #4a504a; }
-.nutri-kcal { font-size: 96rpx; font-weight: 500; line-height: 1.1; }
-.nutri-kcal-unit { font-size: 24rpx; margin-left: 12rpx; color: #4a504a; }
+.ring-hole { width: 156rpx; height: 156rpx; border-radius: 50%; background: var(--bg); }
+.nutri-label { font-size: 22rpx; color: var(--text-soft); letter-spacing: 2rpx; }
+.nutri-kcal { font-size: 80rpx; line-height: 1.05; color: var(--text); }
+.nutri-kcal-unit { font-size: 24rpx; margin-left: 12rpx; color: var(--text-soft); }
 .nutri-row {
   display: flex;
-  border-top: 1rpx solid #b9b6aa;
-  margin-top: 24rpx;
-  padding-top: 20rpx;
+  border-top: 1rpx solid var(--line-strong);
+  border-bottom: 1rpx solid var(--line-strong);
+  padding: 22rpx 0;
 }
 .nutri-cell { flex: 1; }
-.nutri-cell .v { font-size: 40rpx; font-weight: 500; }
-.nutri-cell .u { font-size: 22rpx; margin-left: 4rpx; color: #4a504a; }
+/* 圆环图例：与 ringStyle 三段颜色对应 */
+.dot { display: inline-block; width: 10rpx; height: 10rpx; border-radius: 50%; margin-right: 10rpx; vertical-align: 4rpx; }
+.dot.c { background: var(--gold); }
+.dot.p { background: var(--gold-soft); }
+.dot.f { background: var(--line-strong); }
+.nutri-cell .v { font-size: 36rpx; }
+.nutri-cell .u { font-size: 20rpx; margin-left: 4rpx; color: var(--text-soft); }
 
 /* 按钮 */
 .btn {
@@ -63,57 +76,76 @@ page {
   justify-content: center;
   height: 88rpx;
   border-radius: 44rpx;
-  font-size: 30rpx;
+  font-size: 28rpx;
   background: var(--gold);
   color: var(--ink);
-  font-weight: 600;
+  font-weight: 500;
+  letter-spacing: 2rpx;
 }
-.btn.ghost { background: transparent; color: var(--text); border: 1rpx solid var(--border); font-weight: 400; }
-.btn.danger { background: transparent; color: var(--danger); border: 1rpx solid #5a3d38; font-weight: 400; }
+.btn.ghost { background: transparent; color: var(--text); border: 1rpx solid var(--line-strong); font-weight: 400; }
+.btn.danger { background: transparent; color: var(--danger); border: 1rpx solid #4a322c; font-weight: 400; }
 .btn.disabled { opacity: 0.4; }
-.btn-row { display: flex; gap: 20rpx; margin-top: 24rpx; }
+.btn-row { display: flex; gap: 20rpx; margin-top: 40rpx; }
 .btn-row .btn { flex: 1; }
 
-/* 胶囊筛选 */
-.chips { white-space: nowrap; margin: 0 -32rpx 20rpx; padding: 0 32rpx; }
+/* 分类筛选：无框，选中金字 + 下方短线 */
+.chips { white-space: nowrap; margin: 0 -40rpx 16rpx; padding: 0 40rpx; }
 .chip {
   display: inline-block;
-  padding: 10rpx 26rpx;
-  margin-right: 14rpx;
-  border-radius: 999rpx;
-  border: 1rpx solid var(--border);
+  position: relative;
+  padding: 12rpx 0 18rpx;
+  margin-right: 44rpx;
   color: var(--text-soft);
   font-size: 26rpx;
 }
-.chip.on { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+.chip.on { color: var(--gold); }
+.chip.on::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 4rpx;
+  width: 24rpx;
+  height: 4rpx;
+  margin-left: -12rpx;
+  border-radius: 2rpx;
+  background: var(--gold);
+}
 
-/* 分段切换 */
-.seg { display: flex; background: var(--muted); border-radius: 999rpx; padding: 6rpx; margin-bottom: 24rpx; }
-.seg-item { flex: 1; text-align: center; padding: 14rpx 0; border-radius: 999rpx; color: var(--text-soft); }
-.seg-item.on { background: var(--gold); color: var(--ink); font-weight: 600; }
+/* 分段切换：文字 + 金色下划线 */
+.seg { display: flex; border-bottom: 1rpx solid var(--line); margin-bottom: 32rpx; }
+.seg-item { flex: 1; text-align: center; padding: 20rpx 0; color: var(--text-faint); position: relative; }
+.seg-item.on { color: var(--text); }
+.seg-item.on::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -1rpx;
+  width: 64rpx;
+  height: 2rpx;
+  margin-left: -32rpx;
+  background: var(--gold);
+}
 
 /* 输入 */
 .search {
   display: flex;
   align-items: center;
   height: 80rpx;
-  padding: 0 28rpx;
+  padding: 0 32rpx;
   border-radius: 40rpx;
-  background: var(--muted);
-  border: 1rpx solid var(--border);
+  background: var(--surface);
   margin-bottom: 20rpx;
 }
 .search input { flex: 1; color: var(--text); font-size: 28rpx; }
-.ph { color: #6f766f; }
+.ph { color: var(--text-faint); }
 
-.field { margin-bottom: 28rpx; }
-.field-label { font-size: 26rpx; color: var(--text-soft); margin-bottom: 12rpx; }
+.field { margin-bottom: 32rpx; }
+.field-label { font-size: 24rpx; color: var(--text-soft); margin-bottom: 12rpx; letter-spacing: 2rpx; }
 .input {
-  height: 84rpx;
-  padding: 0 24rpx;
-  border-radius: 16rpx;
-  background: var(--muted);
-  border: 1rpx solid var(--border);
+  height: 88rpx;
+  padding: 0 28rpx;
+  border-radius: 12rpx;
+  background: var(--surface);
   color: var(--text);
   font-size: 30rpx;
   display: flex;
@@ -128,20 +160,21 @@ page {
 
 .macros { display: flex; flex-wrap: wrap; gap: 4rpx 24rpx; font-size: 24rpx; color: var(--text-soft); margin-top: 8rpx; }
 
-.empty { text-align: center; color: var(--text-soft); padding: 80rpx 0; }
+.empty { text-align: center; color: var(--text-faint); padding: 80rpx 0; }
 
 /* 底部弹层 */
-.mask { position: fixed; left: 0; right: 0; top: 0; bottom: 0; background: rgba(0, 0, 0, 0.55); z-index: 10; }
+.mask { position: fixed; left: 0; right: 0; top: 0; bottom: 0; background: rgba(0, 0, 0, 0.6); z-index: 10; }
 .sheet {
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 11;
-  background: #1d211e;
+  background: var(--surface);
+  border-top: 1rpx solid var(--line-strong);
   border-top-left-radius: 32rpx;
   border-top-right-radius: 32rpx;
-  padding: 32rpx 32rpx calc(32rpx + env(safe-area-inset-bottom));
+  padding: 40rpx 40rpx calc(40rpx + env(safe-area-inset-bottom));
   max-height: 85vh;
   box-sizing: border-box;
   overflow-y: auto;

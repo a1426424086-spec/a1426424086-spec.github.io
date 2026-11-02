@@ -11,9 +11,9 @@ Page({
     date: '',
     today: '',
     isToday: true,
-    title: '今日配餐',
     totalsLabel: '今日营养',
     dateText: '',
+    ringStyle: '',
     week: '',
     totals: N.display(N.empty()),
     meals: [],
@@ -38,7 +38,6 @@ Page({
       const list = day.portions.filter(p => p.meal === name).sort(byTime)
       return {
         name,
-        index: '0' + (i + 1),
         kcal: N.round(N.totals(list).kcal),
         items: list.map(p => ({
           id: p.id,
@@ -51,15 +50,16 @@ Page({
     })
     const isToday = date === today
     const isFuture = date > today
+    const totals = N.totals(day.portions)
     this.setData({
       date,
       today,
       isToday,
-      title: isToday ? '今日配餐' : isFuture ? '计划配餐' : '当日配餐',
       totalsLabel: isToday ? '今日营养' : isFuture ? '计划营养' : '当日营养',
-      dateText: D.slash(date),
+      dateText: date.slice(5).replace('-', '.'),
       week: D.weekday(date),
-      totals: N.display(N.totals(day.portions)),
+      totals: N.display(totals),
+      ringStyle: N.ringStyle(totals),
       meals,
       count: day.portions.length
     })
@@ -145,7 +145,7 @@ Page({
       title: '清空这一天的记录？',
       content: '只清空 ' + D.short(this.data.date) + '，其他记录不变。',
       confirmText: '清空',
-      confirmColor: '#d9534f',
+      confirmColor: '#d98c7a',
       success: res => {
         if (res.confirm) this.safe(() => store.clearDay(this.data.date))
       }
