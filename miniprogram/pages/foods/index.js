@@ -3,6 +3,8 @@ const N = require('../../utils/nutrition')
 
 Page({
   data: {
+    // 好物推荐首版不上线；恢复时改 true，并把 pages/goods/index 加回 app.json、去掉 project.config.json 里的打包排除
+    showGoods: false,
     keyword: '',
     category: '全部',
     categories: ['全部'].concat(N.CATEGORIES),

@@ -7,7 +7,7 @@
     <view class="btn new" bindtap="add">+ 新增</view>
   </view>
 
-  <view class="card goods-entry row" bindtap="openGoods">
+  <view wx:if="{{showGoods}}" class="card goods-entry row" bindtap="openGoods">
     <view class="grow">
       <view class="h2">好物推荐</view>
       <view class="soft small">常吃的包装食品，一键导入食材库</view>
