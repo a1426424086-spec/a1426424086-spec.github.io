@@ -69,13 +69,30 @@ function display(t) {
   }
 }
 
-// 营养圆环：按热量占比分三段（碳水、蛋白质、脂肪），没有记录时只画底色
-function ringStyle(t) {
+// 三大营养素按热量的占比（百分比，整数），用于圆环和横条
+function macroShare(t) {
   const c = t.carbs * 4, p = t.protein * 4, f = t.fat * 9
   const sum = c + p + f
-  if (!(sum > 0)) return 'background: var(--line);'
-  const a = round(c / sum * 360, 1), b = round((c + p) / sum * 360, 1)
-  return 'background: conic-gradient(var(--gold) 0 ' + a + 'deg, var(--gold-soft) ' + a + 'deg ' + b + 'deg, var(--line-strong) ' + b + 'deg 360deg);'
+  if (!(sum > 0)) return null
+  return { c: round(c / sum * 100), p: round(p / sum * 100), f: round(f / sum * 100) }
+}
+
+// 营养圆环：按热量占比分三段（碳水、蛋白质、脂肪），没有记录时只画底色
+function ringStyle(t) {
+  const sh = macroShare(t)
+  if (!sh) return 'background: var(--line);'
+  const a = round(sh.c * 3.6, 1), b = round((sh.c + sh.p) * 3.6, 1)
+  return 'background: conic-gradient(var(--c-carb) 0 ' + a + 'deg, var(--c-protein) ' + a + 'deg ' + b + 'deg, var(--c-fat) ' + b + 'deg 360deg);'
+}
+
+// 食材分类圆标：一个字 + 色调（c 碳水为主，p 蛋白为主，f 其他）
+const BADGES = {
+  主食: ['主', 'c'], 水果: ['果', 'c'], 肉类: ['肉', 'p'], 蛋类: ['蛋', 'p'],
+  豆类及豆制品: ['豆', 'p'], 奶制品: ['奶', 'p'], 蔬菜: ['蔬', 'f'], 其他: ['其', 'f']
+}
+function badge(category) {
+  const b = BADGES[category] || BADGES['其他']
+  return { ch: b[0], tone: b[1] }
 }
 
 // 1个（50克）/ 120克
@@ -89,5 +106,5 @@ function quantityText(portion) {
 
 module.exports = {
   CATEGORIES, MEALS, MEAL_TIMES, MAX_GRAMS,
-  defaultFactor, kcalPer100, per100, forGrams, empty, add, totals, round, display, quantityText, ringStyle
+  defaultFactor, kcalPer100, per100, forGrams, empty, add, totals, round, display, quantityText, macroShare, ringStyle, badge
 }

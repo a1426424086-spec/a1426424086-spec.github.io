@@ -1,7 +1,9 @@
-/* 暗夜金：深色、去框、细线分组；数字衬线体，金色只用来点题。规范见 总控制/collaboration/shiguang/设计规范.md */
+/* 暗夜金 · 加氛围：深色底、细线分组、暗色面板托底；数字衬线体，金棕三色区分营养素。规范见 总控制/collaboration/shiguang/设计规范.md */
 page {
   --bg: #0f0f0e;
   --surface: #181715;
+  --panel: #1a1916;
+  --panel-2: #24221d;
   --line: #26241f;
   --line-strong: #3a362e;
   --text: #ede6d6;
@@ -11,6 +13,9 @@ page {
   --gold-soft: #8f7a52;
   --ink: #14130f;
   --danger: #d98c7a;
+  --c-carb: #e2c48a;
+  --c-protein: #b07a4e;
+  --c-fat: #7d735f;
   background: var(--bg);
   color: var(--text);
   font-family: "PingFang SC", -apple-system, "Helvetica Neue", sans-serif;
@@ -50,7 +55,7 @@ page {
   align-items: center;
   justify-content: center;
 }
-.ring-hole { width: 156rpx; height: 156rpx; border-radius: 50%; background: var(--bg); }
+.ring-hole { width: 136rpx; height: 136rpx; border-radius: 50%; background: var(--bg); }
 .nutri-label { font-size: 22rpx; color: var(--text-soft); letter-spacing: 2rpx; }
 .nutri-kcal { font-size: 80rpx; line-height: 1.05; color: var(--text); }
 .nutri-kcal-unit { font-size: 24rpx; margin-left: 12rpx; color: var(--text-soft); }
@@ -63,9 +68,25 @@ page {
 .nutri-cell { flex: 1; }
 /* 圆环图例：与 ringStyle 三段颜色对应 */
 .dot { display: inline-block; width: 10rpx; height: 10rpx; border-radius: 50%; margin-right: 10rpx; vertical-align: 4rpx; }
-.dot.c { background: var(--gold); }
-.dot.p { background: var(--gold-soft); }
-.dot.f { background: var(--line-strong); }
+.dot.c { background: var(--c-carb); }
+.dot.p { background: var(--c-protein); }
+.dot.f { background: var(--c-fat); }
+
+/* 食材分类圆标 */
+.badge {
+  width: 52rpx;
+  height: 52rpx;
+  border-radius: 50%;
+  background: var(--panel-2);
+  font-size: 22rpx;
+  line-height: 52rpx;
+  text-align: center;
+  flex-shrink: 0;
+  margin-right: 20rpx;
+}
+.badge.c { color: var(--c-carb); }
+.badge.p { color: var(--c-protein); }
+.badge.f { color: var(--c-fat); }
 .nutri-cell .v { font-size: 36rpx; }
 .nutri-cell .u { font-size: 20rpx; margin-left: 4rpx; color: var(--text-soft); }
 

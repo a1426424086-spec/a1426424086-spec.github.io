@@ -23,18 +23,21 @@
   </scroll-view>
 
   <view class="food-list">
-    <view hover-class="press" wx:for="{{list}}" wx:key="id" class="food" data-id="{{item.id}}" bindtap="edit">
-      <view class="row">
-        <view class="grow ellipsis"><text wx:for="{{item.nameParts}}" wx:for-item="part" wx:for-index="partIndex" wx:key="partIndex" class="{{partIndex % 2 ? 'num' : ''}}">{{part}}</text></view>
-        <view class="kcal"><text class="num">{{item.kcal}}</text><text class="soft small"> 千卡</text></view>
-      </view>
-      <view class="macros">
-        <text>{{item.category}}</text>
-        <text>碳水 <text class="num">{{item.carbs}}</text></text>
-        <text>蛋白质 <text class="num">{{item.protein}}</text></text>
-        <text>脂肪 <text class="num">{{item.fat}}</text></text>
-        <text>折算 <text class="num">{{item.factor}}%</text></text>
-        <text wx:if="{{item.serving}}">每{{item.servingUnit}}<text class="num">{{item.servingGrams}}</text>克</text>
+    <view hover-class="press" wx:for="{{list}}" wx:key="id" class="food row" data-id="{{item.id}}" bindtap="edit">
+      <view class="badge {{item.badge.tone}}">{{item.badge.ch}}</view>
+      <view class="grow">
+        <view class="row">
+          <view class="grow ellipsis"><text wx:for="{{item.nameParts}}" wx:for-item="part" wx:for-index="partIndex" wx:key="partIndex" class="{{partIndex % 2 ? 'num' : ''}}">{{part}}</text></view>
+          <view class="kcal"><text class="num">{{item.kcal}}</text><text class="soft small"> 千卡</text></view>
+        </view>
+        <view class="macros">
+          <text>{{item.category}}</text>
+          <text>碳水 <text class="num">{{item.carbs}}</text></text>
+          <text>蛋白质 <text class="num">{{item.protein}}</text></text>
+          <text>脂肪 <text class="num">{{item.fat}}</text></text>
+          <text>折算 <text class="num">{{item.factor}}%</text></text>
+          <text wx:if="{{item.serving}}">每{{item.servingUnit}}<text class="num">{{item.servingGrams}}</text>克</text>
+        </view>
       </view>
     </view>
   </view>

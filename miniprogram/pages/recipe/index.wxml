@@ -23,6 +23,7 @@
     </view>
     <view class="gold small meal-title" wx:if="{{meal.title}}"><text wx:for="{{meal.titleParts}}" wx:for-item="part" wx:for-index="partIndex" wx:key="partIndex" class="{{partIndex % 2 ? 'num' : ''}}">{{part}}</text></view>
     <view wx:for="{{meal.items}}" wx:key="key" class="item row">
+      <view class="badge {{item.badge.tone}}">{{item.badge.ch}}</view>
       <view class="grow">
         <view class="ellipsis"><text wx:for="{{item.nameParts}}" wx:for-item="part" wx:for-index="partIndex" wx:key="partIndex" class="{{partIndex % 2 ? 'num' : ''}}">{{part}}</text></view>
         <view class="soft small"><text wx:for="{{item.qtyParts}}" wx:for-item="part" wx:for-index="partIndex" wx:key="partIndex" class="{{partIndex % 2 ? 'num' : ''}}">{{part}}</text></view>

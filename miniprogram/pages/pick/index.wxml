@@ -15,6 +15,7 @@
 
   <view class="food-list">
     <view hover-class="press" wx:for="{{list}}" wx:key="id" class="food row" data-id="{{item.id}}" bindtap="onSelect">
+      <view class="badge {{item.badge.tone}}">{{item.badge.ch}}</view>
       <view class="grow">
         <view class="ellipsis"><text wx:for="{{item.nameParts}}" wx:for-item="part" wx:for-index="partIndex" wx:key="partIndex" class="{{partIndex % 2 ? 'num' : ''}}">{{part}}</text></view>
         <view class="soft small">{{item.category}} · <text class="num">{{item.kcal}}</text> 千卡 / <text class="num">100</text> 克<text wx:if="{{item.serving}}"> · 每{{item.servingUnit}}约<text class="num">{{item.servingGrams}}</text>克</text></view>

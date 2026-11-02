@@ -43,6 +43,7 @@ Page({
         name: f.name,
         nameParts: f.name.split(/(\d+(?:\.\d+)?)/),
         category: f.category,
+        badge: N.badge(f.category),
         kcal: N.round(N.kcalPer100(f)),
         servingUnit: f.servingUnit || '',
         servingGrams: f.servingGrams || 0,

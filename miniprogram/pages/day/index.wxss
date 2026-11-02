@@ -1,9 +1,48 @@
-.top { padding: 8rpx 0 24rpx; }
-.brand { font-size: 32rpx; letter-spacing: 8rpx; color: var(--text-soft); }
+/* 顶部金色光晕：铺到页面左上角，压在内容下面 */
+.hero { position: relative; z-index: 0; padding-bottom: 8rpx; }
+.hero::before {
+  content: '';
+  position: absolute;
+  left: -200rpx;
+  top: -260rpx;
+  width: 900rpx;
+  height: 760rpx;
+  background: radial-gradient(closest-side, rgba(201, 169, 110, 0.16), rgba(201, 169, 110, 0));
+  pointer-events: none;
+  z-index: -1;
+}
+.top { padding: 8rpx 0 16rpx; }
+.brand { font-size: 24rpx; letter-spacing: 6rpx; color: var(--gold); }
 .date-bar { margin-right: -16rpx; }
-.arrow { width: 64rpx; height: 64rpx; line-height: 60rpx; text-align: center; font-size: 40rpx; color: var(--text-soft); }
-.date-text { font-size: 30rpx; padding: 0 8rpx; }
-.back-today { text-align: right; padding: 0 0 12rpx; }
+.arrow { width: 56rpx; height: 56rpx; line-height: 52rpx; text-align: center; font-size: 36rpx; color: var(--text-soft); }
+.date-text { font-size: 26rpx; padding: 0 4rpx; }
+.back-today { text-align: right; padding-bottom: 4rpx; }
+
+.greet { font-size: 52rpx; font-weight: 500; letter-spacing: 2rpx; margin-top: 24rpx; }
+.lead { font-size: 28rpx; margin-top: 8rpx; }
+.lead-kcal { font-size: 48rpx; color: #f3e3be; margin: 0 4rpx; }
+
+.macro-bar { display: flex; height: 12rpx; border-radius: 6rpx; overflow: hidden; margin: 36rpx 0 18rpx; }
+.macro-bar.empty-bar { background: var(--line); }
+.seg-c { background: var(--c-carb); }
+.seg-p { background: var(--c-protein); margin-left: 4rpx; }
+.seg-f { background: var(--c-fat); margin-left: 4rpx; }
+.legend { font-size: 24rpx; color: var(--text-soft); }
+.legend .num { font-size: 30rpx; color: var(--text); margin-left: 4rpx; }
+.legend .u { font-size: 20rpx; margin-left: 2rpx; }
+.effective { margin-top: 12rpx; }
+
+.meal-cards { margin-top: 48rpx; gap: 16rpx; align-items: stretch; }
+.meal-card {
+  flex: 1;
+  border: 1rpx solid var(--line-strong);
+  border-radius: 24rpx;
+  padding: 20rpx 0 18rpx 20rpx;
+  background: rgba(26, 25, 22, 0.6);
+}
+.meal-icon { width: 40rpx; height: 40rpx; display: block; }
+.meal-card-name { color: var(--text-soft); margin-top: 10rpx; }
+.meal-card-kcal { font-size: 34rpx; line-height: 1.2; }
 
 .meal { margin-top: 56rpx; }
 .meal-head { padding-bottom: 12rpx; border-bottom: 1rpx solid var(--line-strong); }
@@ -18,8 +57,9 @@
   font-size: 34rpx;
   color: var(--gold);
 }
-.item { min-height: 96rpx; padding: 16rpx 0; border-bottom: 1rpx solid var(--line); box-sizing: border-box; }
-.item-time { width: 110rpx; font-size: 26rpx; color: var(--gold-soft); }
+.item { min-height: 112rpx; padding: 16rpx 0; border-bottom: 1rpx solid var(--line); box-sizing: border-box; }
+.time-pick { display: inline-block; }
+.item-time { color: var(--gold-soft); }
 .item-kcal { margin-left: 24rpx; font-size: 30rpx; }
 .item-empty { padding: 24rpx 0; border-bottom: 1rpx solid var(--line); }
 

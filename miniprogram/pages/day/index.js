@@ -2,6 +2,8 @@ const store = require('../../utils/store')
 const N = require('../../utils/nutrition')
 const D = require('../../utils/date')
 
+const MEAL_ICONS = ['sunrise', 'sun', 'moon', 'cup']
+
 function byTime(a, b) {
   return a.time < b.time ? -1 : a.time > b.time ? 1 : 0
 }
@@ -11,9 +13,11 @@ Page({
     date: '',
     today: '',
     isToday: true,
-    totalsLabel: '今日营养',
+    greeting: '',
+    lead: '',
     dateText: '',
-    ringStyle: '',
+    dateCn: '',
+    share: null,
     week: '',
     totals: N.display(N.empty()),
     meals: [],
@@ -38,12 +42,14 @@ Page({
       const list = day.portions.filter(p => p.meal === name).sort(byTime)
       return {
         name,
+        icon: MEAL_ICONS[i],
         kcal: N.round(N.totals(list).kcal),
         items: list.map(p => ({
           id: p.id,
           name: p.food.name,
           time: p.time,
           qty: N.quantityText(p),
+          badge: N.badge(p.food.category),
           kcal: N.round(N.forGrams(p.food, p.grams).kcal)
         }))
       }
@@ -55,11 +61,13 @@ Page({
       date,
       today,
       isToday,
-      totalsLabel: isToday ? '今日营养' : isFuture ? '计划营养' : '当日营养',
+      greeting: isToday ? D.greeting() : isFuture ? '提前安排' : '回看这一天',
+      lead: !day.portions.length ? (isFuture ? '还没有安排' : '还没有记录') : isToday ? '今天已经吃了' : isFuture ? '计划吃' : '这一天吃了',
       dateText: date.slice(5).replace('-', '.'),
+      dateCn: D.chinese(date),
       week: D.weekday(date),
       totals: N.display(totals),
-      ringStyle: N.ringStyle(totals),
+      share: N.macroShare(totals),
       meals,
       count: day.portions.length
     })
@@ -79,6 +87,10 @@ Page({
 
   backToday() {
     this.load(D.today())
+  },
+
+  jumpTo(e) {
+    wx.pageScrollTo({ selector: '#meal-' + e.currentTarget.dataset.i, duration: 300 })
   },
 
   addTo(e) {

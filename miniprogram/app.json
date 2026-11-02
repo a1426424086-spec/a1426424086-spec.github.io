@@ -21,10 +21,10 @@
     "backgroundColor": "#0f0f0e",
     "borderStyle": "black",
     "list": [
-      { "pagePath": "pages/day/index", "text": "配餐" },
-      { "pagePath": "pages/stats/index", "text": "统计" },
-      { "pagePath": "pages/foods/index", "text": "食材库" },
-      { "pagePath": "pages/recipes/index", "text": "食谱夹" }
+      { "pagePath": "pages/day/index", "text": "配餐" , "iconPath": "images/icons/tab-bowl.png", "selectedIconPath": "images/icons/tab-bowl-on.png" },
+      { "pagePath": "pages/stats/index", "text": "统计" , "iconPath": "images/icons/tab-chart.png", "selectedIconPath": "images/icons/tab-chart-on.png" },
+      { "pagePath": "pages/foods/index", "text": "食材库" , "iconPath": "images/icons/tab-leaf.png", "selectedIconPath": "images/icons/tab-leaf-on.png" },
+      { "pagePath": "pages/recipes/index", "text": "食谱夹" , "iconPath": "images/icons/tab-book.png", "selectedIconPath": "images/icons/tab-book-on.png" }
     ]
   },
   "style": "v2",

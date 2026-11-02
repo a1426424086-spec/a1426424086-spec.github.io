@@ -29,6 +29,7 @@ Page({
           name: f.name,
           nameParts: f.name.split(/(\d+(?:\.\d+)?)/),
           category: f.category,
+          badge: N.badge(f.category),
           kcal: p.kcal,
           carbs: N.round(f.carbs, 1),
           protein: N.round(f.protein, 1),

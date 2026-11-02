@@ -35,6 +35,7 @@ Page({
         items: list.map((p, i) => ({
           key: m + i,
           name: p.food.name,
+          badge: N.badge(p.food.category),
           nameParts: p.food.name.split(/(\d+(?:\.\d+)?)/),
           qty: N.quantityText(p),
           qtyParts: N.quantityText(p).split(/(\d+(?:\.\d+)?)/),
