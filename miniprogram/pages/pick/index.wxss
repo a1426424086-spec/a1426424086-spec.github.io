@@ -1,8 +1,14 @@
-.hint { margin-bottom: 16rpx; }
-.food { padding: 22rpx 28rpx; margin-bottom: 14rpx; }
-.add-dot { width: 60rpx; height: 60rpx; border-radius: 50%; border: 1rpx solid var(--border); text-align: center; line-height: 56rpx; font-size: 36rpx; margin-left: 16rpx; }
-.sheet-gap { margin-top: 28rpx; }
+.hint { margin: 16rpx 0 24rpx; }
+.food-list { border-top: 1rpx solid var(--line-strong); border-bottom: 1rpx solid var(--line-strong); }
+.food { min-height: 112rpx; padding: 24rpx 0; box-sizing: border-box; border-bottom: 1rpx solid var(--line); }
+.food:last-child { border-bottom: 0; }
+.add-dot { flex-shrink: 0; width: 56rpx; height: 56rpx; border-radius: 50%; border: 1rpx solid var(--line-strong); text-align: center; line-height: 52rpx; font-size: 34rpx; margin-left: 24rpx; color: var(--gold); }
+.sheet-gap { margin-top: 32rpx; }
+.sheet .h2 { overflow-wrap: break-word; }
+.sheet .input { background: var(--bg); }
+.sheet .input input { min-width: 0; width: 0; }
 .qty { margin-left: 20rpx; flex: 1.4; }
-.unit { padding: 6rpx 16rpx; margin-left: 8rpx; border-radius: 10rpx; color: var(--text-soft); font-size: 26rpx; }
-.unit.on { background: var(--gold); color: var(--ink); }
-.preview { font-size: 26rpx; padding: 16rpx 0 0; }
+.unit { flex-shrink: 0; position: relative; padding: 12rpx 8rpx; margin-left: 8rpx; color: var(--text-soft); font-size: 26rpx; }
+.unit.on { color: var(--gold); }
+.unit.on::after { content: ''; position: absolute; bottom: 4rpx; left: 50%; width: 24rpx; height: 2rpx; margin-left: -12rpx; background: var(--gold); }
+.preview { font-size: 26rpx; padding: 24rpx 0 0; border-top: 1rpx solid var(--line-strong); line-height: 1.8; }

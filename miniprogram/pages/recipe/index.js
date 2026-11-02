@@ -28,12 +28,16 @@ Page({
       return {
         name: m,
         title: note.title || '',
+        titleParts: (note.title || '').split(/(\d+(?:\.\d+)?)/),
         note: note.note || '',
+        noteParts: (note.note || '').split(/(\d+(?:\.\d+)?)/),
         kcal: N.round(N.totals(list).kcal),
         items: list.map((p, i) => ({
           key: m + i,
           name: p.food.name,
+          nameParts: p.food.name.split(/(\d+(?:\.\d+)?)/),
           qty: N.quantityText(p),
+          qtyParts: N.quantityText(p).split(/(\d+(?:\.\d+)?)/),
           kcal: N.round(N.forGrams(p.food, p.grams).kcal)
         }))
       }

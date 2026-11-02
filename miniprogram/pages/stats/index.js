@@ -9,6 +9,7 @@ Page({
     range: 7,
     bars: [],
     avg: null,
+    ringStyle: '',
     recorded: 0,
     mealShare: [],
     history: [],
@@ -46,11 +47,13 @@ Page({
       today: d.date === today
     }))
 
+    let ringStyle = ''
     let avg = null
     let mealShare = []
     if (withData.length) {
       const sum = withData.reduce((acc, d) => N.add(acc, d.totals), N.empty())
       const n = withData.length
+      ringStyle = N.ringStyle({ kcal: sum.kcal / n, carbs: sum.carbs / n, protein: sum.protein / n, effective: sum.effective / n, fat: sum.fat / n })
       avg = N.display({ kcal: sum.kcal / n, carbs: sum.carbs / n, protein: sum.protein / n, effective: sum.effective / n, fat: sum.fat / n })
       const all = [].concat.apply([], withData.map(d => d.portions))
       const total = N.totals(all).kcal || 1
@@ -60,7 +63,7 @@ Page({
       })
     }
 
-    this.setData({ bars, avg, recorded: withData.length, mealShare })
+    this.setData({ ringStyle, bars, avg, recorded: withData.length, mealShare })
     this.loadHistory()
   },
 
@@ -71,6 +74,7 @@ Page({
       return {
         date,
         title: D.relative(date),
+        titleParts: D.relative(date).split(/(\d+)/),
         week: D.weekday(date),
         year: date.slice(0, 4),
         count: portions.length,

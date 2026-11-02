@@ -9,6 +9,8 @@ function summary(recipe, src) {
     id: recipe.id,
     src,
     name: recipe.name,
+    nameParts: recipe.name.split(/(\d+(?:\.\d+)?)/),
+    titleParts: (recipe.mealNotes || []).map(n => n.title).filter(Boolean).join(' / ').split(/(\d+(?:\.\d+)?)/),
     count: recipe.portions.length,
     kcal: t.kcal,
     carbs: t.carbs,

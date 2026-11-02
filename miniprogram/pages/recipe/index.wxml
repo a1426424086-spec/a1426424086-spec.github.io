@@ -3,11 +3,10 @@
 </view>
 
 <view class="wrap" wx:else>
-  <view class="h1">{{name}}</view>
   <view class="soft small sub">{{src === 'ref' ? '按这份食谱的营养值计算，用量可在配餐里再改。' : '按食材库最新数值计算；已删食材用原数值。'}}</view>
 
   <view class="nutri">
-    <view class="nutri-label">食谱营养</view>
+    <view class="label summary-label">食谱营养</view>
     <view><text class="nutri-kcal num">{{totals.kcal}}</text><text class="nutri-kcal-unit">千卡</text></view>
     <view class="nutri-row">
       <view class="nutri-cell"><view class="nutri-label">碳水</view><text class="v num">{{totals.carbs}}</text><text class="u">克</text></view>
@@ -17,26 +16,29 @@
     </view>
   </view>
 
-  <view wx:for="{{meals}}" wx:key="name" wx:for-item="meal" class="card">
-    <view class="row">
-      <text class="h2">{{meal.name}}</text>
-      <text class="soft small">{{meal.kcal}} 千卡</text>
+  <view wx:for="{{meals}}" wx:key="name" wx:for-item="meal" class="meal">
+    <view class="row meal-head">
+      <text class="label">{{meal.name}}</text>
+      <text class="soft small"><text class="num">{{meal.kcal}}</text> 千卡</text>
     </view>
-    <view class="gold small" wx:if="{{meal.title}}">{{meal.title}}</view>
+    <view class="gold small meal-title" wx:if="{{meal.title}}"><text wx:for="{{meal.titleParts}}" wx:for-item="part" wx:for-index="partIndex" wx:key="partIndex" class="{{partIndex % 2 ? 'num' : ''}}">{{part}}</text></view>
     <view wx:for="{{meal.items}}" wx:key="key" class="item row">
-      <view class="grow ellipsis">{{item.name}}</view>
-      <text class="soft small">{{item.qty}} · {{item.kcal}} 千卡</text>
+      <view class="grow">
+        <view class="ellipsis"><text wx:for="{{item.nameParts}}" wx:for-item="part" wx:for-index="partIndex" wx:key="partIndex" class="{{partIndex % 2 ? 'num' : ''}}">{{part}}</text></view>
+        <view class="soft small"><text wx:for="{{item.qtyParts}}" wx:for-item="part" wx:for-index="partIndex" wx:key="partIndex" class="{{partIndex % 2 ? 'num' : ''}}">{{part}}</text></view>
+      </view>
+      <view class="item-kcal"><text class="num">{{item.kcal}}</text><text class="soft small"> 千卡</text></view>
     </view>
-    <view class="soft small note" wx:if="{{meal.note}}">{{meal.note}}</view>
+    <view class="soft small note" wx:if="{{meal.note}}"><text wx:for="{{meal.noteParts}}" wx:for-item="part" wx:for-index="partIndex" wx:key="partIndex" class="{{partIndex % 2 ? 'num' : ''}}">{{part}}</text></view>
   </view>
 
   <view class="soft small sub">谷物称干重，肉菜称生重可食部分，包装食品称成品重。额外油、酱料另计。</view>
 
   <picker mode="date" value="{{date}}" bindchange="onPickDate">
-    <view class="btn">选择日期并使用</view>
+    <view class="btn" hover-class="press">选择日期并使用</view>
   </picker>
   <view class="btn-row">
-    <view wx:if="{{src === 'ref'}}" class="btn ghost" bindtap="copy">存入我的食谱</view>
-    <view wx:else class="btn danger" bindtap="remove">删除食谱</view>
+    <view hover-class="press" wx:if="{{src === 'ref'}}" class="btn ghost" bindtap="copy">存入我的食谱</view>
+    <view hover-class="press" wx:else class="btn danger" bindtap="remove">删除食谱</view>
   </view>
 </view>

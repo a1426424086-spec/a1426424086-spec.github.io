@@ -1,37 +1,36 @@
 <view class="wrap">
-  <view class="h1">食谱夹</view>
   <view class="soft small sub">把一天的配餐存成食谱，之后可一键用到任意日期。</view>
 
   <view class="seg">
-    <view class="seg-item {{tab === 'mine' ? 'on' : ''}}" data-t="mine" bindtap="setTab">我的食谱</view>
-    <view class="seg-item {{tab === 'ref' ? 'on' : ''}}" data-t="ref" bindtap="setTab">参考食谱</view>
+    <view hover-class="press" class="seg-item {{tab === 'mine' ? 'on' : ''}}" data-t="mine" bindtap="setTab">我的食谱</view>
+    <view hover-class="press" class="seg-item {{tab === 'ref' ? 'on' : ''}}" data-t="ref" bindtap="setTab">参考食谱</view>
   </view>
 
-  <block wx:if="{{tab === 'mine'}}">
-    <view wx:for="{{mine}}" wx:key="id" class="card" data-id="{{item.id}}" data-src="mine" bindtap="open">
+  <view wx:if="{{tab === 'mine'}}" class="recipe-list {{mine.length ? '' : 'is-empty'}}">
+    <view hover-class="press" wx:for="{{mine}}" wx:key="id" class="recipe-row" data-id="{{item.id}}" data-src="mine" bindtap="open">
       <view class="row">
-        <view class="grow ellipsis h2">{{item.name}}</view>
-        <view class="num">{{item.kcal}}<text class="soft small"> 千卡 ›</text></view>
+        <view class="grow ellipsis h2"><text wx:for="{{item.nameParts}}" wx:for-item="part" wx:for-index="partIndex" wx:key="partIndex" class="{{partIndex % 2 ? 'num' : ''}}">{{part}}</text></view>
+        <view class="kcal"><text class="num">{{item.kcal}}</text><text class="soft small"> 千卡 ›</text></view>
       </view>
-      <view class="macros"><text>{{item.count}} 项食物</text><text>碳水 {{item.carbs}} 克</text><text>有效蛋白 {{item.effective}} 克</text></view>
+      <view class="macros"><text><text class="num">{{item.count}}</text> 项食物</text><text>碳水 <text class="num">{{item.carbs}}</text> 克</text><text>有效蛋白 <text class="num">{{item.effective}}</text> 克</text></view>
     </view>
     <view wx:if="{{!mine.length}}" class="empty">
       <view>还没有食谱</view>
       <view class="small">在「配餐」页点“存入食谱夹”，或从参考食谱存一份。</view>
     </view>
-  </block>
+  </view>
 
   <block wx:else>
-    <view class="soft small sub">蛋白折算：肉蛋奶100%，蔬果50%，其余80%，仅作估算。每组按碳水从高到低。</view>
+    <view class="soft small sub">蛋白折算：肉蛋奶<text class="num">100%</text>，蔬果<text class="num">50%</text>，其余<text class="num">80%</text>，仅作估算。每组按碳水从高到低。</view>
     <view wx:for="{{groups}}" wx:key="name" wx:for-item="g">
-      <view class="group-title gold">{{g.name}}</view>
-      <view wx:for="{{g.items}}" wx:key="id" class="card" data-id="{{item.id}}" data-src="ref" bindtap="open">
+      <view class="group-title label">{{g.name}}</view>
+      <view hover-class="press" wx:for="{{g.items}}" wx:key="id" class="recipe-row" data-id="{{item.id}}" data-src="ref" bindtap="open">
         <view class="row">
-          <view class="grow h2">食谱 {{item.name}}</view>
-          <view class="num">{{item.kcal}}<text class="soft small"> 千卡 ›</text></view>
+          <view class="grow ellipsis h2">食谱 <text wx:for="{{item.nameParts}}" wx:for-item="part" wx:for-index="partIndex" wx:key="partIndex" class="{{partIndex % 2 ? 'num' : ''}}">{{part}}</text></view>
+          <view class="kcal"><text class="num">{{item.kcal}}</text><text class="soft small"> 千卡 ›</text></view>
         </view>
-        <view class="soft small ellipsis">{{item.titles}}</view>
-        <view class="macros"><text>{{item.count}} 项食物</text><text>碳水 {{item.carbs}} 克</text><text>有效蛋白 {{item.effective}} 克</text></view>
+        <view class="soft small ellipsis"><text wx:for="{{item.titleParts}}" wx:for-item="part" wx:for-index="partIndex" wx:key="partIndex" class="{{partIndex % 2 ? 'num' : ''}}">{{part}}</text></view>
+        <view class="macros"><text><text class="num">{{item.count}}</text> 项食物</text><text>碳水 <text class="num">{{item.carbs}}</text> 克</text><text>有效蛋白 <text class="num">{{item.effective}}</text> 克</text></view>
       </view>
     </view>
   </block>

@@ -1,3 +1,8 @@
-.head { margin-bottom: 28rpx; }
-.new { height: 72rpx; padding: 0 32rpx; font-size: 28rpx; }
-.goods-entry { border-color: #5b5444; }
+.head { margin-bottom: 32rpx; gap: 24rpx; }
+.head > view:first-child { flex: 1; min-width: 0; }
+.new { flex-shrink: 0; padding: 0 32rpx; }
+.goods-entry { min-height: 96rpx; margin-bottom: 32rpx; border-bottom: 1rpx solid var(--line-strong); }
+.food-list { border-top: 1rpx solid var(--line-strong); border-bottom: 1rpx solid var(--line-strong); }
+.food { min-height: 112rpx; padding: 24rpx 0; box-sizing: border-box; border-bottom: 1rpx solid var(--line); }
+.food:last-child { border-bottom: 0; }
+.kcal { flex-shrink: 0; margin-left: 24rpx; font-size: 30rpx; }

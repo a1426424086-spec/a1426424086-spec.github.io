@@ -41,8 +41,11 @@ Page({
       .map(f => ({
         id: f.id,
         name: f.name,
+        nameParts: f.name.split(/(\d+(?:\.\d+)?)/),
         category: f.category,
         kcal: N.round(N.kcalPer100(f)),
+        servingUnit: f.servingUnit || '',
+        servingGrams: f.servingGrams || 0,
         serving: f.servingUnit ? '每' + f.servingUnit + '约' + f.servingGrams + '克' : ''
       }))
     this.setData({ list })
@@ -64,7 +67,7 @@ Page({
     this.food = food
     const hasUnit = !!food.servingUnit
     this.setData({
-      sel: { name: food.name, per100: N.display(N.per100(food)), note: food.weight || '' },
+      sel: { name: food.name, per100: N.display(N.per100(food)), note: food.weight || '', nameParts: food.name.split(/(\d+(?:\.\d+)?)/), noteParts: (food.weight || '').split(/(\d+(?:\.\d+)?)/) },
       units: hasUnit ? [food.servingUnit, '克'] : ['克'],
       unit: hasUnit ? food.servingUnit : '克',
       qty: hasUnit ? '1' : '100'

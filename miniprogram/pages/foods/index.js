@@ -27,12 +27,15 @@ Page({
         return {
           id: f.id,
           name: f.name,
+          nameParts: f.name.split(/(\d+(?:\.\d+)?)/),
           category: f.category,
           kcal: p.kcal,
           carbs: N.round(f.carbs, 1),
           protein: N.round(f.protein, 1),
           fat: N.round(f.fat, 1),
           factor: Math.round(f.factor * 100),
+          servingUnit: f.servingUnit || '',
+          servingGrams: f.servingGrams || 0,
           serving: f.servingUnit ? '每' + f.servingUnit + f.servingGrams + '克' : ''
         }
       })

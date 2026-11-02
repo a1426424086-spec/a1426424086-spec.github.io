@@ -1,18 +1,21 @@
-.range { margin-top: 28rpx; }
-
-.chart { display: flex; align-items: flex-end; margin-top: 24rpx; }
-.bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; }
-.bar-val { font-size: 20rpx; color: var(--text-soft); height: 32rpx; }
-.bar-track { height: 260rpx; width: 70%; display: flex; align-items: flex-end; }
-.bar { width: 100%; background: #6d756c; border-radius: 8rpx 8rpx 0 0; }
+.intro { margin-bottom: 28rpx; }
+.range { margin-bottom: 40rpx; }
+.section { margin-top: 56rpx; }
+.section-head { padding-bottom: 16rpx; border-bottom: 1rpx solid var(--line-strong); }
+.chart { display: flex; align-items: flex-end; padding-top: 24rpx; border-bottom: 1rpx solid var(--line-strong); }
+.bar-col { flex: 1; min-width: 0; min-height: 296rpx; display: flex; flex-direction: column; align-items: center; }
+.bar-val { font-size: 20rpx; color: var(--text-soft); height: 32rpx; white-space: nowrap; }
+.bar-track { height: 260rpx; width: 60%; max-width: 28rpx; display: flex; align-items: flex-end; }
+.bar { width: 100%; background: var(--line-strong); border-radius: 4rpx 4rpx 0 0; }
 .bar.today { background: var(--gold); }
-.bar-label { font-size: 20rpx; height: 36rpx; line-height: 36rpx; white-space: nowrap; }
-
-.share { margin-top: 18rpx; }
+.bar-label { font-size: 20rpx; height: 44rpx; line-height: 44rpx; white-space: nowrap; }
+.share { min-height: 72rpx; }
 .share-name { width: 110rpx; font-size: 26rpx; }
-.share-track { height: 18rpx; background: var(--muted); border-radius: 9rpx; overflow: hidden; }
-.share-bar { height: 100%; background: var(--gold); border-radius: 9rpx; }
+.share-track { height: 2rpx; background: var(--line); overflow: hidden; }
+.share-bar { height: 2rpx; background: var(--gold); }
 .share-pct { width: 80rpx; text-align: right; font-size: 26rpx; }
-
-.section { margin: 36rpx 0 16rpx; }
-.hist { padding: 24rpx 28rpx; margin-bottom: 14rpx; }
+.history-list { border-bottom: 1rpx solid var(--line-strong); }
+.hist { min-height: 112rpx; padding: 24rpx 0; box-sizing: border-box; border-bottom: 1rpx solid var(--line); }
+.hist:last-child { border-bottom: 0; }
+.hist-kcal { flex-shrink: 0; margin-left: 24rpx; font-size: 30rpx; }
+.more { margin-top: 32rpx; }

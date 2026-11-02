@@ -1,13 +1,12 @@
 <view class="wrap">
   <view class="row head">
     <view>
-      <view class="h1">食材库</view>
-      <view class="soft small">{{total}} 项食材 · 营养值均为每 100 克</view>
+      <view class="soft small"><text class="num">{{total}}</text> 项食材 · 营养值均为每 <text class="num">100</text> 克</view>
     </view>
-    <view class="btn new" bindtap="add">+ 新增</view>
+    <view hover-class="press" class="btn new" bindtap="add">+ 新增</view>
   </view>
 
-  <view wx:if="{{showGoods}}" class="card goods-entry row" bindtap="openGoods">
+  <view hover-class="press" wx:if="{{showGoods}}" class="card goods-entry row" bindtap="openGoods">
     <view class="grow">
       <view class="h2">好物推荐</view>
       <view class="soft small">常吃的包装食品，一键导入食材库</view>
@@ -20,21 +19,23 @@
   </view>
 
   <scroll-view scroll-x class="chips" enhanced="{{true}}" show-scrollbar="{{false}}">
-    <view wx:for="{{categories}}" wx:key="*this" class="chip {{item === category ? 'on' : ''}}" data-c="{{item}}" bindtap="onCategory">{{item}}</view>
+    <view hover-class="press" wx:for="{{categories}}" wx:key="*this" class="chip {{item === category ? 'on' : ''}}" data-c="{{item}}" bindtap="onCategory">{{item}}</view>
   </scroll-view>
 
-  <view wx:for="{{list}}" wx:key="id" class="card" data-id="{{item.id}}" bindtap="edit">
-    <view class="row">
-      <view class="grow ellipsis">{{item.name}}</view>
-      <view class="num">{{item.kcal}}<text class="soft small"> 千卡</text></view>
-    </view>
-    <view class="macros">
-      <text>{{item.category}}</text>
-      <text>碳水 {{item.carbs}}</text>
-      <text>蛋白质 {{item.protein}}</text>
-      <text>脂肪 {{item.fat}}</text>
-      <text>折算 {{item.factor}}%</text>
-      <text wx:if="{{item.serving}}">{{item.serving}}</text>
+  <view class="food-list">
+    <view hover-class="press" wx:for="{{list}}" wx:key="id" class="food" data-id="{{item.id}}" bindtap="edit">
+      <view class="row">
+        <view class="grow ellipsis"><text wx:for="{{item.nameParts}}" wx:for-item="part" wx:for-index="partIndex" wx:key="partIndex" class="{{partIndex % 2 ? 'num' : ''}}">{{part}}</text></view>
+        <view class="kcal"><text class="num">{{item.kcal}}</text><text class="soft small"> 千卡</text></view>
+      </view>
+      <view class="macros">
+        <text>{{item.category}}</text>
+        <text>碳水 <text class="num">{{item.carbs}}</text></text>
+        <text>蛋白质 <text class="num">{{item.protein}}</text></text>
+        <text>脂肪 <text class="num">{{item.fat}}</text></text>
+        <text>折算 <text class="num">{{item.factor}}%</text></text>
+        <text wx:if="{{item.serving}}">每{{item.servingUnit}}<text class="num">{{item.servingGrams}}</text>克</text>
+      </view>
     </view>
   </view>
 
