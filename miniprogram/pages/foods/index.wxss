@@ -1,8 +1,5 @@
-.head { margin-bottom: 32rpx; gap: 24rpx; }
-.head > view:first-child { flex: 1; min-width: 0; }
-.new { flex-shrink: 0; padding: 0 32rpx; }
-.goods-entry { min-height: 96rpx; margin-bottom: 32rpx; border-bottom: 1rpx solid var(--line-strong); }
-.food-list { border-top: 1rpx solid var(--line-strong); border-bottom: 1rpx solid var(--line-strong); }
-.food { min-height: 112rpx; padding: 24rpx 0; box-sizing: border-box; border-bottom: 1rpx solid var(--line); }
-.food:last-child { border-bottom: 0; }
-.kcal { flex-shrink: 0; margin-left: 24rpx; font-size: 30rpx; }
+.head { gap: 20rpx; margin-bottom: 8rpx; }
+.head .search { margin-bottom: 0; }
+.add-btn { flex-shrink: 0; width: 80rpx; height: 80rpx; border-radius: 50%; background: var(--gold); color: var(--ink); text-align: center; line-height: 76rpx; font-size: 44rpx; }
+.chips { margin-top: 24rpx; }
+.cap { font-size: 20rpx; text-align: right; padding-bottom: 12rpx; }

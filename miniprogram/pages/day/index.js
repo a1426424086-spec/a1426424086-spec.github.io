@@ -2,8 +2,6 @@ const store = require('../../utils/store')
 const N = require('../../utils/nutrition')
 const D = require('../../utils/date')
 
-const MEAL_ICONS = ['sunrise', 'sun', 'moon', 'cup']
-
 function byTime(a, b) {
   return a.time < b.time ? -1 : a.time > b.time ? 1 : 0
 }
@@ -14,14 +12,18 @@ Page({
     today: '',
     isToday: true,
     greeting: '',
-    lead: '',
-    dateText: '',
-    dateCn: '',
-    share: null,
-    week: '',
+    dateLabel: '',
+    open: -1,
+    topPad: 88,
     totals: N.display(N.empty()),
     meals: [],
     count: 0
+  },
+
+  onLoad() {
+    // 自定义导航栏：内容从胶囊按钮下方开始
+    const menu = wx.getMenuButtonBoundingClientRect()
+    this.setData({ topPad: menu.bottom + 20 })
   },
 
   onShow() {
@@ -42,14 +44,12 @@ Page({
       const list = day.portions.filter(p => p.meal === name).sort(byTime)
       return {
         name,
-        icon: MEAL_ICONS[i],
         kcal: N.round(N.totals(list).kcal),
         items: list.map(p => ({
           id: p.id,
           name: p.food.name,
           time: p.time,
           qty: N.quantityText(p),
-          badge: N.badge(p.food.category),
           kcal: N.round(N.forGrams(p.food, p.grams).kcal)
         }))
       }
@@ -62,12 +62,8 @@ Page({
       today,
       isToday,
       greeting: isToday ? D.greeting() : isFuture ? '提前安排' : '回看这一天',
-      lead: !day.portions.length ? (isFuture ? '还没有安排' : '还没有记录') : isToday ? '今天已经吃了' : isFuture ? '计划吃' : '这一天吃了',
-      dateText: date.slice(5).replace('-', '.'),
-      dateCn: D.chinese(date),
-      week: D.weekday(date),
+      dateLabel: D.short(date) + ' ' + D.weekday(date),
       totals: N.display(totals),
-      share: N.macroShare(totals),
       meals,
       count: day.portions.length
     })
@@ -89,8 +85,16 @@ Page({
     this.load(D.today())
   },
 
-  jumpTo(e) {
-    wx.pageScrollTo({ selector: '#meal-' + e.currentTarget.dataset.i, duration: 300 })
+  toggleMeal(e) {
+    const i = e.currentTarget.dataset.i
+    this.setData({ open: this.data.open === i ? -1 : i })
+  },
+
+  more() {
+    wx.showActionSheet({
+      itemList: ['存入食谱夹', '清空当日'],
+      success: res => (res.tapIndex === 0 ? this.saveAsRecipe() : this.clearDay())
+    })
   },
 
   addTo(e) {

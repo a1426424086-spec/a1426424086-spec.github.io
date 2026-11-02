@@ -1,11 +1,8 @@
-.sub { margin: 0 0 32rpx; line-height: 1.8; }
-.summary-label { margin-bottom: 16rpx; }
-.nutri-row { margin-top: 32rpx; }
-.meal { margin-top: 56rpx; border-bottom: 1rpx solid var(--line-strong); }
-.meal-head { padding-bottom: 16rpx; border-bottom: 1rpx solid var(--line-strong); }
-.meal-title { padding-top: 20rpx; }
-.item { min-height: 112rpx; padding: 20rpx 0; box-sizing: border-box; border-bottom: 1rpx solid var(--line); }
-.item:last-child { border-bottom: 0; }
-.item-kcal { flex-shrink: 0; margin-left: 24rpx; font-size: 30rpx; }
-.note { padding: 20rpx 0; line-height: 1.8; }
-.meal + .sub { margin-top: 40rpx; }
+.gap-l { margin-top: 56rpx; }
+.meal { margin-top: 48rpx; border-top: 1rpx solid var(--line-strong); }
+.meal-head { min-height: 96rpx; }
+.meal-kcal { color: var(--c-carb); font-size: 30rpx; }
+.item { min-height: 72rpx; padding-left: 24rpx; }
+.item-kcal { margin-left: 24rpx; font-size: 26rpx; }
+.use { margin-top: 64rpx; }
+.link { text-align: center; padding: 32rpx 0; }

@@ -1,68 +1,43 @@
-<view class="wrap">
-  <view class="hero">
-    <view class="top row">
-      <text class="brand">食 光 · {{dateCn}}</text>
-      <view class="date-bar row">
-        <view class="arrow" hover-class="press" bindtap="prevDay">‹</view>
-        <picker mode="date" value="{{date}}" bindchange="onPickDate">
-          <view class="date-text"><text class="num">{{dateText}}</text><text class="soft small"> {{week}}</text></view>
-        </picker>
-        <view class="arrow" hover-class="press" bindtap="nextDay">›</view>
-      </view>
-    </view>
-    <view wx:if="{{!isToday}}" class="back-today gold small" hover-class="press" bindtap="backToday">回到今天</view>
+<view class="ambient"></view>
+<view class="wrap" style="padding-top: {{topPad}}px">
+  <view class="head row">
+    <text class="greet serif">{{greeting}}</text>
+    <picker mode="date" value="{{date}}" bindchange="onPickDate">
+      <text class="date soft">{{dateLabel}}</text>
+    </picker>
+  </view>
+  <view wx:if="{{!isToday}}" class="back-today gold small" hover-class="press" bindtap="backToday">回到今天</view>
 
-    <view class="greet">{{greeting}}</view>
-    <view class="lead soft">{{lead}}<block wx:if="{{count}}"> <text class="lead-kcal num">{{totals.kcal}}</text> 千卡</block></view>
+  <view class="kcal num">{{totals.kcal}}</view>
+  <view class="kcal-unit soft">千卡</view>
 
-    <view class="macro-bar {{share ? '' : 'empty-bar'}}">
-      <block wx:if="{{share}}">
-        <view class="seg-c" style="flex: {{share.c}}"></view>
-        <view class="seg-p" style="flex: {{share.p}}"></view>
-        <view class="seg-f" style="flex: {{share.f}}"></view>
-      </block>
-    </view>
-    <view class="legend row">
-      <view><text class="dot c"></text>碳水 <text class="num">{{totals.carbs}}</text><text class="u">克</text></view>
-      <view><text class="dot p"></text>蛋白质 <text class="num">{{totals.protein}}</text><text class="u">克</text></view>
-      <view><text class="dot f"></text>脂肪 <text class="num">{{totals.fat}}</text><text class="u">克</text></view>
-    </view>
-    <view class="effective faint small">有效蛋白 <text class="num">{{totals.effective}}</text> 克（按折算比例估算）</view>
+  <view class="macros3">
+    <view class="m c"><view class="m-line"></view><view class="m-v num">{{totals.carbs}}</view><view class="m-l soft">碳水</view></view>
+    <view class="m p"><view class="m-line"></view><view class="m-v num">{{totals.protein}}</view><view class="m-l soft">蛋白质</view></view>
+    <view class="m f"><view class="m-line"></view><view class="m-v num">{{totals.fat}}</view><view class="m-l soft">脂肪</view></view>
   </view>
 
-  <view class="meal-cards row">
-    <view wx:for="{{meals}}" wx:key="name" wx:for-item="meal" class="meal-card" hover-class="press" data-i="{{index}}" bindtap="jumpTo">
-      <image class="meal-icon" src="/images/icons/meal-{{meal.icon}}.png" />
-      <view class="meal-card-name small">{{meal.name}}</view>
-      <view class="meal-card-kcal num">{{meal.kcal}}</view>
-    </view>
-  </view>
-
-  <view wx:for="{{meals}}" wx:key="name" wx:for-item="meal" wx:for-index="mi" class="meal" id="meal-{{mi}}">
-    <view class="meal-head row">
-      <text class="label">{{meal.name}}<text wx:if="{{meal.items.length}}"> · <text class="num">{{meal.items[0].time}}</text></text></text>
-      <view class="row">
-        <text class="meal-kcal num soft" wx:if="{{meal.items.length}}">{{meal.kcal}} 千卡</text>
-        <view class="plus" hover-class="press" data-meal="{{meal.name}}" bindtap="addTo">+</view>
+  <view class="meals">
+    <view wx:for="{{meals}}" wx:key="name" wx:for-item="meal" wx:for-index="mi" class="meal">
+      <view class="meal-row row" hover-class="press" data-i="{{mi}}" bindtap="toggleMeal">
+        <text class="meal-name">{{meal.name}}</text>
+        <text class="meal-kcal num {{meal.items.length ? '' : 'faint'}}">{{meal.items.length ? meal.kcal : '—'}}</text>
       </view>
-    </view>
-    <view wx:if="{{!meal.items.length}}" class="item-empty faint small">还没有记录</view>
-    <view wx:for="{{meal.items}}" wx:key="id" class="item row">
-      <view class="badge {{item.badge.tone}}">{{item.badge.ch}}</view>
-      <view class="grow" hover-class="press" data-id="{{item.id}}" bindtap="onItemTap">
-        <view class="ellipsis">{{item.name}}</view>
-        <view class="soft small">
-          <picker class="time-pick" mode="time" value="{{item.time}}" data-id="{{item.id}}" bindchange="onTimeChange"><text class="num item-time">{{item.time}}</text></picker>
-          <text> · {{item.qty}}</text>
+      <view wx:if="{{open === mi}}" class="detail">
+        <view wx:for="{{meal.items}}" wx:key="id" class="item row">
+          <view class="grow" hover-class="press" data-id="{{item.id}}" bindtap="onItemTap">
+            <view class="ellipsis">{{item.name}}</view>
+            <view class="item-sub soft">
+              <picker class="time-pick" mode="time" value="{{item.time}}" data-id="{{item.id}}" bindchange="onTimeChange"><text class="num">{{item.time}}</text></picker>
+              <text> · {{item.qty}}</text>
+            </view>
+          </view>
+          <text class="item-kcal num" data-id="{{item.id}}" bindtap="onItemTap">{{item.kcal}}</text>
         </view>
+        <view class="add gold" hover-class="press" data-meal="{{meal.name}}" bindtap="addTo">＋ 添加</view>
       </view>
-      <view class="item-kcal num" data-id="{{item.id}}" bindtap="onItemTap">{{item.kcal}}</view>
     </view>
   </view>
 
-  <view class="btn-row" wx:if="{{count}}">
-    <view class="btn ghost" hover-class="press" bindtap="saveAsRecipe">存入食谱夹</view>
-    <view class="btn danger" hover-class="press" bindtap="clearDay">清空当日</view>
-  </view>
-  <view class="tip faint small">记录只存在本机 · 点时间可修改，点食材可改用量、换餐次或删除</view>
+  <view wx:if="{{count}}" class="more faint small" hover-class="press" bindtap="more">· · ·</view>
 </view>

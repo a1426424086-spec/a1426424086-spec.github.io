@@ -1,21 +1,21 @@
 /* 暗夜金 · 加氛围：深色底、细线分组、暗色面板托底；数字衬线体，金棕三色区分营养素。规范见 总控制/collaboration/shiguang/设计规范.md */
 page {
-  --bg: #0f0f0e;
-  --surface: #181715;
+  --bg: #121110;
+  --surface: #1c1a16;
   --panel: #1a1916;
   --panel-2: #24221d;
-  --line: #26241f;
-  --line-strong: #3a362e;
+  --line: rgba(255, 248, 230, 0.06);
+  --line-strong: rgba(255, 248, 230, 0.1);
   --text: #ede6d6;
-  --text-soft: #8c8471;
+  --text-soft: #8f8776;
   --text-faint: #5e584c;
   --gold: #c9a96e;
   --gold-soft: #8f7a52;
   --ink: #14130f;
   --danger: #d98c7a;
   --c-carb: #e2c48a;
-  --c-protein: #b07a4e;
-  --c-fat: #7d735f;
+  --c-protein: #b98457;
+  --c-fat: #8c826d;
   background: var(--bg);
   color: var(--text);
   font-family: "PingFang SC", -apple-system, "Helvetica Neue", sans-serif;
@@ -24,7 +24,23 @@ page {
 }
 
 .wrap { padding: 32rpx 40rpx 64rpx; }
+
+/* 上下双光：顶部金光 + 右下铜光，固定在视口，内容在上面滚动 */
+.ambient {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(130% 50% at 25% 0%, rgba(214, 182, 122, 0.24), rgba(214, 182, 122, 0) 60%),
+    radial-gradient(120% 45% at 80% 100%, rgba(185, 132, 87, 0.22), rgba(185, 132, 87, 0) 65%),
+    var(--bg);
+}
 .num { font-family: "Songti SC", "STSong", "Noto Serif", Georgia, serif; font-weight: 400; }
+.serif { font-family: "Songti SC", "STSong", "Noto Serif SC", serif; }
 .soft { color: var(--text-soft); }
 .faint { color: var(--text-faint); }
 .small { font-size: 24rpx; }
@@ -154,7 +170,7 @@ page {
   height: 80rpx;
   padding: 0 32rpx;
   border-radius: 40rpx;
-  background: var(--surface);
+  background: rgba(255, 248, 230, 0.05);
   margin-bottom: 20rpx;
 }
 .search input { flex: 1; color: var(--text); font-size: 28rpx; }
@@ -200,3 +216,25 @@ page {
   box-sizing: border-box;
   overflow-y: auto;
 }
+
+/* 三项营养：色线 + 数字 + 名称（配餐首页、统计、食谱详情共用） */
+.macros3 { display: flex; gap: 28rpx; }
+.macros3 .m { flex: 1; }
+.macros3 .m-line { height: 4rpx; border-radius: 2rpx; }
+.macros3 .m.c .m-line { background: var(--c-carb); }
+.macros3 .m.p .m-line { background: var(--c-protein); }
+.macros3 .m.f .m-line { background: var(--c-fat); }
+.macros3 .m-v { font-size: 36rpx; margin-top: 18rpx; }
+.macros3 .m-l { font-size: 22rpx; color: var(--text-soft); }
+
+/* 大号热量 */
+.big-kcal { font-size: 96rpx; line-height: 1; color: #f5e6c2; }
+.big-unit { font-size: 24rpx; color: var(--text-soft); margin-top: 12rpx; }
+
+/* 极简列表行：名称 + 右侧数字，细线分隔 */
+.list { border-top: 1rpx solid var(--line-strong); }
+.li { min-height: 104rpx; border-bottom: 1rpx solid var(--line-strong); box-sizing: border-box; padding: 20rpx 0; }
+.li-sub { font-size: 22rpx; color: var(--text-soft); margin-top: 4rpx; }
+.li-num { flex-shrink: 0; margin-left: 24rpx; font-size: 30rpx; color: var(--c-carb); }
+.li-num.dim { color: var(--text-soft); }
+.page-title { font-size: 44rpx; font-weight: 600; letter-spacing: 2rpx; margin: 8rpx 0 40rpx; }

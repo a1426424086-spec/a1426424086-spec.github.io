@@ -1,49 +1,39 @@
+<view class="ambient"></view>
 <view class="wrap">
   <view class="seg">
     <view hover-class="press" wx:for="{{meals}}" wx:key="*this" class="seg-item {{item === meal ? 'on' : ''}}" data-m="{{item}}" bindtap="onMeal">{{item}}</view>
   </view>
 
   <view class="search">
-    <input placeholder="搜索食物名称" placeholder-class="ph" value="{{keyword}}" bindinput="onSearch" confirm-type="search" />
+    <input placeholder="搜索食物" placeholder-class="ph" value="{{keyword}}" bindinput="onSearch" confirm-type="search" />
   </view>
 
   <scroll-view scroll-x class="chips" enhanced="{{true}}" show-scrollbar="{{false}}">
     <view hover-class="press" wx:for="{{categories}}" wx:key="*this" class="chip {{item === category ? 'on' : ''}}" data-c="{{item}}" bindtap="onCategory">{{item}}</view>
   </scroll-view>
 
-  <view class="soft small hint">可连续添加，点食物选择用量。</view>
-
-  <view class="food-list">
-    <view hover-class="press" wx:for="{{list}}" wx:key="id" class="food row" data-id="{{item.id}}" bindtap="onSelect">
-      <view class="badge {{item.badge.tone}}">{{item.badge.ch}}</view>
-      <view class="grow">
-        <view class="ellipsis"><text wx:for="{{item.nameParts}}" wx:for-item="part" wx:for-index="partIndex" wx:key="partIndex" class="{{partIndex % 2 ? 'num' : ''}}">{{part}}</text></view>
-        <view class="soft small">{{item.category}} · <text class="num">{{item.kcal}}</text> 千卡 / <text class="num">100</text> 克<text wx:if="{{item.serving}}"> · 每{{item.servingUnit}}约<text class="num">{{item.servingGrams}}</text>克</text></view>
-      </view>
-      <view class="add-dot" hover-class="press">+</view>
+  <view class="cap faint">千卡 / 100 克</view>
+  <view class="list">
+    <view hover-class="press" wx:for="{{list}}" wx:key="id" class="li row" data-id="{{item.id}}" bindtap="onSelect">
+      <view class="grow ellipsis">{{item.name}}</view>
+      <text class="li-num dim num">{{item.kcal}}</text>
+      <text class="plus gold">+</text>
     </view>
   </view>
 
-  <view wx:if="{{!list.length}}" class="empty">
-    <view>没有找到这项食物</view>
-  </view>
+  <view wx:if="{{!list.length}}" class="empty">没有找到这项食物</view>
 
-  <view class="btn-row">
-    <view hover-class="press" class="btn ghost" bindtap="newFood">新增食材</view>
-    <view hover-class="press" class="btn ghost" bindtap="done">完成<text>{{added ? '（已加 ' : ''}}</text><text class="num">{{added ? added : ''}}</text><text>{{added ? ' 项）' : ''}}</text></view>
+  <view class="foot row">
+    <text class="soft small" hover-class="press" bindtap="newFood">找不到？新增食材</text>
+    <view hover-class="press" class="btn ghost done" bindtap="done">完成<text wx:if="{{added}}">（<text class="num">{{added}}</text>）</text></view>
   </view>
 </view>
 
 <block wx:if="{{sel}}">
   <view class="mask" bindtap="closeSheet"></view>
   <view class="sheet">
-    <view class="h2"><text wx:for="{{sel.nameParts}}" wx:for-item="part" wx:for-index="partIndex" wx:key="partIndex" class="{{partIndex % 2 ? 'num' : ''}}">{{part}}</text></view>
-    <view class="macros">
-      <text>每<text class="num">100</text>克 <text class="num">{{sel.per100.kcal}}</text> 千卡</text>
-      <text>碳水 <text class="num">{{sel.per100.carbs}}</text></text>
-      <text>蛋白 <text class="num">{{sel.per100.protein}}</text></text>
-      <text>脂肪 <text class="num">{{sel.per100.fat}}</text></text>
-    </view>
+    <view class="h2">{{sel.name}}</view>
+    <view class="soft small">每 100 克 <text class="num">{{sel.per100.kcal}}</text> 千卡</view>
     <view class="soft small" wx:if="{{sel.note}}">称重：<text wx:for="{{sel.noteParts}}" wx:for-item="part" wx:for-index="partIndex" wx:key="partIndex" class="{{partIndex % 2 ? 'num' : ''}}">{{part}}</text></view>
 
     <view class="field sheet-gap">
@@ -70,9 +60,8 @@
     </view>
 
     <view class="preview" wx:if="{{preview}}">
-      <text>本次 <text class="num">{{preview.grams}}</text> 克 · </text>
-      <text class="gold"><text class="num">{{preview.kcal}}</text> 千卡</text>
-      <text class="soft"> · 碳水 <text class="num">{{preview.carbs}}</text> · 蛋白 <text class="num">{{preview.protein}}</text> · 有效蛋白 <text class="num">{{preview.effective}}</text> · 脂肪 <text class="num">{{preview.fat}}</text></text>
+      <text class="soft">本次 <text class="num">{{preview.grams}}</text> 克</text>
+      <text class="preview-kcal num">{{preview.kcal}}</text><text class="soft"> 千卡</text>
     </view>
     <view class="preview danger" wx:else>重量须大于<text class="num">0</text>，不超过<text class="num">10,000</text>克</view>
 

@@ -1,8 +1,11 @@
-.hint { margin: 16rpx 0 24rpx; }
 .food-list { border-top: 1rpx solid var(--line-strong); border-bottom: 1rpx solid var(--line-strong); }
 .food { min-height: 112rpx; padding: 24rpx 0; box-sizing: border-box; border-bottom: 1rpx solid var(--line); }
 .food:last-child { border-bottom: 0; }
-.add-dot { flex-shrink: 0; width: 56rpx; height: 56rpx; border-radius: 50%; border: 1rpx solid var(--line-strong); text-align: center; line-height: 52rpx; font-size: 34rpx; margin-left: 24rpx; color: var(--gold); }
+.plus { flex-shrink: 0; width: 56rpx; text-align: right; font-size: 36rpx; }
+.cap { font-size: 20rpx; text-align: right; padding-bottom: 12rpx; }
+.foot { margin-top: 40rpx; }
+.done { flex-shrink: 0; height: 72rpx; padding: 0 40rpx; }
+.preview-kcal { font-size: 44rpx; color: var(--c-carb); margin-left: 24rpx; }
 .sheet-gap { margin-top: 32rpx; }
 .sheet .h2 { overflow-wrap: break-word; }
 .sheet .input { background: var(--bg); }

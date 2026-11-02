@@ -1,5 +1,6 @@
+<view class="ambient"></view>
 <view class="wrap">
-  <view class="soft small intro">填写每 <text class="num">100</text> 克的营养值，以包装标签或食物成分表为准。</view>
+  <view class="soft small intro">以下数值均为每 100 克</view>
 
   <view class="field">
     <view class="field-label">食物名称</view>
@@ -29,7 +30,7 @@
   </view>
 
   <view class="field">
-    <view class="field-label">蛋白折算比例（%）· 默认肉蛋奶<text class="num">100%</text>，蔬果<text class="num">50%</text>，其余<text class="num">80%</text></view>
+    <view class="field-label">蛋白折算比例（%）</view>
     <view class="row">
       <view hover-class="press" class="chip {{factor === '100' ? 'on' : ''}}" data-v="100" bindtap="setFactor"><text class="num">100</text></view>
       <view hover-class="press" class="chip {{factor === '80' ? 'on' : ''}}" data-v="80" bindtap="setFactor"><text class="num">80</text></view>
@@ -39,8 +40,8 @@
   </view>
 
   <view class="calc row">
-    <view class="grow"><view class="label">热量 · 自动计算</view><text class="num big">{{kcal}}</text><text class="soft small"> 千卡/<text class="num">100</text>克</text></view>
-    <view class="grow"><view class="label">有效蛋白 · 自动折算</view><text class="num big">{{effective}}</text><text class="soft small"> 克/<text class="num">100</text>克</text></view>
+    <view class="grow"><view class="soft small">热量</view><text class="num big">{{kcal}}</text><text class="soft small"> 千卡</text></view>
+    <view class="grow"><view class="soft small">有效蛋白</view><text class="num big">{{effective}}</text><text class="soft small"> 克</text></view>
   </view>
 
   <view class="row gap">

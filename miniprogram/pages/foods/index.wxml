@@ -1,44 +1,26 @@
+<view class="ambient"></view>
 <view class="wrap">
-  <view class="row head">
-    <view>
-      <view class="soft small"><text class="num">{{total}}</text> 项食材 · 营养值均为每 <text class="num">100</text> 克</view>
+  <view class="head row">
+    <view class="search grow">
+      <input placeholder="搜索食材" placeholder-class="ph" value="{{keyword}}" bindinput="onSearch" confirm-type="search" />
     </view>
-    <view hover-class="press" class="btn new" bindtap="add">+ 新增</view>
+    <view hover-class="press" class="add-btn" bindtap="add">+</view>
   </view>
 
-  <view hover-class="press" wx:if="{{showGoods}}" class="card goods-entry row" bindtap="openGoods">
-    <view class="grow">
-      <view class="h2">好物推荐</view>
-      <view class="soft small">常吃的包装食品，一键导入食材库</view>
-    </view>
+  <view hover-class="press" wx:if="{{showGoods}}" class="li row" bindtap="openGoods">
+    <view class="grow">好物推荐</view>
     <text class="gold">查看 ›</text>
-  </view>
-
-  <view class="search">
-    <input placeholder="搜索食材库" placeholder-class="ph" value="{{keyword}}" bindinput="onSearch" confirm-type="search" />
   </view>
 
   <scroll-view scroll-x class="chips" enhanced="{{true}}" show-scrollbar="{{false}}">
     <view hover-class="press" wx:for="{{categories}}" wx:key="*this" class="chip {{item === category ? 'on' : ''}}" data-c="{{item}}" bindtap="onCategory">{{item}}</view>
   </scroll-view>
 
-  <view class="food-list">
-    <view hover-class="press" wx:for="{{list}}" wx:key="id" class="food row" data-id="{{item.id}}" bindtap="edit">
-      <view class="badge {{item.badge.tone}}">{{item.badge.ch}}</view>
-      <view class="grow">
-        <view class="row">
-          <view class="grow ellipsis"><text wx:for="{{item.nameParts}}" wx:for-item="part" wx:for-index="partIndex" wx:key="partIndex" class="{{partIndex % 2 ? 'num' : ''}}">{{part}}</text></view>
-          <view class="kcal"><text class="num">{{item.kcal}}</text><text class="soft small"> 千卡</text></view>
-        </view>
-        <view class="macros">
-          <text>{{item.category}}</text>
-          <text>碳水 <text class="num">{{item.carbs}}</text></text>
-          <text>蛋白质 <text class="num">{{item.protein}}</text></text>
-          <text>脂肪 <text class="num">{{item.fat}}</text></text>
-          <text>折算 <text class="num">{{item.factor}}%</text></text>
-          <text wx:if="{{item.serving}}">每{{item.servingUnit}}<text class="num">{{item.servingGrams}}</text>克</text>
-        </view>
-      </view>
+  <view class="cap faint">千卡 / 100 克</view>
+  <view class="list">
+    <view hover-class="press" wx:for="{{list}}" wx:key="id" class="li row" data-id="{{item.id}}" bindtap="edit">
+      <view class="grow ellipsis">{{item.name}}</view>
+      <text class="li-num dim num">{{item.kcal}}</text>
     </view>
   </view>
 
