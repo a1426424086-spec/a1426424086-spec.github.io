@@ -1,7 +1,10 @@
-.intro { margin-bottom: 40rpx; line-height: 1.8; }
-.gap { gap: 20rpx; align-items: flex-start; }
-.input input { min-width: 0; width: 0; }
-.chip { flex-shrink: 0; margin-right: 24rpx; padding: 16rpx 8rpx; }
-.calc { border-top: 1rpx solid var(--line-strong); border-bottom: 1rpx solid var(--line-strong); padding: 28rpx 0; margin: 24rpx 0 56rpx; gap: 20rpx; align-items: flex-start; }
-.calc .label { letter-spacing: 1rpx; margin-bottom: 12rpx; }
-.big { font-size: 44rpx; }
+.fr-seg { padding-top: 16rpx; padding-bottom: 16rpx; }
+.fr-full { text-align: left; }
+.fr-full input { text-align: left; }
+.fr-v input { font-family: -apple-system, "PingFang SC", "Helvetica Neue", sans-serif; font-variant-numeric: tabular-nums; }
+.calc2 { display: flex; padding: 28rpx 32rpx; }
+.calc-c { flex: 1; }
+.calc-l { font-size: 26rpx; color: var(--text-soft); }
+.calc-v { font-size: 48rpx; font-weight: 600; }
+.ops { margin-top: 48rpx; }
+.op2 { margin-top: 24rpx; }

@@ -1,2 +1,1 @@
-.group { margin-top: 48rpx; }
-.group-title { padding-bottom: 12rpx; letter-spacing: 4rpx; }
+.seg { margin-top: 8rpx; }

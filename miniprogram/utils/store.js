@@ -260,9 +260,9 @@ function findRecipe(id, src) {
 // 食谱 portions 引用自带的 foods 快照
 function recipePortions(recipe, preferLibrary) {
   const library = preferLibrary ? getFoods() : []
-  return recipe.portions.map(p => {
+  return recipe.portions.map((p, i) => {
     const food = library.find(f => f.id === p.foodId) || recipe.foods.find(f => f.id === p.foodId)
-    return food ? { foodId: p.foodId, meal: p.meal, grams: p.grams, unit: p.unit || '克', food } : null
+    return food ? { foodId: p.foodId, meal: p.meal, grams: p.grams, unit: p.unit || '克', food, idx: i } : null
   }).filter(Boolean)
 }
 
@@ -273,6 +273,57 @@ function saveRecipe(recipe) {
   recipes.unshift(r)
   set(KEY.recipes, recipes)
   return { ok: true, recipe: r }
+}
+
+// 新建空白食谱
+function createRecipe(name) {
+  return saveRecipe({ name, group: '', portions: [], foods: [], mealNotes: [] })
+}
+
+function renameRecipe(id, name) {
+  const recipes = getRecipes()
+  const r = recipes.find(x => x.id === id)
+  if (!r) return
+  r.name = name
+  set(KEY.recipes, recipes)
+}
+
+// 往我的食谱加一样食物；食物快照存进 recipe.foods（同 id 只存一份）
+function addRecipePortion(id, opts) {
+  const recipes = getRecipes()
+  const r = recipes.find(x => x.id === id)
+  if (!r) return { ok: false, error: '食谱不存在' }
+  const fid = opts.food.id || uid('food')
+  if (!r.foods.some(f => f.id === fid)) r.foods.push(Object.assign({ id: fid }, snapshot(opts.food)))
+  r.portions.push({ foodId: fid, meal: opts.meal, grams: opts.grams, unit: opts.unit || '克' })
+  set(KEY.recipes, recipes)
+  return { ok: true }
+}
+
+function updateRecipePortion(id, idx, patch) {
+  const recipes = getRecipes()
+  const r = recipes.find(x => x.id === id)
+  if (!r || !r.portions[idx]) return
+  Object.assign(r.portions[idx], patch)
+  set(KEY.recipes, recipes)
+}
+
+// 删除并返回被删的份量，供撤销
+function removeRecipePortion(id, idx) {
+  const recipes = getRecipes()
+  const r = recipes.find(x => x.id === id)
+  if (!r || !r.portions[idx]) return null
+  const removed = r.portions.splice(idx, 1)[0]
+  set(KEY.recipes, recipes)
+  return removed
+}
+
+function insertRecipePortion(id, idx, portion) {
+  const recipes = getRecipes()
+  const r = recipes.find(x => x.id === id)
+  if (!r) return
+  r.portions.splice(Math.min(idx, r.portions.length), 0, portion)
+  set(KEY.recipes, recipes)
 }
 
 function recipeFromDay(date, name) {
@@ -301,6 +352,7 @@ function deleteRecipe(id) {
 function applyRecipe(id, src, date) {
   const recipe = findRecipe(id, src)
   if (!recipe) return { ok: false, error: '食谱不存在' }
+  if (recipe.portions.length === 0) return { ok: false, error: '食谱还是空的，先加点食物' }
   const portions = recipePortions(recipe, src !== 'ref').map(p => ({
     id: uid('p'),
     foodId: p.foodId,
@@ -314,11 +366,33 @@ function applyRecipe(id, src, date) {
   return { ok: true }
 }
 
+// 撤销删除：把原来的份量（保留 id）放回去
+function restorePortions(date, portions) {
+  const day = getDay(date)
+  portions.forEach(p => { if (!day.portions.some(x => x.id === p.id)) day.portions.push(p) })
+  saveDay(day)
+}
+
+// 照昨天：把 fromDate 某一餐的份量复制到 toDate 同一餐，返回新份量的 id
+function copyMeal(fromDate, toDate, meal) {
+  const src = getDay(fromDate).portions.filter(p => p.meal === meal)
+  const day = getDay(toDate)
+  const ids = src.map(p => {
+    const copy = { id: uid('p'), foodId: p.foodId, meal, time: p.time, grams: p.grams, unit: p.unit, food: clone(p.food) }
+    day.portions.push(copy)
+    return copy.id
+  })
+  saveDay(day)
+  return ids
+}
+
 module.exports = {
+  restorePortions, copyMeal,
   init, uid,
   getFoods, getFood, saveFood, deleteFood,
   isGoodsImported, importGoods,
   listDates, getDay, addPortion, updatePortion, removePortion, clearDay,
   getRecipes, getReferenceRecipes, findRecipe, recipePortions,
+  createRecipe, renameRecipe, addRecipePortion, updateRecipePortion, removeRecipePortion, insertRecipePortion,
   recipeFromDay, copyReference, deleteRecipe, applyRecipe
 }

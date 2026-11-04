@@ -18,6 +18,7 @@ Page({
     protein: '',
     fat: '',
     factor: '80',
+    factorCustom: false,
     factorTouched: false,
     units: UNITS,
     unitIndex: 0,
@@ -36,6 +37,7 @@ Page({
     }
     wx.setNavigationBarTitle({ title: food ? '编辑食材' : '新增食材' })
     if (!food) return
+    const factor = String(N.round(food.factor * 100, 1))
     const unitIndex = food.servingUnit ? UNITS.indexOf(food.servingUnit) : 0
     this.setData({
       id: food.id,
@@ -44,7 +46,8 @@ Page({
       carbs: String(food.carbs),
       protein: String(food.protein),
       fat: String(food.fat),
-      factor: String(N.round(food.factor * 100, 1)),
+      factor,
+      factorCustom: ['100', '80', '50'].indexOf(factor) < 0,
       factorTouched: true,
       units: unitIndex < 0 ? UNITS.concat(food.servingUnit) : UNITS,
       unitIndex: unitIndex < 0 ? UNITS.length : unitIndex,
@@ -72,7 +75,12 @@ Page({
   },
 
   setFactor(e) {
-    this.setData({ factor: e.currentTarget.dataset.v, factorTouched: true })
+    const v = e.currentTarget.dataset.v
+    if (v === 'custom') {
+      this.setData({ factorCustom: true, factorTouched: true })
+      return
+    }
+    this.setData({ factor: v, factorCustom: false, factorTouched: true })
     this.compute()
   },
 
@@ -126,8 +134,8 @@ Page({
       wx.showToast({ title: res.error, icon: 'none' })
       return
     }
-    wx.showToast({ title: '已保存', icon: 'success' })
-    setTimeout(() => wx.navigateBack(), 500)
+    getApp().globalData.flashFoodId = res.food.id
+    wx.navigateBack()
   },
 
   remove() {
@@ -139,8 +147,7 @@ Page({
       success: r => {
         if (!r.confirm) return
         store.deleteFood(this.data.id)
-        wx.showToast({ title: '食材已删除', icon: 'success' })
-        setTimeout(() => wx.navigateBack(), 500)
+        wx.navigateBack()
       }
     })
   }

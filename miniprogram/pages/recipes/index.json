@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "食谱夹"
+  "navigationBarTitleText": "食谱夹",
+  "initialRenderingCache": "dynamic"
 }

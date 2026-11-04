@@ -1,73 +1,59 @@
-<view class="ambient"></view>
-<view class="wrap">
-  <view class="seg">
-    <view hover-class="press" wx:for="{{meals}}" wx:key="*this" class="seg-item {{item === meal ? 'on' : ''}}" data-m="{{item}}" bindtap="onMeal">{{item}}</view>
-  </view>
-
+<view class="pg {{added ? 'has-bar' : ''}}">
   <view class="search">
     <input placeholder="搜索食物" placeholder-class="ph" value="{{keyword}}" bindinput="onSearch" confirm-type="search" />
   </view>
 
   <scroll-view scroll-x class="chips" enhanced="{{true}}" show-scrollbar="{{false}}">
-    <view hover-class="press" wx:for="{{categories}}" wx:key="*this" class="chip {{item === category ? 'on' : ''}}" data-c="{{item}}" bindtap="onCategory">{{item}}</view>
+    <view hover-class="press" hover-start-time="0" hover-stay-time="100" wx:for="{{categories}}" wx:key="*this" class="chip {{item === category ? 'on' : ''}}" data-c="{{item}}" bindtap="onCategory">{{item}}</view>
   </scroll-view>
 
-  <view class="cap faint">千卡 / 100 克</view>
-  <view class="list">
-    <view hover-class="press" wx:for="{{list}}" wx:key="id" class="li row" data-id="{{item.id}}" bindtap="onSelect">
-      <view class="grow ellipsis">{{item.name}}</view>
+  <view class="sec"><text>{{category}} · {{list.length}} 样</text><text>每 100 克 · 千卡</text></view>
+  <view class="list" wx:if="{{list.length}}">
+    <view id="food-{{item.id}}" class="li {{flashId === item.id ? 'flash' : ''}}" hover-class="row-press" hover-start-time="0" hover-stay-time="100" wx:for="{{list}}" wx:key="id" data-id="{{item.id}}" bindtap="onSelect">
+      <view class="li-main">
+        <view class="li-name">{{item.name}}</view>
+        <view class="l2"><view class="c-m"><text class="cm-l">碳</text><text class="num">{{item.c}}</text></view><view class="c-m"><text class="cm-l">蛋</text><text class="num">{{item.p}}</text></view><view class="c-m"><text class="cm-l">脂</text><text class="num">{{item.fa}}</text></view></view>
+      </view>
       <text class="li-num dim num">{{item.kcal}}</text>
-      <text class="plus gold">+</text>
+      <view class="li-plus {{okId === item.id ? 'ok' : ''}}">{{okId === item.id ? '✓' : '＋'}}</view>
     </view>
   </view>
 
-  <view wx:if="{{!list.length}}" class="empty">没有找到这项食物</view>
+  <view wx:if="{{ready && !list.length}}" class="empty">没有找到这项食物</view>
 
-  <view class="foot row">
-    <text class="soft small" hover-class="press" bindtap="newFood">找不到？新增食材</text>
-    <view hover-class="press" class="btn ghost done" bindtap="done">完成<text wx:if="{{added}}">（<text class="num">{{added}}</text>）</text></view>
-  </view>
+  <view class="btn tinted new-btn" hover-class="press" hover-start-time="0" hover-stay-time="100" bindtap="newFood">找不到？新增食材</view>
+</view>
+
+<view class="donebar {{added ? 'show' : ''}}">
+  <text class="soft">已加入 <text class="num add-n {{popKey ? (popKey % 2 ? 'pop1' : 'pop2') : ''}}">{{added}}</text> 项</text>
+  <view class="done-btn" hover-class="press" hover-start-time="0" hover-stay-time="100" bindtap="done">完成</view>
 </view>
 
 <block wx:if="{{sel}}">
-  <view class="mask" bindtap="closeSheet"></view>
-  <view class="sheet">
-    <view class="h2">{{sel.name}}</view>
-    <view class="soft small">每 100 克 <text class="num">{{sel.per100.kcal}}</text> 千卡</view>
-    <view class="soft small" wx:if="{{sel.note}}">称重：<text wx:for="{{sel.noteParts}}" wx:for-item="part" wx:for-index="partIndex" wx:key="partIndex" class="{{partIndex % 2 ? 'num' : ''}}">{{part}}</text></view>
+  <view class="mask2 {{sheetShow ? 'show' : ''}}" bindtap="closeSheet"></view>
+  <view class="dsheet {{sheetShow ? 'show' : ''}}" style="bottom: {{kbRaise}}px">
+    <view class="grab"></view>
+    <view class="sh-name serif">{{sel.name}}</view>
+    <view class="sh-sub">每 100 克<text class="num">{{sel.per100.kcal}}</text>千卡 · 碳<text class="num">{{sel.per100.carbs}}</text> · 蛋<text class="num">{{sel.per100.protein}}</text> · 脂<text class="num">{{sel.per100.fat}}</text></view>
+    <view class="sh-sub" wx:if="{{sel.note}}">称重：<text wx:for="{{sel.noteParts}}" wx:for-item="part" wx:for-index="partIndex" wx:key="partIndex" class="{{partIndex % 2 ? 'num' : ''}}">{{part}}</text></view>
 
-    <view class="field sheet-gap">
-      <view class="field-label">餐次</view>
-      <view class="seg">
-        <view hover-class="press" wx:for="{{meals}}" wx:key="*this" class="seg-item {{item === meal ? 'on' : ''}}" data-m="{{item}}" bindtap="onMeal">{{item}}</view>
-      </view>
-    </view>
-
-    <view class="row">
-      <view class="field grow">
-        <view class="field-label">时间</view>
-        <picker mode="time" value="{{time}}" bindchange="onTime">
-          <view class="input num" hover-class="press">{{time}}</view>
-        </picker>
-      </view>
-      <view class="field grow qty">
-        <view class="field-label">食用份量</view>
-        <view class="input">
-          <input class="num" type="digit" value="{{qty}}" bindinput="onQty" focus="{{true}}" />
-          <view hover-class="press" wx:for="{{units}}" wx:key="*this" class="unit {{item === unit ? 'on' : ''}}" data-u="{{item}}" bindtap="onUnit">{{item}}</view>
+    <view class="stepper">
+      <view class="sb" hover-class="sb-press" hover-start-time="0" hover-stay-time="100" bindtap="stepDown">−</view>
+      <view class="sv-box">
+        <view class="sv-wrap" bindtap="beginQtyEdit">
+          <view class="sv num {{qtyEditing ? 'editing' : ''}} {{qty === '' ? 'empty' : ''}}">{{qty === '' ? '0' : qty}}</view>
+          <input wx:if="{{qtyEditing}}" class="sv-ghost" adjust-position="{{false}}" bindkeyboardheightchange="onKbHeight" type="digit" value="{{qty}}" focus="{{true}}" bindinput="onQty" bindblur="endQtyEdit" bindconfirm="endQtyEdit" />
         </view>
+        <view class="sv-hint">{{qtyHint}}</view>
       </view>
+      <view class="sb" hover-class="sb-press" hover-start-time="0" hover-stay-time="100" bindtap="stepUp">＋</view>
     </view>
-
-    <view class="preview" wx:if="{{preview}}">
-      <text class="soft">本次 <text class="num">{{preview.grams}}</text> 克</text>
-      <text class="preview-kcal num">{{preview.kcal}}</text><text class="soft"> 千卡</text>
-    </view>
-    <view class="preview danger" wx:else>重量须大于<text class="num">0</text>，不超过<text class="num">10,000</text>克</view>
+    <view class="sh-live" wx:if="{{preview}}"><text class="num">{{preview.kcal}}</text>千卡 · 碳<text class="num">{{preview.carbs}}</text> · 蛋<text class="num">{{preview.protein}}</text> · 有效蛋白<text class="num">{{preview.effective}}</text> · 脂<text class="num">{{preview.fat}}</text>克</view>
+    <view class="sh-live danger" wx:else="">重量须大于 0，不超过 10,000 克</view>
 
     <view class="btn-row">
-      <view hover-class="press" class="btn ghost" bindtap="closeSheet">取消</view>
-      <view hover-class="press" class="btn {{preview ? '' : 'disabled'}}" bindtap="confirm">加入{{meal}}</view>
+      <view hover-class="press" hover-start-time="0" hover-stay-time="100" class="btn ghost" bindtap="closeSheet">取消</view>
+      <view hover-class="press" hover-start-time="0" hover-stay-time="100" class="btn {{preview ? '' : 'disabled'}}" bindtap="confirm">加入{{meal}}</view>
     </view>
   </view>
 </block>

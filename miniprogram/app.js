@@ -2,8 +2,9 @@ const store = require('./utils/store')
 
 App({
   globalData: {
-    // 从统计/食谱页跳到「配餐」tab 时要打开的日期（switchTab 不能带参数）
-    pendingDate: ''
+    // 从食谱页跳到「配餐」tab 时要打开的日期（switchTab 不能带参数）
+    pendingDate: '',
+    flashFoodId: ''
   },
 
   onLaunch() {

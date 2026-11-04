@@ -79,4 +79,14 @@ function greeting() {
   return '夜深了'
 }
 
-module.exports = { chinese, greeting, pad, format, parse, isValid, today, addDays, nowTime, weekday, slash, short, relative }
+// 所在周的周一（YYYY-MM-DD）
+function mondayOf(s) {
+  const d = parse(s)
+  d.setDate(d.getDate() - ((d.getDay() + 6) % 7))
+  return format(d)
+}
+
+// 周一为第一列：一 二 … 日
+const WEEK_MON = ['一', '二', '三', '四', '五', '六', '日']
+
+module.exports = { mondayOf, WEEK_MON, chinese, greeting, pad, format, parse, isValid, today, addDays, nowTime, weekday, slash, short, relative }

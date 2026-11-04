@@ -95,12 +95,8 @@ function badge(category) {
   return { ch: b[0], tone: b[1] }
 }
 
-// 1个（50克）/ 120克
+// 按克显示
 function quantityText(portion) {
-  const f = portion.food
-  if (portion.unit && portion.unit !== '克' && f.servingGrams) {
-    return round(portion.grams / f.servingGrams, 1) + portion.unit + '（' + round(portion.grams, 1) + '克）'
-  }
   return round(portion.grams, 1) + '克'
 }
 

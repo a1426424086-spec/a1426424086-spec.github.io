@@ -1,0 +1,41 @@
+// 食物左滑：水平方向确定后跟手；超过一半宽度停在打开，否则收回；越界有阻尼
+function start(e) {
+  var t = e.touches[0], st = e.instance.getState()
+  st.x0 = t.pageX; st.y0 = t.pageY; st.dir = 0
+  st.base = st.open ? -e.instance.getDataset().w : 0
+  st.x = st.base
+  e.instance.removeClass('anim')
+}
+function move(e) {
+  var t = e.touches[0], st = e.instance.getState()
+  var dx = t.pageX - st.x0, dy = t.pageY - st.y0
+  if (st.dir === 0) {
+    if (Math.abs(dx) < 10 && Math.abs(dy) < 10) return
+    st.dir = Math.abs(dx) > Math.abs(dy) ? 1 : 2
+  }
+  if (st.dir !== 1) return
+  var w = e.instance.getDataset().w
+  var x = st.base + dx
+  if (x > 0) x = x * 0.3
+  if (x < -w) x = -w + (x + w) * 0.3
+  st.x = x
+  e.instance.setStyle({ transform: 'translateX(' + x + 'px)' })
+  return false
+}
+function end(e) {
+  var st = e.instance.getState()
+  if (st.dir !== 1) return
+  var w = e.instance.getDataset().w
+  st.open = st.x < -w / 2
+  e.instance.addClass('anim')
+  e.instance.setStyle({ transform: 'translateX(' + (st.open ? -w : 0) + 'px)' })
+  return false
+}
+// resetKey 变化时全部收回
+function reset(newVal, oldVal, ownerInstance, instance) {
+  if (!instance) return
+  instance.getState().open = false
+  instance.addClass('anim')
+  instance.setStyle({ transform: 'translateX(0px)' })
+}
+module.exports = { start: start, move: move, end: end, reset: reset }
