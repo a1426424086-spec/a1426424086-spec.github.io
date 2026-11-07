@@ -9,7 +9,8 @@ function byTime(a, b) {
 Page({
   data: {
     date: '', today: '', dateLabel: '', greeting: '', isToday: true,
-    totals: N.display(N.empty()), count: 0, meals: [], open: -1, foldH: 0, leavingId: '', dayAnim: '',
+    totals: N.display(N.empty()), count: 0, meals: [],
+    opened: [false, false, false, false], foldHs: [0, 0, 0, 0], leavingId: '', dayAnim: '',
     topPad: 88, navH: 88, menuTop: 48, menuH: 32, navShow: false,
     weeks: [], weekIdx: 0, kcalShown: 0, delW: 88, resetKey: 0,
     sheet: 'none', sheetShow: false, ed: null, cal: null, qtyEditing: false, kbRaise: 0,
@@ -40,10 +41,10 @@ Page({
     if (this.pendingOpen >= 0) {
       const i = this.pendingOpen
       this.pendingOpen = -1
-      if (this.data.meals[i] && this.data.meals[i].items.length) this.setData({ open: i }, () => {
-        this.measureFold(i)
+      if (this.data.meals[i] && this.data.meals[i].items.length) this.setData({ ['opened[' + i + ']']: true }, () => {
+        this.measureFolds()
         clearTimeout(this.refoldTimer)
-        this.refoldTimer = setTimeout(() => { if (this.data.open >= 0) this.measureFold(this.data.open) }, 450)
+        this.refoldTimer = setTimeout(() => this.measureFolds(), 450)
       })
     }
   },
@@ -110,6 +111,13 @@ Page({
         }))
       }
     })
+    // 换天默认展开所有有食物的餐；同日保留手动状态，空餐重新有食物时展开。
+    const sameDay = date === this.data.date
+    const opened = meals.map((meal, i) => {
+      if (!meal.items.length) return false
+      if (!sameDay || !this.data.meals[i] || !this.data.meals[i].items.length) return true
+      return this.data.opened[i]
+    })
     const totals = N.totals(day.portions)
     const weeks = this.buildWeeks(date)
     const wsig = JSON.stringify(weeks.weeks.map(w => w.days.map(d => d.cls)).concat([weeks.weekIdx, this.weekBase]))
@@ -122,13 +130,11 @@ Page({
     this.setData({ date, today, isToday: date === today,
       greeting: date === today ? D.greeting() : date > today ? '提前安排' : '回看这一天',
       dateLabel: D.short(date) + ' ' + D.weekday(date), totals: N.display(totals),
-      meals, count: day.portions.length, ...weekPatch,
+      meals, opened, count: day.portions.length, ...weekPatch,
       resetKey: this.data.resetKey + 1 }, () => {
-      if (this.data.open >= 0) {
-        this.measureFold(this.data.open)
-        clearTimeout(this.refoldTimer)
-        this.refoldTimer = setTimeout(() => { if (this.data.open >= 0) this.measureFold(this.data.open) }, 450)
-      }
+      this.measureFolds()
+      clearTimeout(this.refoldTimer)
+      this.refoldTimer = setTimeout(() => this.measureFolds(), 450)
     })
     this.tweenKcal(N.round(totals.kcal), fromZero)
     this.drawRing(day.portions.length ? N.macroShare(totals) : null, fromZero)
@@ -191,7 +197,7 @@ Page({
     if (date === this.data.date) return
     const dir = date > this.data.date ? 'r' : 'l'
     this.flip = !this.flip
-    this.setData({ open: -1, dayAnim: 'in-' + dir + (this.flip ? '1' : '2') })
+    this.setData({ dayAnim: 'in-' + dir + (this.flip ? '1' : '2') })
     this.load(date, false)
   },
   onTouchStart(e) {
@@ -296,15 +302,18 @@ Page({
     frame()
   },
 
-  // 量出某一餐展开后的高度（px）
-  measureFold(i, extra, cb) {
-    this.createSelectorQuery().select('#items-' + i).boundingClientRect(r => {
-      if (r && r.height === this.data.foldH && !extra) {
+  // 一次量出各餐完整内容的高度（px），收起时也保留各自的高度。
+  measureFolds(cb) {
+    const query = this.createSelectorQuery()
+    N.MEALS.forEach((_, i) => query.select('#items-' + i).boundingClientRect())
+    query.exec(res => {
+      const foldHs = N.MEALS.map((_, i) => res && res[i] ? res[i].height : 0)
+      if (foldHs.every((height, i) => height === this.data.foldHs[i])) {
         if (cb) cb()
         return
       }
-      this.setData(Object.assign({ foldH: r ? r.height : 0 }, extra || {}), cb)
-    }).exec()
+      this.setData({ foldHs }, cb)
+    })
   },
 
   toggleMeal(e) {
@@ -314,8 +323,11 @@ Page({
       this.addTo({ currentTarget: { dataset: { meal: meal.name } } })
       return
     }
-    if (this.data.open === i) this.setData({ open: -1, resetKey: this.data.resetKey + 1 })
-    else this.measureFold(i, { open: i, resetKey: this.data.resetKey + 1 })
+    if (this.data.opened[i]) this.setData({ ['opened[' + i + ']']: false, resetKey: this.data.resetKey + 1 })
+    else this.createSelectorQuery().select('#items-' + i).boundingClientRect(r => {
+      this.setData({ ['foldHs[' + i + ']']: r ? r.height : 0,
+        ['opened[' + i + ']']: true, resetKey: this.data.resetKey + 1 })
+    }).exec()
   },
   addTo(e) {
     const meal = e.currentTarget.dataset.meal
@@ -326,11 +338,9 @@ Page({
     const date = this.data.date, meal = e.currentTarget.dataset.meal
     this.safe(() => {
       const ids = store.copyMeal(D.addDays(date, -1), date, meal)
-      this.setData({ open: N.MEALS.indexOf(meal) })
       this.load(date)
       this.showToast('已照昨天加入 ' + ids.length + ' 样', () => {
         ids.forEach(id => store.removePortion(date, id))
-        this.setData({ open: -1 })
         this.load(date)
       })
     })
@@ -348,24 +358,22 @@ Page({
       this.leaveDone = null
       this.safe(() => {
         store.removePortion(date, id)
-        if (!store.getDay(date).portions.some(x => x.meal === p.meal)) this.setData({ open: -1 })
         this.load(date)
         this.showToast('已删除 ' + p.food.name.replace(/[（(].*?[）)]/g, ''), () => {
           store.restorePortions(date, [p])
-          this.setData({ open: N.MEALS.indexOf(p.meal) })
           this.load(date)
         })
       })
       this.setData({ leavingId: '' })
     }
     const i = N.MEALS.indexOf(p.meal)
-    if (this.data.open !== i) { finish(); return }
+    if (!this.data.opened[i]) { finish(); return }
     this.leaveDone = finish
     this.createSelectorQuery().select('#it-' + id).boundingClientRect(r => {
       if (this.leaveDone !== finish) return
-      const patch = { leavingId: id }
-      if (this.data.meals[i].items.length === 1) patch.open = -1
-      else patch.foldH = this.data.foldH - (r ? r.height : 0)
+      const patch = { leavingId: id,
+        ['foldHs[' + i + ']']: Math.max(0, this.data.foldHs[i] - (r ? r.height : 0)) }
+      if (this.data.meals[i].items.length === 1) patch['opened[' + i + ']'] = false
       this.setData(patch)
       this.leaveTimer = setTimeout(finish, 280)
     }).exec()
@@ -451,8 +459,10 @@ Page({
     this.safe(() => {
       const p = this.portions.find(x => x.id === ed.id)
       store.updatePortion(this.data.date, ed.id, { grams: N.round(grams, 1), meal: N.MEALS[ed.meal], time: ed.time, unit: '克' })
-      this.setData({ open: ed.meal })
-      if (p && p.meal !== N.MEALS[ed.meal]) this.showToast('已移到' + N.MEALS[ed.meal])
+      if (p && p.meal !== N.MEALS[ed.meal]) {
+        this.setData({ ['opened[' + ed.meal + ']']: true })
+        this.showToast('已移到' + N.MEALS[ed.meal])
+      }
       this.closeSheet()
     })
   },

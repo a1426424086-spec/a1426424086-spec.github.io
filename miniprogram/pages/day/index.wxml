@@ -33,7 +33,7 @@
   </view>
   <view class="section"><text>餐次</text><text>千卡</text></view>
   <view class="card meals">
-    <view class="meal {{meal.items.length ? 'm-filled' : 'm-empty'}} {{open === mi ? 'open' : ''}}" wx:for="{{meals}}" wx:key="name" wx:for-item="meal" wx:for-index="mi">
+    <view class="meal {{meal.items.length ? 'm-filled' : 'm-empty'}} {{opened[mi] ? 'open' : ''}}" wx:for="{{meals}}" wx:key="name" wx:for-item="meal" wx:for-index="mi">
       <view class="row" hover-class="row-press" hover-start-time="0" hover-stay-time="100" data-i="{{mi}}" bindtap="toggleMeal">
         <view class="ico"><image src="/images/icons/meal-{{meal.icon}}.png" mode="aspectFit"></image></view>
         <view class="m-name">{{meal.name}}<view class="chev" wx:if="{{meal.items.length}}"></view></view>
@@ -41,7 +41,7 @@
         <text class="m-k num">{{meal.items.length ? meal.kcal : '—'}}</text>
         <view class="plus" catchtap="addTo" data-meal="{{meal.name}}" hover-class="plus-press" hover-start-time="0" hover-stay-time="100">＋</view>
       </view>
-      <view class="fold" wx:if="{{meal.items.length}}" style="height: {{open === mi ? foldH : 0}}px">
+      <view class="fold" wx:if="{{meal.items.length}}" style="height: {{opened[mi] ? foldHs[mi] : 0}}px">
       <view class="items" id="items-{{mi}}">
         <view class="it {{item.fresh ? 'row-in' : ''}} {{leavingId === item.id ? 'row-out' : ''}}" id="it-{{item.id}}" wx:for="{{meal.items}}" wx:key="id">
           <view class="it-slide" data-id="{{item.id}}" data-w="{{delW}}" bindtouchstart="{{sw.start}}" bindtouchmove="{{sw.move}}" bindtouchend="{{sw.end}}" change:prop="{{sw.reset}}" prop="{{resetKey}}" bindtap="onItemTap">
