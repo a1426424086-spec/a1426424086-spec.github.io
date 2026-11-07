@@ -70,6 +70,10 @@ Page({
     this.setData({ tab: e.currentTarget.dataset.t })
   },
 
+  openRequest() {
+    wx.navigateTo({ url: '/pages/request/index' })
+  },
+
   createNew() {
     wx.showModal({
       title: '新建食谱',

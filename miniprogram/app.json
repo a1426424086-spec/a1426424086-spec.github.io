@@ -5,7 +5,8 @@
     "pages/recipes/index",
     "pages/pick/index",
     "pages/food-edit/index",
-    "pages/recipe/index"
+    "pages/recipe/index",
+    "pages/request/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#0b0a08",

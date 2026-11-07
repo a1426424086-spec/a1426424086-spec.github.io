@@ -1,1 +1,2 @@
 .seg { margin-top: 8rpx; }
+.request-entry { border: 1rpx solid var(--gold); }

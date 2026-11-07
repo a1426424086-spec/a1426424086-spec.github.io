@@ -3,6 +3,7 @@
   "projectname": "shiguang",
   "appid": "wx87d6df35168228d1",
   "compileType": "miniprogram",
+  "cloudfunctionRoot": "cloudfunctions/",
   "libVersion": "3.4.0",
   "packOptions": {
     "ignore": [
@@ -12,7 +13,8 @@
       { "type": "folder", "value": "images/goods" },
       { "type": "folder", "value": "pages/stats" },
       { "type": "file", "value": "images/icons/tab-chart.png" },
-      { "type": "file", "value": "images/icons/tab-chart-on.png" }
+      { "type": "file", "value": "images/icons/tab-chart-on.png" },
+      { "type": "folder", "value": "tests" }
     ],
     "include": []
   },
