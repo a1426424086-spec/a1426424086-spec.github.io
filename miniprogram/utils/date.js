@@ -56,4 +56,37 @@ function relative(s) {
   return short(s)
 }
 
-module.exports = { pad, format, parse, isValid, today, addDays, nowTime, weekday, slash, short, relative }
+const CN = ['〇', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十']
+function cnNumber(n) {
+  if (n <= 10) return CN[n]
+  if (n < 20) return '十' + CN[n % 10]
+  return CN[Math.floor(n / 10)] + '十' + (n % 10 ? CN[n % 10] : '')
+}
+
+// 十一月一日
+function chinese(s) {
+  const d = parse(s)
+  return cnNumber(d.getMonth() + 1) + '月' + cnNumber(d.getDate()) + '日'
+}
+
+// 按当前时刻问候
+function greeting() {
+  const h = new Date().getHours()
+  if (h >= 5 && h < 10) return '早上好'
+  if (h >= 10 && h < 13) return '中午好'
+  if (h >= 13 && h < 18) return '下午好'
+  if (h >= 18 && h < 23) return '晚上好'
+  return '夜深了'
+}
+
+// 所在周的周一（YYYY-MM-DD）
+function mondayOf(s) {
+  const d = parse(s)
+  d.setDate(d.getDate() - ((d.getDay() + 6) % 7))
+  return format(d)
+}
+
+// 周一为第一列：一 二 … 日
+const WEEK_MON = ['一', '二', '三', '四', '五', '六', '日']
+
+module.exports = { mondayOf, WEEK_MON, chinese, greeting, pad, format, parse, isValid, today, addDays, nowTime, weekday, slash, short, relative }

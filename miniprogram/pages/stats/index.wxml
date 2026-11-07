@@ -1,41 +1,30 @@
+<view class="ambient"></view>
 <view class="wrap">
-  <view class="h1">营养统计</view>
-  <view class="soft small">按本机记录计算，有效蛋白为自定义折算估算</view>
-
   <view class="seg range">
-    <view class="seg-item {{range === 7 ? 'on' : ''}}" data-r="7" bindtap="setRange">近 7 天</view>
-    <view class="seg-item {{range === 30 ? 'on' : ''}}" data-r="30" bindtap="setRange">近 30 天</view>
+    <view class="seg-item {{range === 7 ? 'on' : ''}}" hover-class="press" data-r="7" bindtap="setRange">近 7 天</view>
+    <view class="seg-item {{range === 30 ? 'on' : ''}}" hover-class="press" data-r="30" bindtap="setRange">近 30 天</view>
   </view>
 
-  <view class="card">
-    <view class="row">
-      <text class="h2">每日热量</text>
-      <text class="soft small">已记录 {{recorded}} / {{range}} 天</text>
+  <block wx:if="{{avg}}">
+    <view class="big-kcal num">{{avg.kcal}}</view>
+    <view class="big-unit">日均千卡 · 记录 <text class="num">{{recorded}}</text> 天</view>
+    <view class="macros3 gap-l">
+      <view class="m c"><view class="m-line"></view><view class="m-v num">{{avg.carbs}}</view><view class="m-l">碳水</view></view>
+      <view class="m p"><view class="m-line"></view><view class="m-v num">{{avg.protein}}</view><view class="m-l">蛋白质</view></view>
+      <view class="m f"><view class="m-line"></view><view class="m-v num">{{avg.fat}}</view><view class="m-l">脂肪</view></view>
     </view>
-    <view class="chart">
-      <view wx:for="{{bars}}" wx:key="date" class="bar-col" data-date="{{item.date}}" bindtap="openDay">
-        <view class="bar-val num" wx:if="{{range === 7 && item.kcal}}">{{item.kcal}}</view>
-        <view class="bar-track">
-          <view class="bar {{item.today ? 'today' : ''}}" style="height: {{item.height}}%"></view>
-        </view>
-        <view class="bar-label {{item.today ? 'gold' : 'soft'}}">{{item.label}}</view>
+  </block>
+
+  <view class="chart gap-l">
+    <view wx:for="{{bars}}" wx:key="date" class="bar-col" hover-class="press" data-date="{{item.date}}" bindtap="openDay">
+      <view class="bar-track">
+        <view class="bar {{item.today ? 'today' : ''}}" style="height: {{item.height}}%"></view>
       </view>
+      <view class="bar-label {{range > 7 ? 'num' : ''}} {{item.today ? 'gold' : 'faint'}}">{{item.label}}</view>
     </view>
   </view>
 
-  <view class="nutri" wx:if="{{avg}}">
-    <view class="nutri-label">有记录日的日均</view>
-    <view><text class="nutri-kcal num">{{avg.kcal}}</text><text class="nutri-kcal-unit">千卡</text></view>
-    <view class="nutri-row">
-      <view class="nutri-cell"><view class="nutri-label">碳水</view><text class="v num">{{avg.carbs}}</text><text class="u">克</text></view>
-      <view class="nutri-cell"><view class="nutri-label">蛋白质</view><text class="v num">{{avg.protein}}</text><text class="u">克</text></view>
-      <view class="nutri-cell"><view class="nutri-label">有效蛋白</view><text class="v num">{{avg.effective}}</text><text class="u">克</text></view>
-      <view class="nutri-cell"><view class="nutri-label">脂肪</view><text class="v num">{{avg.fat}}</text><text class="u">克</text></view>
-    </view>
-  </view>
-
-  <view class="card" wx:if="{{avg}}">
-    <view class="h2">餐次热量占比</view>
+  <view class="gap-l" wx:if="{{avg}}">
     <view wx:for="{{mealShare}}" wx:key="name" class="share row">
       <text class="share-name">{{item.name}}</text>
       <view class="share-track grow"><view class="share-bar" style="width: {{item.pct}}%"></view></view>
@@ -43,14 +32,12 @@
     </view>
   </view>
 
-  <view class="h2 section">历史记录</view>
-  <view wx:for="{{history}}" wx:key="date" class="card hist row" data-date="{{item.date}}" bindtap="openDay">
-    <view class="grow">
-      <view>{{item.title}} <text class="soft small">{{item.week}} · {{item.year}}</text></view>
-      <view class="soft small">{{item.count}} 项食材</view>
+  <view class="list gap-l">
+    <view wx:for="{{history}}" wx:key="date" class="li row" hover-class="press" data-date="{{item.date}}" bindtap="openDay">
+      <view class="grow">{{item.title}}<text class="soft small hist-week">{{item.week}}</text></view>
+      <text class="li-num num">{{item.kcal}}</text>
     </view>
-    <view class="num">{{item.kcal}}<text class="soft small"> 千卡 ›</text></view>
   </view>
-  <view wx:if="{{hasMore}}" class="btn ghost" bindtap="more">加载更早的记录</view>
-  <view wx:if="{{!history.length}}" class="empty">还没有记录，去「配餐」添加第一餐吧</view>
+  <view wx:if="{{hasMore}}" class="more soft small" hover-class="press" bindtap="more">更早的记录</view>
+  <view wx:if="{{!history.length}}" class="empty">还没有记录</view>
 </view>

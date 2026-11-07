@@ -1,2 +1,2 @@
-.sub { margin: 8rpx 0 24rpx; }
-.group-title { font-size: 26rpx; margin: 28rpx 0 14rpx; }
+.seg { margin-top: 8rpx; }
+.request-entry { border: 1rpx solid var(--gold); }

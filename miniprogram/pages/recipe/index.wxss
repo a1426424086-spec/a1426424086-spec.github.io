@@ -1,3 +1,51 @@
-.sub { margin: 12rpx 0 24rpx; }
-.item { padding: 14rpx 0; border-top: 1rpx solid var(--border); margin-top: 10rpx; }
-.note { margin-top: 10rpx; }
+.card2 { background: var(--card); border-radius: 32rpx; overflow: hidden; }
+.hero2 { margin-top: 8rpx; padding: 36rpx 32rpx; background: radial-gradient(90% 120% at 18% 0%, rgba(217, 180, 110, 0.16), rgba(217, 180, 110, 0) 60%), var(--card); box-shadow: inset 0 1rpx 0 rgba(255, 240, 210, 0.14); }
+.sum-l { font-size: 26rpx; color: var(--text-soft); font-weight: 600; }
+.big { display: flex; align-items: baseline; margin-top: 4rpx; }
+.big-k { font-size: 88rpx; font-weight: 600; line-height: 1.05; }
+.big-u { font-size: 30rpx; color: var(--text-soft); margin-left: 12rpx; }
+.bar { display: flex; height: 16rpx; margin: 28rpx 0 20rpx; border-radius: 8rpx; overflow: hidden; }
+.bar view + view { margin-left: 4rpx; }
+.tbl2 { display: flex; }
+.tbl2 > view { flex: 1; }
+.tbl2 > view + view { margin-left: 56rpx; }
+.tr { display: flex; align-items: baseline; height: 54rpx; }
+.tr .n { flex: 1; font-size: 30rpx; color: var(--text-soft); display: flex; align-items: center; }
+.tr .dot { width: 16rpx; height: 16rpx; margin-right: 16rpx; vertical-align: 0; }
+.tr .v { font-size: 34rpx; font-weight: 600; }
+.tr .u { font-size: 26rpx; color: var(--text-soft); width: 36rpx; text-align: right; }
+.tr.sub .n { padding-left: 32rpx; font-size: 26rpx; color: var(--text-faint); }
+.tr.sub .v { font-size: 28rpx; font-weight: 500; color: var(--text-soft); }
+.li.total .l2 { color: var(--text); font-weight: 600; margin-top: 0; }
+.li.total .c-q { font-weight: 400; color: var(--text-soft); }
+.ops { margin-top: 48rpx; }
+.op2 { margin-top: 24rpx; }
+
+.sh-name { font-size: 40rpx; font-weight: 700; }
+.sh-sub { font-size: 26rpx; color: var(--text-soft); margin-top: 4rpx; }
+.stepper { display: flex; align-items: center; justify-content: space-between; margin: 40rpx 0 12rpx; }
+.sb { width: 88rpx; height: 88rpx; border-radius: 50%; background: var(--fill); color: var(--gold); font-size: 48rpx; line-height: 84rpx; text-align: center; }
+.sv-box { flex: 1; display: flex; flex-direction: column; align-items: center; }
+.sv { font-size: 80rpx; font-weight: 600; line-height: 96rpx; height: 96rpx; color: var(--text); }
+/* 克重：数字始终用衬线显示 */
+.sv-wrap { position: relative; display: flex; justify-content: center; min-width: 240rpx; }
+/* 输入框放到屏幕外，只负责弹键盘、收数字；光标只用金色那条 */
+.sv-ghost { position: absolute; left: -2000rpx; top: 0; width: 200rpx; height: 96rpx; opacity: 0; }
+.sv.empty { color: var(--text-faint); }
+.sv.editing::after { content: ''; display: inline-block; width: 4rpx; height: 64rpx; margin-left: 8rpx; vertical-align: -6rpx; background: var(--gold); border-radius: 2rpx; animation: caretBlink 1s steps(1) infinite; }
+@keyframes caretBlink { 50% { opacity: 0; } }
+.sv-hint { font-size: 24rpx; color: var(--text-soft); margin-top: 4rpx; }
+.sh-live { text-align: center; font-size: 26rpx; color: var(--text-soft); }
+.sh-live .num { color: var(--gold); font-size: 30rpx; font-weight: 600; }
+.sh-label { font-size: 26rpx; color: var(--text-soft); margin: 40rpx 0 16rpx; }
+.seg2 { display: flex; background: rgba(118,118,128,.24); border-radius: 18rpx; padding: 4rpx; }
+.seg2-i { flex: 1; text-align: center; font-size: 26rpx; height: 60rpx; line-height: 60rpx; border-radius: 14rpx; }
+.seg2-i.on { font-weight: 600; }
+.sh-btns { display: flex; margin-top: 40rpx; }
+.sh-del, .sh-done { flex: 1; height: 100rpx; border-radius: 28rpx; display: flex; align-items: center; justify-content: center; font-size: 34rpx; font-weight: 600; }
+.sh-del { background: rgba(240,112,94,.14); color: var(--danger); margin-right: 24rpx; }
+.sh-done { background: var(--gold); color: var(--ink); }
+.toast { position: fixed; left: 50%; bottom: 40rpx; z-index: 40; transform: translate(-50%, 16rpx); display: flex; align-items: center; background: rgba(40,37,32,.94); color: var(--text); font-size: 26rpx; padding: 18rpx 28rpx; border-radius: 24rpx; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .2s ease, transform .3s cubic-bezier(.32,.72,0,1); }
+.toast.show { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+.undo { color: var(--gold); font-weight: 600; margin-left: 24rpx; }
+.name-list { margin-bottom: 24rpx; }

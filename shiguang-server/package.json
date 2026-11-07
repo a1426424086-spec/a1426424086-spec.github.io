@@ -1,0 +1,9 @@
+{
+  "name": "shiguang-request-api",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "engines": { "node": ">=20" },
+  "scripts": { "test": "node test/api.test.js" },
+  "dependencies": { "tablestore": "^5" }
+}

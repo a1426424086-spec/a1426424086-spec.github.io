@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "食光 · 配餐"
+  "navigationBarTitleText": "配餐",
+  "navigationStyle": "custom"
 }

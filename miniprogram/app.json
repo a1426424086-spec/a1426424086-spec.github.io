@@ -1,31 +1,30 @@
 {
   "pages": [
     "pages/day/index",
-    "pages/stats/index",
     "pages/foods/index",
     "pages/recipes/index",
     "pages/pick/index",
     "pages/food-edit/index",
     "pages/recipe/index",
-    "pages/goods/index"
+    "pages/request/index"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#161918",
+    "navigationBarBackgroundColor": "#0b0a08",
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "食光",
-    "backgroundColor": "#161918",
+    "backgroundColor": "#0b0a08",
+    "backgroundColorContent": "#0b0a08ff",
     "backgroundTextStyle": "light"
   },
   "tabBar": {
-    "color": "#aaafa9",
-    "selectedColor": "#ddcba5",
-    "backgroundColor": "#1b1f1c",
+    "color": "#7a7468",
+    "selectedColor": "#d9b46e",
+    "backgroundColor": "#12110f",
     "borderStyle": "black",
     "list": [
-      { "pagePath": "pages/day/index", "text": "配餐" },
-      { "pagePath": "pages/stats/index", "text": "统计" },
-      { "pagePath": "pages/foods/index", "text": "食材库" },
-      { "pagePath": "pages/recipes/index", "text": "食谱夹" }
+      { "pagePath": "pages/day/index", "text": "配餐" , "iconPath": "images/icons/tab-bowl.png", "selectedIconPath": "images/icons/tab-bowl-on.png" },
+      { "pagePath": "pages/foods/index", "text": "食材库" , "iconPath": "images/icons/tab-leaf.png", "selectedIconPath": "images/icons/tab-leaf-on.png" },
+      { "pagePath": "pages/recipes/index", "text": "食谱夹" , "iconPath": "images/icons/tab-book.png", "selectedIconPath": "images/icons/tab-book-on.png" }
     ]
   },
   "style": "v2",

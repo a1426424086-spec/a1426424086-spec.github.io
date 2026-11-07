@@ -1,0 +1,78 @@
+<view class="pg request-page">
+  <view class="list intro">
+    <view>食材库里的食物，都是作者自己平时在吃的。</view>
+    <view class="intro-more">有想了解的，或者想要一份适合自己的食谱，可以在下面留言，也可以直接私信我。</view>
+  </view>
+
+  <view wx:if="{{last}}" class="last-row">
+    <text>最近一次提交：{{lastTime}}</text>
+    <view wx:if="{{apiEnabled}}" class="withdraw gold" hover-class="press" hover-start-time="0" hover-stay-time="100" bindtap="withdraw">{{withdrawing ? '撤回中…' : '撤回'}}</view>
+  </view>
+
+  <view class="sec">我的情况</view>
+  <view class="list">
+    <view class="form-field">
+      <view class="fr">
+        <text class="fr-l">性别</text>
+        <view class="seg grow">
+          <view class="seg-knob" hidden="{{!form.sex}}" style="width: calc((100% - 8rpx) / 2); transform: translateX({{form.sex === 'f' ? 100 : 0}}%)"></view>
+          <view class="seg-item {{form.sex === 'm' ? 'on' : ''}}" hover-class="press" hover-start-time="0" hover-stay-time="100" data-v="m" bindtap="setSex">男</view>
+          <view class="seg-item {{form.sex === 'f' ? 'on' : ''}}" hover-class="press" hover-start-time="0" hover-stay-time="100" data-v="f" bindtap="setSex">女</view>
+        </view>
+      </view>
+      <view wx:if="{{errors.sex}}" class="field-error">{{errors.sex}}</view>
+    </view>
+    <view class="form-field">
+      <view class="fr"><text class="fr-l">年龄</text><view class="fr-v"><input type="digit" value="{{form.age}}" placeholder="未填写" placeholder-class="ph" data-k="age" bindinput="onInput" disabled="{{submitting || withdrawing}}" /></view><text class="fr-u">岁</text></view>
+      <view wx:if="{{errors.age}}" class="field-error">{{errors.age}}</view>
+    </view>
+    <view class="form-field">
+      <view class="fr"><text class="fr-l">身高</text><view class="fr-v"><input type="digit" value="{{form.height}}" placeholder="未填写" placeholder-class="ph" data-k="height" bindinput="onInput" disabled="{{submitting || withdrawing}}" /></view><text class="fr-u">厘米</text></view>
+      <view wx:if="{{errors.height}}" class="field-error">{{errors.height}}</view>
+    </view>
+    <view class="form-field">
+      <view class="fr"><text class="fr-l">体重</text><view class="fr-v"><input type="digit" value="{{form.weight}}" placeholder="未填写" placeholder-class="ph" data-k="weight" bindinput="onInput" disabled="{{submitting || withdrawing}}" /></view><text class="fr-u">公斤</text></view>
+      <view wx:if="{{errors.weight}}" class="field-error">{{errors.weight}}</view>
+    </view>
+  </view>
+
+  <view class="sec">运动习惯</view>
+  <view class="list activity {{form.activity === item.key ? 'selected' : ''}}" wx:for="{{activities}}" wx:key="key" data-v="{{item.key}}" bindtap="setActivity" hover-class="row-press" hover-start-time="0" hover-stay-time="100">
+    <view class="li">
+      <view class="li-main"><view class="li-name">{{item.title}}</view><view class="activity-desc">{{item.desc}}</view></view>
+      <text class="li-num num activity-factor">×{{item.factor}}</text>
+    </view>
+    <text wx:if="{{form.activity === item.key}}" class="activity-check">✓</text>
+  </view>
+  <view wx:if="{{errors.activity}}" class="field-error">{{errors.activity}}</view>
+
+  <view class="sec"><text>目标</text><text>选填</text></view>
+  <view class="seg">
+    <view class="seg-knob" hidden="{{goalIndex === -1}}" style="width: calc((100% - 8rpx) / 3); transform: translateX({{goalIndex === -1 ? 0 : goalIndex * 100}}%)"></view>
+    <view wx:for="{{goals}}" wx:key="key" class="seg-item {{form.goal === item.key ? 'on' : ''}}" data-v="{{item.key}}" bindtap="setGoal" hover-class="press" hover-start-time="0" hover-stay-time="100">{{item.title}}</view>
+  </view>
+  <view wx:if="{{errors.goal}}" class="field-error">{{errors.goal}}</view>
+
+  <view class="list estimate">
+    <block wx:if="{{kcal !== null}}">
+      <view>估算每天消耗约 <text class="num estimate-value">{{kcal}}</text> 千卡</view>
+      <view wx:if="{{targetKcal !== null}}" class="estimate-target">按{{goalTitle}}目标，建议每天约 <text class="num target-value">{{targetKcal}}</text> 千卡</view>
+    </block>
+    <view wx:else="" class="soft">填完上面几项，这里会算出每天大约需要多少千卡</view>
+  </view>
+
+  <view class="sec">留言</view>
+  <view class="list message-card">
+    <textarea value="{{form.message}}" maxlength="300" placeholder="比如：不吃牛肉，想要一天 4 餐" placeholder-class="ph" data-k="message" bindinput="onInput" disabled="{{submitting || withdrawing}}" />
+    <view class="message-count">已写 {{form.message.length}} / 300</view>
+  </view>
+  <view wx:if="{{errors.message}}" class="field-error">{{errors.message}}</view>
+
+  <view class="ops">
+    <view class="privacy">提交后，以上信息会发送给作者，只用来为你定制食谱，不会公开。</view>
+    <view wx:if="{{storageError}}" class="storage-error">{{storageError}}</view>
+    <view wx:if="{{submitError}}" class="submit-error">{{submitError}}</view>
+    <button class="btn {{submitting || withdrawing ? 'disabled' : ''}}" hover-class="btn-press" hover-start-time="0" hover-stay-time="100" bindtap="submit" disabled="{{submitting || withdrawing}}">{{submitting ? '提交中…' : '提交给作者'}}</button>
+    <button class="btn ghost op2" open-type="contact" hover-class="btn-press" hover-start-time="0" hover-stay-time="100">私信作者</button>
+  </view>
+</view>
