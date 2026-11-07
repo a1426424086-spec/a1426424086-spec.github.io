@@ -1,9 +1,45 @@
 const T = require('../../utils/tdee')
-const { ENV_ID } = require('../../config/cloud')
+const { API_BASE } = require('../../config/api')
 
 const DRAFT_KEY = 'sg_request_draft'
 const LAST_KEY = 'sg_request_last'
 const FIELDS = ['sex', 'age', 'height', 'weight', 'activity', 'goal', 'message']
+
+function login() {
+  return new Promise((resolve, reject) => {
+    const fail = () => reject({ code: 'auth' })
+    try {
+      wx.login({
+        timeout: 8000,
+        success: result => typeof result.code === 'string' && result.code ? resolve(result.code) : fail(),
+        fail
+      })
+    } catch (e) {
+      fail()
+    }
+  })
+}
+
+async function post(path, data) {
+  const code = await login()
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: API_BASE + path,
+      method: 'POST',
+      data: Object.assign({ code }, data),
+      timeout: 8000,
+      success: response => {
+        const result = response.data
+        if (response.statusCode >= 200 && response.statusCode < 300 && result && result.ok === true) {
+          resolve(result)
+        } else {
+          reject({ code: result && typeof result.code === 'string' ? result.code : '' })
+        }
+      },
+      fail: () => reject({ code: '' })
+    })
+  })
+}
 
 function emptyForm() {
   return { sex: '', age: '', height: '', weight: '', activity: '', goal: '', message: '' }
@@ -31,7 +67,7 @@ Page({
     storageError: '',
     last: null,
     lastTime: '',
-    cloudEnabled: !!ENV_ID,
+    apiEnabled: !!API_BASE,
     submitting: false,
     withdrawing: false
   },
@@ -119,6 +155,7 @@ Page({
     const messages = {
       limit: '今天已经提交 3 次了，明天再来，或者直接私信作者',
       invalid: '填写的内容有误，请检查',
+      auth: '登录失败，请稍后再试',
       not_found: '这次提交已不存在'
     }
     wx.showToast({ title: messages[code] || '网络不稳定，稍后再试', icon: 'none' })
@@ -126,29 +163,16 @@ Page({
 
   async submit() {
     if (this.data.submitting || this.data.withdrawing) return
-    if (!ENV_ID) {
+    if (!API_BASE) {
       wx.showToast({ title: '提交功能还没开通，可以先私信作者', icon: 'none' })
       return
     }
     this.submitAttempted = true
     if (!this.refresh().ok) return
-    if (!wx.cloud || typeof wx.cloud.callFunction !== 'function') {
-      this.showResult()
-      return
-    }
     const form = Object.assign({}, this.data.form)
     this.setData({ submitting: true, submitError: '' })
     try {
-      const response = await wx.cloud.callFunction({
-        name: 'request',
-        data: { action: 'submit', form, appVersion: '1.0.2' },
-        timeout: 8000
-      })
-      const result = response && response.result
-      if (!result || !result.ok) {
-        this.showResult(result && result.code)
-        return
-      }
+      const result = await post('/api/requests', { form, appVersion: '1.0.2' })
       const last = { id: result.id, createdAt: result.createdAt }
       const lastTime = lastLabel(last)
       if (!lastTime) {
@@ -167,14 +191,14 @@ Page({
       }
       wx.showToast({ title: '已提交，作者看到后会联系你', icon: 'none' })
     } catch (e) {
-      this.showResult()
+      this.showResult(e && e.code)
     } finally {
       this.setData({ submitting: false })
     }
   },
 
   withdraw() {
-    if (!ENV_ID || !this.data.last || this.data.submitting || this.data.withdrawing) return
+    if (!API_BASE || !this.data.last || this.data.submitting || this.data.withdrawing) return
     const id = this.data.last.id
     this.setData({ withdrawing: true })
     wx.showModal({
@@ -186,16 +210,7 @@ Page({
           return
         }
         try {
-          if (!wx.cloud || typeof wx.cloud.callFunction !== 'function') {
-            this.showResult()
-            return
-          }
-          const response = await wx.cloud.callFunction({ name: 'request', data: { action: 'withdraw', id }, timeout: 8000 })
-          const result = response && response.result
-          if (!result || !result.ok) {
-            this.showResult(result && result.code)
-            return
-          }
+          await post('/api/requests/withdraw', { id })
           this.setData({ last: null, lastTime: '' })
           try {
             wx.removeStorageSync(LAST_KEY)
@@ -204,7 +219,7 @@ Page({
           }
           wx.showToast({ title: '已撤回', icon: 'none' })
         } catch (e) {
-          this.showResult()
+          this.showResult(e && e.code)
         } finally {
           this.setData({ withdrawing: false })
         }

@@ -6,7 +6,7 @@
 
   <view wx:if="{{last}}" class="last-row">
     <text>最近一次提交：{{lastTime}}</text>
-    <view wx:if="{{cloudEnabled}}" class="withdraw gold" hover-class="press" hover-start-time="0" hover-stay-time="100" bindtap="withdraw">{{withdrawing ? '撤回中…' : '撤回'}}</view>
+    <view wx:if="{{apiEnabled}}" class="withdraw gold" hover-class="press" hover-start-time="0" hover-stay-time="100" bindtap="withdraw">{{withdrawing ? '撤回中…' : '撤回'}}</view>
   </view>
 
   <view class="sec">我的情况</view>

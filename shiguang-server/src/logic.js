@@ -1,3 +1,4 @@
+// 与 miniprogram/utils/tdee.js 保持一致。
 const ACTIVITIES = [
   { key: 'sedentary', title: '久坐', desc: '基本不运动，办公室工作', factor: 1.2 },
   { key: 'light', title: '轻度', desc: '每周运动 1–3 天', factor: 1.375 },
@@ -76,7 +77,7 @@ function validate(form) {
   return { ok: Object.keys(errors).length === 0, mode, errors }
 }
 
-// 与 utils/tdee.js 保持相同的校验及计算核心，云函数独立部署。
+// 校验、清洗和计算核心原样迁移，服务端独立部署。
 function clean(form) {
   form = asForm(form)
   const result = {
@@ -91,4 +92,4 @@ function clean(form) {
   return Object.assign(result, { tdee: tdee(result), target: target(result) })
 }
 
-module.exports = { validate, tdee, clean }
+module.exports = { validate, tdee, target, clean }

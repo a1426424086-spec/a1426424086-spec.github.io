@@ -1,5 +1,4 @@
 const store = require('./utils/store')
-const { ENV_ID } = require('./config/cloud')
 
 App({
   globalData: {
@@ -14,7 +13,6 @@ App({
     } catch (e) {
       wx.showToast({ title: '本机存储不可用', icon: 'none' })
     }
-    if (ENV_ID && wx.cloud) wx.cloud.init({ env: ENV_ID, traceUser: false })
   },
 
   openDay(date) {
