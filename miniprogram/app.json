@@ -12,6 +12,7 @@
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "食光",
     "backgroundColor": "#0b0a08",
+    "backgroundColorContent": "#0b0a08ff",
     "backgroundTextStyle": "light"
   },
   "tabBar": {
